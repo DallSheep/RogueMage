@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManger : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-   public static GameManger Instance;
+   public static GameManager Instance;
 
+    public bool isPaused;
     public void Awake()
     {
         
