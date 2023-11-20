@@ -6,10 +6,20 @@ public class GameManager : MonoBehaviour
 {
    public static GameManager Instance;
 
+    [Header("-----player-----")]
+    public GameObject player;
+    public GameObject playerSpawnPos;
+    public PlayerController playerScript;
+
     public bool isPaused;
+    float timescaleOrig;
+
     public void Awake()
     {
-        
+        Instance = this;
+        timescaleOrig = Time.timeScale;
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerController>();
     }
 
     public void Start()
