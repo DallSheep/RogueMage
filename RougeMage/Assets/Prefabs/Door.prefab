@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!4 &1389450892927703815
 Transform:
@@ -59,6 +59,7 @@ MonoBehaviour:
   doorAnimation: {fileID: 1834983548709750099}
   lockedDoor: {fileID: 0}
   unlockedDoor: {fileID: 0}
+  isLocked: 0
 --- !u!65 &760367929994562588
 BoxCollider:
   m_ObjectHideFlags: 0
