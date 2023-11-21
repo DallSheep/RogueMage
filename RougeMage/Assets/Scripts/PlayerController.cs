@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private Vector3 move;
     private Vector3 playerVelocity;
-    bool isPaused;
+    public bool isPaused;
     bool isShooting;
     bool isPlayingSteps;
     public bool isSprinting;
@@ -45,10 +45,12 @@ public class PlayerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.Instance.isPaused)
-        {
-            Movement();
-        }
+
+        Movement();
+        //if (!GameManager.Instance.isPaused)
+        //{
+        //    Movement();
+        //}
     }
 
     public void takeDamage(int amount)
