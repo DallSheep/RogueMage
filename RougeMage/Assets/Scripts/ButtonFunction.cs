@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonFunction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void resume()
     {
-        
+        GameManager.Instance.stateUnpause();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void restart()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.stateUnpause();
+    }
+
+    public void Respwan()
+    {
+        GameManager.Instance.playerScript.spawnPlayer();
+        GameManager.Instance.stateUnpause();
+    }
+
+    public void quit()
+    {
+        Application.Quit();
     }
 }

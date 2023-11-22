@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
+    [SerializeField] Camera cam;
 
     [Header("----- Player Stats -----")]
     [Range(1, 8)][SerializeField] int playerSpeed;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
 
+
     private Vector3 move;
     private float horizontalMovement;
     private float verticalMovement;
@@ -53,7 +56,10 @@ public class PlayerController : MonoBehaviour, IDamage
     void Update()
     {
         if (!GameManager.Instance.isPaused)
+        {
             movement();
+            cameraMovement();
+        }
 
         if (gunList.Count > 0)
         {
@@ -102,6 +108,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void cameraMovement()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        Vector3 relative = transform.InverseTransformPoint(Input.mousePosition);
+        float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
+        transform.Rotate(0, angle, 0);
     }
 
     void sprint()
@@ -181,7 +197,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void updatePlayerUI()
     {
-        //GameManager.Instance.playerHPBar.fillAmount = (float)Hp / HPOrig;
+        GameManager.Instance.playerHPBar.fillAmount = (float)Hp / HPOrig;
     }
 
     void selectGun()
