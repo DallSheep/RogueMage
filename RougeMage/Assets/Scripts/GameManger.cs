@@ -1,29 +1,34 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
-using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] GameObject menuActive; //Dami did this.
+    [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject menuDungeon; //Dami added this.
+    [SerializeField] GameObject menuDungeon; 
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
-    [SerializeField] GameObject door;
 
     public Image playerHPBar;
 
     public GameObject playerSpawnPos;
     public GameObject player;
     public PlayerController playerScript;
+
+    //Door Stuff
+    public Doors doors;
+    public GameObject startDoorCollider;
+    public GameObject regDoorCollider;
 
     public bool isPaused;
     float timescaleOrig;
@@ -37,7 +42,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Respawn");
-        //door = door.GetComponentInChildren<BoxCollider>();
+        startDoorCollider = GameObject.FindWithTag("Start Collider");
+        regDoorCollider = GameObject.FindWithTag("Door Collider");
     }
 
 
@@ -61,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void stateUnpause()
     {
+        playerScript.enabled = true;
         isPaused = !isPaused;
         Time.timeScale = timescaleOrig;
         Cursor.visible = true;
@@ -106,5 +113,28 @@ public class GameManager : MonoBehaviour
     internal void ExitDoorCondition()
     {
        
+    }
+
+    public void DoorMenus()
+    {
+        if (startDoorCollider)
+        {
+            statePause();
+            menuActive = menuDungeon;
+            menuDungeon.SetActive(true);
+        }
+        else
+        {
+            stateUnpause();
+            doors.isLocked = false;
+            doors.unlockedDoor.gameObject.SetActive(true);
+
+            //This is for making the door interactable and letting you walk through by destroying the collider
+            if (Input.GetButtonDown("Interact") && regDoorCollider)
+            {
+                doors.doorAnimation.Play("DoorOpen", 0, 0.0f);
+                Destroy(gameObject.GetComponentInChildren<BoxCollider>());
+            }
+        }
     }
 }
