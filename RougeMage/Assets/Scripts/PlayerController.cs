@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour, IDamage
         move = (transform.forward * Input.GetAxisRaw("Vertical") + 
                 transform.right * Input.GetAxisRaw("Horizontal"));
 
-        transform.Translate(move.normalized * playerSpeed * Time.deltaTime, Space.World);
+        //transform.Translate(move.normalized * playerSpeed * Time.deltaTime, Space.World);
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
