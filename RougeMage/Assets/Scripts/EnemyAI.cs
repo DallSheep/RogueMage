@@ -20,11 +20,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootCone;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
-    public bool robotType;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+
+    [Header("----- Sword Stuff -----")]
+    [Range(1, 5)][SerializeField] int timeBetweenSwings;
 
     [Header("----- Drop on Death -----")]
     [SerializeField] List<GameObject> groundItems;
@@ -116,6 +118,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.isTrigger)
+        {
+            return;
+        }
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
@@ -124,6 +130,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
         if (other.CompareTag("Player"))
         {
             agent.stoppingDistance = 0;
@@ -134,12 +144,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+        anim.SetBool("isShooting", true);
 
         //using transform.rotation will shoot the bullet wherever the enemy is pointing
         Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
+        anim.SetBool("isShooting", false);
     }
 
     public void takeDamage(int amount)

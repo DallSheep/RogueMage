@@ -8,6 +8,9 @@ TagManager:
   - Door Collider
   - ImageBG
   - End Text
+  - Spider Enemy
+  - Goblin Enemy
+  - Skeleton Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
