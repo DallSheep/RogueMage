@@ -11,6 +11,7 @@ public class Doors : MonoBehaviour
     [SerializeField] TMP_Text lockedDoor;
     [SerializeField] TMP_Text unlockedDoor;
 
+    //Just to keep track of locked doors
     [SerializeField] public bool isLocked;
 
     private void Start()
@@ -20,13 +21,28 @@ public class Doors : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")/*&& GameManager.Instance.enemiesRemaining <= 0*/)
+        if (other.CompareTag("Player") /*&& GameManager.Instance.enemiesRemaining <= 0*/)
         {
-            isLocked = false;
-            unlockedDoor.gameObject.SetActive(true);
-            if (Input.GetButtonDown("Interact"))
+            Debug.Log("The box has been hit!");
+            //This will only access the door in the very very beginning 
+            if(gameObject.GetComponentInChildren<BoxCollider>().CompareTag("Start Collider"))
             {
-                doorAnimation.Play("DoorOpen", 0, 0.0f);
+                GameManager.Instance.statePause();
+                GameManager.Instance.menuActive = GameManager.Instance.menuDungeon;
+                GameManager.Instance.menuDungeon.SetActive(true);
+            }
+            else
+            {
+                GameManager.Instance.playerScript.enabled = true;
+                isLocked = false;
+                unlockedDoor.gameObject.SetActive(true);
+
+                //This is for making the door interactable and letting you walk through by destroying the collider
+                if (Input.GetButtonDown("Interact") && gameObject.GetComponentInChildren<BoxCollider>().CompareTag("Door Collider"))
+                {
+                    doorAnimation.Play("DoorOpen", 0, 0.0f);
+                    Destroy(gameObject.GetComponentInChildren<BoxCollider>());
+                }
             }
         }
         else

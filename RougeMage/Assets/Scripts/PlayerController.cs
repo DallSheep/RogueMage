@@ -33,9 +33,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audJumpVol;
 
     private Vector3 move;
+    private float horizontalMovement;
+    private float verticalMovement;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private int jumpedTimes;
+    //private int jumpedTimes;
     bool isShooting;
     bool isPlayingSteps;
     bool isSprinting;
@@ -66,7 +68,6 @@ public class PlayerController : MonoBehaviour, IDamage
     void movement()
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        groundedPlayer = controller.isGrounded;
 
         if (groundedPlayer && move.normalized.magnitude > 0.3 && !isPlayingSteps)
         {
@@ -78,20 +79,24 @@ public class PlayerController : MonoBehaviour, IDamage
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
-            jumpedTimes = 0;
+            //jumpedTimes = 0;
         }
 
-        move = Input.GetAxis("Horizontal") * transform.right +
-           Input.GetAxis("Vertical") * transform.forward;
+        move = (transform.forward * Input.GetAxisRaw("Vertical") + 
+                transform.right * Input.GetAxisRaw("Horizontal"));
+
+        transform.Translate(move.normalized * playerSpeed * Time.deltaTime, Space.World);
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
-        {
-            aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
-            playerVelocity.y = jumpHeight;
-            jumpedTimes++;
-        }
+        //Disabling the jump. Not sure if we are implementing this or not -Dami
+
+        //if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
+        //{
+        //    aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+        //    playerVelocity.y = jumpHeight;
+        //    jumpedTimes++;
+        //}
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -115,8 +120,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
 
         isPlayingSteps = true;
-
-
 
         if (!isSprinting)
             yield return new WaitForSeconds(0.5f);

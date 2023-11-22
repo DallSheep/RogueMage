@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Start Collider
+  - Door Collider
+  - ImageBG
+  - End Text
   layers:
   - Default
   - TransparentFX

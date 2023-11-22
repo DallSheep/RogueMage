@@ -10,10 +10,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] GameObject menuActive;
+    [SerializeField] public GameObject menuActive; //Dami did this.
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] public GameObject menuDungeon; //Dami added this.
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
 
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused;
     float timescaleOrig;
-    int enemiesRemaining;
+    public int enemiesRemaining;
 
 
     void Awake()
