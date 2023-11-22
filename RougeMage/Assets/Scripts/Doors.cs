@@ -7,9 +7,9 @@ using UnityEngine;
 public class Doors : MonoBehaviour
 {
     [Header("----- Components -----")]
-    [SerializeField] Animator doorAnimation;
-    [SerializeField] TMP_Text lockedDoor;
-    [SerializeField] TMP_Text unlockedDoor;
+    [SerializeField] public Animator doorAnimation;
+    [SerializeField] public TMP_Text lockedDoor;
+    [SerializeField] public TMP_Text unlockedDoor;
 
     //Just to keep track of locked doors
     [SerializeField] public bool isLocked;
@@ -19,45 +19,33 @@ public class Doors : MonoBehaviour
         isLocked = true;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player") /*&& GameManager.Instance.enemiesRemaining <= 0*/)
-    //    {
-    //        Debug.Log("The box has been hit!");
-    //        //This will only access the door in the very very beginning 
-    //        if(gameObject.GetComponentInChildren<BoxCollider>().CompareTag("Start Collider"))
-    //        {
-    //            GameManager.Instance.statePause();
-    //            GameManager.Instance.menuActive = GameManager.Instance.menuDungeon;
-    //            GameManager.Instance.menuDungeon.SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            GameManager.Instance.playerScript.enabled = true;
-    //            isLocked = false;
-    //            unlockedDoor.gameObject.SetActive(true);
-
-    //            //This is for making the door interactable and letting you walk through by destroying the collider
-    //            if (Input.GetButtonDown("Interact") && gameObject.GetComponentInChildren<BoxCollider>().CompareTag("Door Collider"))
-    //            {
-    //                doorAnimation.Play("DoorOpen", 0, 0.0f);
-    //                Destroy(gameObject.GetComponentInChildren<BoxCollider>());
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        isLocked = true;
-    //        lockedDoor.gameObject.SetActive(true);
-    //    }
-    //}
-
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") /*&& GameManager.Instance.enemiesRemaining <= 0*/)
+        {
+            Debug.Log("The box has been hit!");
+            //This will only access the door in the very very beginning 
+            GameManager.Instance.DoorMenus();
+        }
+        else
+        {
+            isLocked = true;
+            lockedDoor.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && !GameManager.Instance.startDoorCollider)
         {
             doorAnimation.Play("DoorClose", 0, 0.0f);
-            //gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponentInParent<BoxCollider>().enabled = false;
+        }
+        else
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponentInParent<BoxCollider>().enabled = false;
         }
     }
 }
