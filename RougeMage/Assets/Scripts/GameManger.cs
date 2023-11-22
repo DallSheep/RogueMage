@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] public GameObject menuActive; //Dami did this.
+    [SerializeField] GameObject menuActive; //Dami did this.
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] public GameObject menuDungeon; //Dami added this.
+    [SerializeField] GameObject menuDungeon; //Dami added this.
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] GameObject door;
 
     public Image playerHPBar;
 
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Respawn");
+        //door = door.GetComponentInChildren<BoxCollider>();
     }
 
 

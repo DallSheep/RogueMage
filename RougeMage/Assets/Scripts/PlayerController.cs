@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
+        sprint();
+
         if (groundedPlayer && move.normalized.magnitude > 0.3 && !isPlayingSteps)
         {
             StartCoroutine(playSteps());
