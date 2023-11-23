@@ -11,6 +11,7 @@ TagManager:
   - Goblin Enemy
   - Skeleton Enemy
   - Door
+  - Dragon Boss
   layers:
   - Default
   - TransparentFX
