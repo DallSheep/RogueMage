@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
 
     //Door Stuff
     public Doors doors;
-    public GameObject startDoorCollider;
-    public GameObject regDoorCollider;
+    public GameObject doorWithColliders;
+    public BoxCollider noTriggerCollider;
 
     public bool isPaused;
     float timescaleOrig;
@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Respawn");
-        startDoorCollider = GameObject.FindWithTag("Start Collider");
-        regDoorCollider = GameObject.FindWithTag("Door Collider");
+        doorWithColliders = GameObject.FindWithTag("Door");
+        noTriggerCollider = doorWithColliders.GetComponentInChildren<BoxCollider>();
     }
 
 
@@ -69,8 +69,8 @@ public class GameManager : MonoBehaviour
 
     public void stateUnpause()
     {
-        playerScript.enabled = true;
         isPaused = !isPaused;
+        playerScript.enabled = true;
         Time.timeScale = timescaleOrig;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -119,23 +119,28 @@ public class GameManager : MonoBehaviour
 
     public void DoorMenus()
     {
-        if (startDoorCollider)
+        Debug.Log(noTriggerCollider.tag);
+        if (noTriggerCollider.CompareTag("Start Collider"))
         {
+            Debug.Log("uhhhhh");
             statePause();
+            Debug.Log(menuActive);
             menuActive = menuDungeon;
             menuActive.SetActive(true);
         }
         else
         {
-            stateUnpause();
+            Debug.Log("okkkkk");
+            Debug.Log("paused?");
             doors.isLocked = false;
             doors.unlockedDoor.gameObject.SetActive(true);
 
             //This is for making the door interactable and letting you walk through by destroying the collider
-            if (Input.GetButtonDown("Interact") && regDoorCollider)
+            if (Input.GetButtonDown("Interact") && 
+                noTriggerCollider.CompareTag("Door Collider"))
             {
                 doors.doorAnimation.Play("DoorOpen", 0, 0.0f);
-                Destroy(gameObject.GetComponentInChildren<BoxCollider>());
+                noTriggerCollider.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }
     }

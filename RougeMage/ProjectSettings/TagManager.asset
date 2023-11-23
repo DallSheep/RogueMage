@@ -6,11 +6,11 @@ TagManager:
   tags:
   - Start Collider
   - Door Collider
-  - ImageBG
   - End Text
   - Spider Enemy
   - Goblin Enemy
   - Skeleton Enemy
+  - Door
   layers:
   - Default
   - TransparentFX
