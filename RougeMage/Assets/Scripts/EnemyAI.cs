@@ -12,9 +12,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
+    [SerializeField] Collider damageCol;
 
     [Header("----- Enemy Stats -----")]
-    [Range(1, 10)][SerializeField] int HP;
+    [Range(0, 10)][SerializeField] int HP;
     [Range(1, 20)][SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int shootCone;
@@ -36,6 +37,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool isShooting;
     bool playerInRange;
     bool destinationChosen;
+    bool isAttacking;
     float angleToPlayer;
     float stoppingDistOrig;
 
@@ -48,16 +50,18 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-
-        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
-
-        if (playerInRange && !canSeePlayer())
+        if (agent.isActiveAndEnabled)
         {
-            StartCoroutine(roam());
-        }
-        else if (!playerInRange)
-        {
-            StartCoroutine(roam());
+            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
+            if (playerInRange && !canSeePlayer())
+            {
+                StartCoroutine(roam());
+            }
+            else if (!playerInRange)
+            {
+                StartCoroutine(roam());
+            }
         }
     }
 
@@ -86,8 +90,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         playerDir = GameManager.Instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-        //Debug.DrawRay(headPos.position, playerDir);
-        //Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPos.position, playerDir);
+        Debug.Log(angleToPlayer);
 
         RaycastHit hit;
 
@@ -97,8 +101,9 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 agent.stoppingDistance = stoppingDistOrig;
 
-                if (angleToPlayer <= shootCone && !isShooting)
+                if (angleToPlayer <= shootCone && isShooting == false && !isAttacking)
                 {
+                    StartCoroutine(attack());
                     StartCoroutine(shoot());
                 }
 
@@ -118,10 +123,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.isTrigger)
-        {
-            return;
-        }
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
@@ -130,10 +131,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void OnTriggerExit(Collider other)
     {
-        if (other.isTrigger)
-        {
-            return;
-        }
         if (other.CompareTag("Player"))
         {
             agent.stoppingDistance = 0;
@@ -144,27 +141,48 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        anim.SetBool("isShooting", true);
+        anim.SetTrigger("isShooting");
+        CreateBullet();
 
         //using transform.rotation will shoot the bullet wherever the enemy is pointing
-        Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
-        anim.SetBool("isShooting", false);
+        anim.SetTrigger("isShooting");
+    }
+    public void CreateBullet()
+    {
+        Instantiate(bullet, shootPos.position, transform.rotation);
+
+    }
+
+    IEnumerator attack()
+    {
+        isAttacking = true;
+        anim.SetBool("isAttacking", true);
+
+        yield return new WaitForSeconds(timeBetweenSwings);
+
+        isAttacking = false;
+        anim.SetBool("isAttacking", false);
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
-        StartCoroutine(flashRed());
-        agent.SetDestination(GameManager.Instance.player.transform.position);
 
         if (HP <= 0)
         {
+            damageCol.enabled = false;
+            agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
             Instantiate(groundItems[Random.Range(0, groundItems.Count)], transform.position, transform.rotation);
-            Destroy(gameObject);
+            anim.SetBool("isDead", true);
+        }
+        else
+        {
+            StartCoroutine(flashRed());
+            agent.SetDestination(GameManager.Instance.player.transform.position);
         }
     }
 
