@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         {
             statePause();
             menuActive = menuDungeon;
-            menuDungeon.SetActive(true);
+            menuActive.SetActive(true);
         }
         else
         {

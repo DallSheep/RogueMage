@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void cameraMovement()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
 
         Vector3 relative = transform.InverseTransformPoint(Input.mousePosition);
         float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
