@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Rigidbody rb;
     [SerializeField] AudioSource aud;
     [SerializeField] Camera cam;
+    [SerializeField] GameObject mousePos;
 
     [Header("----- Player Stats -----")]
     [Range(1, 8)][SerializeField] int playerSpeed;
@@ -118,15 +120,21 @@ public class PlayerController : MonoBehaviour, IDamage
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
+ 
+    void fcameraMovement()
+    {
+       
+    }
 
     void cameraMovement()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
-        Vector3 relative = transform.InverseTransformPoint(Input.mousePosition);
-        float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
-        transform.Rotate(0, angle, 0);
+        //finds vector between the player and the mouse position
+        Vector3 relative =  mousePos.transform.position - transform.forward;
+        //looks at mouse position
+        transform.LookAt(relative, Vector3.up);
     }
 
     IEnumerator Dash()
