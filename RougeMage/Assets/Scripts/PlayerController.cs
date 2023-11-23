@@ -103,10 +103,11 @@ public class PlayerController : MonoBehaviour, IDamage
             //jumpedTimes = 0;
         }
 
-        move = (transform.forward * Input.GetAxisRaw("Vertical") + 
-                transform.right * Input.GetAxisRaw("Horizontal"));
+        move.z = Input.GetAxis("Vertical");
+        move.x = Input.GetAxis("Horizontal");
 
-        //transform.Translate(move.normalized * playerSpeed * Time.deltaTime, Space.World);
+        //move = (transform.forward * Input.GetAxisRaw("Vertical") + 
+                //transform.right * Input.GetAxisRaw("Horizontal"));
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
