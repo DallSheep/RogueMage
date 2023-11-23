@@ -53,8 +53,7 @@ public class PlayerController : MonoBehaviour, IDamage
     int HPOrig;
     int selectedGun;
 
-    //Camera stuff
-    Vector3 mousePos;
+    
 
     private void Start()
     {
@@ -124,10 +123,6 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.Move(playerVelocity * Time.deltaTime);
     }
  
-    void fcameraMovement()
-    {
-       
-    }
 
     void cameraMovement()
     {
