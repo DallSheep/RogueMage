@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8180120358310125946}
   aud: {fileID: 0}
+  cam: {fileID: 0}
   playerSpeed: 8
   sprintMod: 2
   jumpHeight: 0

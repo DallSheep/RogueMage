@@ -19,10 +19,13 @@ public class SkeletonSword : MonoBehaviour
         {
             return;
         }
-        IDamage damageable = other.GetComponent<IDamage>();
-        if(damageable != null)
+        else if (other.CompareTag("Player"))
         {
-            damageable.takeDamage(damage);
+            IDamage damageable = other.GetComponent<IDamage>();
+            if (damageable != null)
+            {
+                damageable.takeDamage(damage);
+            }
         }
     }
 

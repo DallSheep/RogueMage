@@ -53,6 +53,9 @@ public class PlayerController : MonoBehaviour, IDamage
     int HPOrig;
     int selectedGun;
 
+    //Camera stuff
+    Vector3 mousePos;
+
     private void Start()
     {
         HPOrig = Hp;
@@ -131,10 +134,13 @@ public class PlayerController : MonoBehaviour, IDamage
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
+
         //finds vector between the player and the mouse position
         Vector3 relative =  mousePos.transform.position - transform.forward;
         //looks at mouse position
         transform.LookAt(relative, Vector3.up);
+
+        
     }
 
     IEnumerator Dash()
