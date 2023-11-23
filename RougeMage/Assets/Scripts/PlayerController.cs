@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Hardware;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -14,6 +15,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("----- Player Stats -----")]
     [Range(1, 8)][SerializeField] int playerSpeed;
     [Range(1, 4)][SerializeField] int sprintMod;
+    [Range(3, 10)][SerializeField] int dashMod;
+    [SerializeField] float dashCooldown;
     [Range(8, 30)][SerializeField] float jumpHeight;
     [Range(1, 4)][SerializeField] int jumpsMax;
     [Range(-10, -40)][SerializeField] float gravityValue;
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isShooting;
     bool isPlayingSteps;
     bool isSprinting;
+    bool isDashing;
     int HPOrig;
     int selectedGun;
 
@@ -76,6 +80,11 @@ public class PlayerController : MonoBehaviour, IDamage
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
         sprint();
+
+        if(!isDashing)
+        {
+            StartCoroutine(Dash());
+        }
 
         if (groundedPlayer && move.normalized.magnitude > 0.3 && !isPlayingSteps)
         {
@@ -118,6 +127,24 @@ public class PlayerController : MonoBehaviour, IDamage
         Vector3 relative = transform.InverseTransformPoint(Input.mousePosition);
         float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
         transform.Rotate(0, angle, 0);
+    }
+
+    IEnumerator Dash()
+    {
+        //using 'Jump' because is is already bound to space
+        if (Input.GetButtonDown("Jump"))
+        {
+            isDashing = true;
+            //tracking original speed
+            int ps = playerSpeed;
+            playerSpeed *= dashMod;
+
+            yield return new WaitForSeconds(0.2f);
+            playerSpeed = ps;
+
+            yield return new WaitForSeconds(dashCooldown);
+            isDashing = false;
+        }
     }
 
     void sprint()
