@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour, IDamage
     int HPOrig;
     int selectedGun;
 
+    //Camera stuff
+    Vector3 mousePos;
+
     private void Start()
     {
         HPOrig = Hp;
@@ -124,9 +127,9 @@ public class PlayerController : MonoBehaviour, IDamage
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
-        Vector3 relative = transform.InverseTransformPoint(Input.mousePosition);
-        float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
-        transform.Rotate(0, angle, 0);
+        mousePos = transform.InverseTransformPoint(Input.mousePosition);
+        float angle = Mathf.Atan2(mousePos.x, mousePos.z) * Mathf.Rad2Deg;
+        transform.Rotate(0, angle, 0, Space.World);
     }
 
     IEnumerator Dash()
