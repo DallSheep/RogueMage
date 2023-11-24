@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audJumpVol;
 
 
-    private Vector3 move;
+    public Vector3 move;
     private float horizontalMovement;
     private float verticalMovement;
     private Vector3 playerVelocity;
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void movement()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
         sprint();
 
