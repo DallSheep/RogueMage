@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindWithTag("Respawn");
         doorWithColliders = GameObject.FindWithTag("Door");
         noTriggerCollider = doorWithColliders.GetComponentInChildren<BoxCollider>();
-        playerTransform = player.transform.position;
     }
 
 

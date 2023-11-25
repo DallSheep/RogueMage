@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 201549418}
   - component: {fileID: 201549417}
   - component: {fileID: 201549416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 554082187657641652, guid: aca9042a06319a94a83afe200b09aebe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 21.11
       objectReference: {fileID: 0}
     - target: {fileID: 554082187657641652, guid: aca9042a06319a94a83afe200b09aebe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -460,7 +460,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5001475580491234167, guid: 93098c71c4b0d9046b0427bdd0affdf8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9.79
       objectReference: {fileID: 0}
     - target: {fileID: 5001475580491234167, guid: 93098c71c4b0d9046b0427bdd0affdf8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5001475580491234167, guid: 93098c71c4b0d9046b0427bdd0affdf8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 9.87
       objectReference: {fileID: 0}
     - target: {fileID: 5001475580491234167, guid: 93098c71c4b0d9046b0427bdd0affdf8, type: 3}
       propertyPath: m_LocalRotation.w
