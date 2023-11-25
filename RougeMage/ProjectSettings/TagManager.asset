@@ -12,6 +12,11 @@ TagManager:
   - Skeleton Enemy
   - Door
   - Dragon Boss
+  - Fire Mage
+  - Water Mage
+  - Lightning Mage
+  - Earth Mage
+  - Weapon
   layers:
   - Default
   - TransparentFX

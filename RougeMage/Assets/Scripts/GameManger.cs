@@ -11,14 +11,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("----- Components -----")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject menuDungeon; 
+    [SerializeField] GameObject menuDungeon;
+    [SerializeField] GameObject menuInteract;
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
 
+    [Header("----- Player Components -----")]
     public Image playerHPBar;
     public Image playerManaBar;
     public Image playerDashBar;
@@ -26,8 +29,10 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject player;
     public PlayerController playerScript;
+    //public Vector3 playerTransform;
 
     //Door Stuff
+    [Header("----- Door Components -----")]
     public Doors doors;
     public GameObject doorWithColliders;
     public BoxCollider noTriggerCollider;
@@ -35,6 +40,11 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     float timescaleOrig;
     public int enemiesRemaining;
+
+    [Header("----- Character Components -----")]
+    public CharacterSelection characterSelection;
+    [SerializeField] public GameObject selectMage;
+
 
 
     void Awake()
@@ -46,6 +56,7 @@ public class GameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindWithTag("Respawn");
         doorWithColliders = GameObject.FindWithTag("Door");
         noTriggerCollider = doorWithColliders.GetComponentInChildren<BoxCollider>();
+        playerTransform = player.transform.position;
     }
 
 
@@ -119,19 +130,19 @@ public class GameManager : MonoBehaviour
 
     public void DoorMenus()
     {
-        Debug.Log(noTriggerCollider.tag);
+        //Debug.Log(noTriggerCollider.tag);
         if (noTriggerCollider.CompareTag("Start Collider"))
         {
-            Debug.Log("uhhhhh");
+            //Debug.Log("uhhhhh");
             statePause();
-            Debug.Log(menuActive);
+            //Debug.Log(menuActive);
             menuActive = menuDungeon;
             menuActive.SetActive(true);
         }
         else
         {
-            Debug.Log("okkkkk");
-            Debug.Log("paused?");
+            //Debug.Log("okkkkk");
+            //Debug.Log("paused?");
             doors.isLocked = false;
             doors.unlockedDoor.gameObject.SetActive(true);
 
@@ -143,5 +154,44 @@ public class GameManager : MonoBehaviour
                 noTriggerCollider.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }
+    }
+
+    public void CharacterEntry()
+    {
+        menuActive = menuInteract;
+        menuActive.SetActive(true);
+    }
+    public void CharacterExit()
+    {
+        menuActive.SetActive(false);
+    }
+
+    public void ChangeModel()
+    {
+        //Vector3 newPlayerTransform = new Vector3(playerTransform.x, 1.0f, playerTransform.y);
+        GameObject thisModel = Instantiate(selectMage, player.transform.position/*,newPlayerTransform*/, player.transform.rotation);
+        thisModel.GetComponent<SphereCollider>().enabled = false;
+        thisModel.transform.parent = transform;
+        selectMage = thisModel;
+
+        playerScript.soulOrb.SetActive(false);
+
+        //player.GetComponent<Animator>().enabled = true;
+        //player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+
+        //player.GetComponent<Animator>().runtimeAnimatorController = 
+        //    selectMage.GetComponent<Animator>().runtimeAnimatorController;
+
+        //player.GetComponentInChildren<SkinnedMeshRenderer>().material =
+        //    selectMage.GetComponentInChildren<SkinnedMeshRenderer>().material;
+
+        //player.
+
+        //if (player.GetComponentInChildren<MeshRenderer>().gameObject.CompareTag("Weapon") 
+        //    && selectMage.GetComponentInChildren<MeshRenderer>().gameObject.CompareTag("Weapon"))
+        //{
+        //    player.GetComponentInChildren<MeshRenderer>().material =
+        //    selectMage.GetComponentInChildren<MeshRenderer>().material;
+        //}
     }
 }

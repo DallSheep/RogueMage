@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
     [SerializeField] Camera cam;
     [SerializeField] GameObject mousePos;
+    [SerializeField] public GameObject soulOrb;
 
     [Header("----- Player Stats -----")]
     [Range(1, 8)][SerializeField] int playerSpeed;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
+    [SerializeField] public GameObject weapon;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audSteps;
