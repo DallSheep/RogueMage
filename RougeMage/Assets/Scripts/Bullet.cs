@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
+    [SerializeField] ParticleSystem hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Instantiate(hitEffect, gameObject.transform.position, hitEffect.transform.rotation);
+
         if (other.isTrigger)
         {
             return;
@@ -33,6 +36,7 @@ public class Bullet : MonoBehaviour
         }
 
         Destroy(gameObject);
+        Destroy(hitEffect);
     }
 
 }

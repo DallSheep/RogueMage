@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
     [SerializeField] Collider damageCol;
+    [SerializeField] AudioSource aud;
 
     [Header("----- Enemy Stats -----")]
     [Range(0, 10)][SerializeField] int HP;
@@ -21,6 +22,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootCone;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audAttack;
+    [Range(0, 1)][SerializeField] float audAttackVol;
+    [SerializeField] AudioClip audDragonAwakens;
+    [Range(0, 1)][SerializeField] float audDragonAwakensVol;
+    [SerializeField] AudioClip[] audFootSteps;
+    [Range(0, 1)][SerializeField] float audFootStepsVol;
+    [SerializeField] float timeBetweenSteps;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
@@ -38,11 +48,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
     bool destinationChosen;
     bool isAttacking;
+    bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
 
     void Start()
     {
+        if(gameObject.CompareTag("Dragon Boss"))
+        {
+            aud.PlayOneShot(audDragonAwakens, audDragonAwakensVol);
+        }
         GameManager.Instance.UpdateGameGoal(1);
         stoppingDistOrig = agent.stoppingDistance;
         startingPos = transform.position;
@@ -97,28 +112,44 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
+            if (hit.collider.CompareTag("Player"))
             {
                 agent.stoppingDistance = stoppingDistOrig;
 
-                if (angleToPlayer <= shootCone && isShooting == false && !isAttacking)
+                if (angleToPlayer <= viewCone)
                 {
-                    StartCoroutine(attack());
-                    StartCoroutine(shoot());
+
+                    if (angleToPlayer <= shootCone && !isShooting && !isAttacking)
+                    {
+                        StartCoroutine(attack());
+                        StartCoroutine(shoot());
+                    }
+
+                    if (agent.remainingDistance < agent.stoppingDistance)
+                    {
+                        faceTarget();
+                    }
+
+                    agent.SetDestination(GameManager.Instance.player.transform.position);
+
+                    return true;
                 }
 
-                if (agent.remainingDistance < agent.stoppingDistance)
-                {
-                    faceTarget();
-                }
-
-                agent.SetDestination(GameManager.Instance.player.transform.position);
-
-                return true;
             }
         }
 
         return false;
+    }
+
+    IEnumerator playSteps()
+    {
+        isPlayingSteps = true;
+
+        aud.PlayOneShot(audFootSteps[Random.Range(0, audFootSteps.Length)], audFootStepsVol);
+
+        yield return new WaitForSeconds(timeBetweenSteps);
+
+        isPlayingSteps = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -142,13 +173,17 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         anim.SetTrigger("isShooting");
+
+        if (!gameObject.CompareTag("Skeleton Enemy"))
+        {
+            aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+        }
         CreateBullet();
 
         //using transform.rotation will shoot the bullet wherever the enemy is pointing
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
-        anim.SetTrigger("isShooting");
     }
     public void CreateBullet()
     {
@@ -160,6 +195,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isAttacking = true;
         anim.SetBool("isAttacking", true);
+        if (gameObject.CompareTag("Skeleton Enemy"))
+        {
+            aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+        }
 
         yield return new WaitForSeconds(timeBetweenSwings);
 
