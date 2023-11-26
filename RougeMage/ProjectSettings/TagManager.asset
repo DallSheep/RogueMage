@@ -17,6 +17,8 @@ TagManager:
   - Lightning Mage
   - Earth Mage
   - Weapon
+  - Block Collider
+  - Character Trigger
   layers:
   - Default
   - TransparentFX

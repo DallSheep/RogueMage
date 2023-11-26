@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Damien_Scene.unity
+    guid: 471d10e522687a740b1322621f18d482
+  - enabled: 1
+    path: Assets/Scenes/Dungeon_Scene.unity
+    guid: 546b335bc5ad4d4408edf44a15e00456
   m_configObjects: {}

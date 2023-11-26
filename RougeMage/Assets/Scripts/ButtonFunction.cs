@@ -26,4 +26,9 @@ public class ButtonFunction : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }

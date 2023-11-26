@@ -68,7 +68,8 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Start()
     {
         HPOrig = Hp;
-        spawnPlayer();    }
+        spawnPlayer();    
+    }
 
     void Update()
     {
@@ -119,16 +120,13 @@ public class PlayerController : MonoBehaviour, IDamage
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-        Debug.Log(move);
 
         if (move.x > 0 || move.z > 0 || move.x < 0 || move.z < 0)
         {
-            Debug.Log(playerAnim.GetBool("isMoving"));
             playerAnim.SetBool("isMoving", true);
         }
         else
         {
-            Debug.Log(playerAnim.GetBool("isMoving"));
             playerAnim.SetBool("isMoving", false);
         }
     }
@@ -293,11 +291,12 @@ public class PlayerController : MonoBehaviour, IDamage
         //thisModel.GetComponent<SphereCollider>().enabled = false;
         //thisModel.transform.parent = transform;
         //selectMage = thisModel;
-        
 
         soulOrb.SetActive(false);
         root.SetActive(true);
         model.SetActive(true);
+
+        root.GetComponentInChildren<MeshRenderer>().material = selectMage.GetComponentInChildren<MeshRenderer>().material;
 
          model.GetComponent<SkinnedMeshRenderer>().rootBone = 
             selectMage.GetComponentInChildren<SkinnedMeshRenderer>().rootBone;
@@ -309,6 +308,15 @@ public class PlayerController : MonoBehaviour, IDamage
             selectMage.GetComponentInChildren<SkinnedMeshRenderer>().material;
         
         transform.position = newPlayerY;
+
+        GameManager.Instance.charSelected = true;
+
+        if (GameManager.Instance.charSelected)
+        {
+            GameManager.Instance.blockedPath.enabled = false;
+            GameManager.Instance.blockedTrigger.enabled = false;
+            GameManager.Instance.charTrigger.enabled = false;
+        }
 
     }
 }

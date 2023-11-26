@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuDungeon;
     [SerializeField] GameObject menuInteract;
+    [SerializeField] GameObject charSelect;
+    [SerializeField] GameObject blockedWall;
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
 
@@ -35,13 +37,20 @@ public class GameManager : MonoBehaviour
     public Doors doors;
     public GameObject doorWithColliders;
     public BoxCollider noTriggerCollider;
+    public ColliderPrompts prompt;
+
 
     public bool isPaused;
     float timescaleOrig;
     public int enemiesRemaining;
 
     [Header("----- Character Components -----")]
-    public CharacterSelection characterSelection;
+    //public CharacterSelection characterSelection;
+    [SerializeField] public BoxCollider blockedPath;
+    [SerializeField] public BoxCollider blockedTrigger;
+    [SerializeField] public BoxCollider charTrigger;
+    public bool charSelected;
+    public bool isPrompt;
 
 
 
@@ -54,6 +63,9 @@ public class GameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindWithTag("Respawn");
         doorWithColliders = GameObject.FindWithTag("Door");
         noTriggerCollider = doorWithColliders.GetComponentInChildren<BoxCollider>();
+        prompt = blockedTrigger.GetComponent<ColliderPrompts>();
+        charSelected = false;
+        //characterSelection = characterSelection.fireMage.GetComponent<CharacterSelection>();
     }
 
 
@@ -144,7 +156,7 @@ public class GameManager : MonoBehaviour
             doors.unlockedDoor.gameObject.SetActive(true);
 
             //This is for making the door interactable and letting you walk through by destroying the collider
-            if (Input.GetButtonDown("Interact") && 
+            if (Input.GetButton("Interact") && 
                 noTriggerCollider.CompareTag("Door Collider"))
             {
                 doors.doorAnimation.Play("DoorOpen", 0, 0.0f);
@@ -157,6 +169,22 @@ public class GameManager : MonoBehaviour
     {
         menuActive = menuInteract;
         menuActive.SetActive(true);
+    }
+
+    public void CharPrompts()
+    {
+        Debug.Log("Got here");
+        if(prompt.gameObject.CompareTag("Block Collider") && isPrompt)
+        {
+            menuActive = blockedWall;
+            menuActive.SetActive(true);
+        }
+        else
+        {
+            Debug.Log(prompt.gameObject.tag);
+            menuActive = charSelect;
+            menuActive.SetActive(true);
+        }
     }
     public void CharacterExit()
     {

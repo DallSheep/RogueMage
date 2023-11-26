@@ -10,18 +10,18 @@ public class CharacterSelection : MonoBehaviour
     [SerializeField] public GameObject lightningMage;
     [SerializeField] public GameObject earthMage;
 
-    public bool charSelected;
     public bool isInteractPressed;
+    public bool isCharSelection;
 
     private void Start()
     {
-        charSelected = false;
         isInteractPressed = false;
+        isCharSelection = true;
     }
 
     private void Update()
     {
-        isInteractPressed = Input.GetButtonDown("Interact");
+        isInteractPressed = Input.GetButton("Interact");
     }
 
     private void OnTriggerEnter(Collider other)
