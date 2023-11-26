@@ -11,10 +11,17 @@ public class CharacterSelection : MonoBehaviour
     [SerializeField] public GameObject earthMage;
 
     public bool charSelected;
+    public bool isInteractPressed;
 
     private void Start()
     {
         charSelected = false;
+        isInteractPressed = false;
+    }
+
+    private void Update()
+    {
+        isInteractPressed = Input.GetButtonDown("Interact");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,16 +31,16 @@ public class CharacterSelection : MonoBehaviour
             switch (gameObject.tag)
             {
                 case "Fire Mage":
-                    GameManager.Instance.selectMage = fireMage;
+                    GameManager.Instance.playerScript.selectMage = fireMage;
                     break;
                 case "Water Mage":
-                    GameManager.Instance.selectMage = waterMage;
+                    GameManager.Instance.playerScript.selectMage = waterMage;
                     break;
                 case "Lightning Mage":
-                    GameManager.Instance.selectMage = lightningMage;
+                    GameManager.Instance.playerScript.selectMage = lightningMage;
                     break;
                 case "Earth Mage":
-                    GameManager.Instance.selectMage = earthMage;
+                    GameManager.Instance.playerScript.selectMage = earthMage;
                     break;
             }
             GameManager.Instance.CharacterEntry();
@@ -44,10 +51,10 @@ public class CharacterSelection : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Input.GetButtonDown("Interact"))
+            if (isInteractPressed)
             {
                 Debug.Log("pressed");
-                GameManager.Instance.ChangeModel();
+                GameManager.Instance.playerScript.ChangeModel();
             }
         }
             

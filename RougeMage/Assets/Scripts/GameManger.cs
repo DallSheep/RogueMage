@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject player;
     public PlayerController playerScript;
-    //public Vector3 playerTransform;
 
     //Door Stuff
     [Header("----- Door Components -----")]
@@ -43,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     [Header("----- Character Components -----")]
     public CharacterSelection characterSelection;
-    [SerializeField] public GameObject selectMage;
 
 
 
@@ -91,7 +89,7 @@ public class GameManager : MonoBehaviour
     public void UpdateGameGoal(int amount)
     {
         enemiesRemaining += amount;
-        enemyCountText.text = enemiesRemaining.ToString("0");
+        //enemyCountText.text = enemiesRemaining.ToString("0");
 
         if (enemiesRemaining <= 0)
         {
@@ -163,34 +161,5 @@ public class GameManager : MonoBehaviour
     public void CharacterExit()
     {
         menuActive.SetActive(false);
-    }
-
-    public void ChangeModel()
-    {
-        //Vector3 newPlayerTransform = new Vector3(playerTransform.x, 1.0f, playerTransform.y);
-        GameObject thisModel = Instantiate(selectMage, player.transform.position/*,newPlayerTransform*/, player.transform.rotation);
-        thisModel.GetComponent<SphereCollider>().enabled = false;
-        thisModel.transform.parent = transform;
-        selectMage = thisModel;
-
-        playerScript.soulOrb.SetActive(false);
-
-        //player.GetComponent<Animator>().enabled = true;
-        //player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-
-        //player.GetComponent<Animator>().runtimeAnimatorController = 
-        //    selectMage.GetComponent<Animator>().runtimeAnimatorController;
-
-        //player.GetComponentInChildren<SkinnedMeshRenderer>().material =
-        //    selectMage.GetComponentInChildren<SkinnedMeshRenderer>().material;
-
-        //player.
-
-        //if (player.GetComponentInChildren<MeshRenderer>().gameObject.CompareTag("Weapon") 
-        //    && selectMage.GetComponentInChildren<MeshRenderer>().gameObject.CompareTag("Weapon"))
-        //{
-        //    player.GetComponentInChildren<MeshRenderer>().material =
-        //    selectMage.GetComponentInChildren<MeshRenderer>().material;
-        //}
     }
 }

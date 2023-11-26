@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
         }
 
         Destroy(gameObject);
-        Destroy(hitEffect);
+        //Destroy(hitEffect);
     }
 
 }

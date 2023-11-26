@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Camera cam;
     [SerializeField] GameObject mousePos;
     [SerializeField] public GameObject soulOrb;
+    [SerializeField] public GameObject selectMage;
+    [SerializeField] public GameObject model;
+    [SerializeField] public GameObject root;
 
     [Header("----- Player Stats -----")]
     [Range(1, 8)][SerializeField] int playerSpeed;
@@ -41,6 +44,9 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
 
+    [Header("----- Animation -----")]
+    [SerializeField] Animator playerAnim;
+
 
     public Vector3 move;
     private float horizontalMovement;
@@ -55,13 +61,14 @@ public class PlayerController : MonoBehaviour, IDamage
     int HPOrig;
     int selectedGun;
 
-    
+    Vector3 newPlayerY;
+
+
 
     private void Start()
     {
         HPOrig = Hp;
-        spawnPlayer();
-    }
+        spawnPlayer();    }
 
     void Update()
     {
@@ -78,7 +85,7 @@ public class PlayerController : MonoBehaviour, IDamage
             if (Input.GetButton("Shoot") && !isShooting)
                 StartCoroutine(shoot());
         }
-
+        newPlayerY = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
     void movement()
@@ -108,22 +115,22 @@ public class PlayerController : MonoBehaviour, IDamage
         move.z = Input.GetAxis("Vertical");
         move.x = Input.GetAxis("Horizontal");
 
-        //move = (transform.forward * Input.GetAxisRaw("Vertical") + 
-                //transform.right * Input.GetAxisRaw("Horizontal"));
-
         controller.Move(move * Time.deltaTime * playerSpeed);
-
-        //Disabling the jump. Not sure if we are implementing this or not -Dami
-
-        //if (Input.GetButtonDown("Jump") && jumpedTimes < jumpsMax)
-        //{
-        //    aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
-        //    playerVelocity.y = jumpHeight;
-        //    jumpedTimes++;
-        //}
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+        Debug.Log(move);
+
+        if (move.x > 0 || move.z > 0 || move.x < 0 || move.z < 0)
+        {
+            Debug.Log(playerAnim.GetBool("isMoving"));
+            playerAnim.SetBool("isMoving", true);
+        }
+        else
+        {
+            Debug.Log(playerAnim.GetBool("isMoving"));
+            playerAnim.SetBool("isMoving", false);
+        }
     }
  
 
@@ -278,5 +285,30 @@ public class PlayerController : MonoBehaviour, IDamage
         gunmodel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
 
         selectedGun = gunList.Count - 1;
+    }
+
+    public void ChangeModel()
+    {
+        //GameObject thisModel = Instantiate(selectMage, newPlayerY, transform.rotation);
+        //thisModel.GetComponent<SphereCollider>().enabled = false;
+        //thisModel.transform.parent = transform;
+        //selectMage = thisModel;
+        
+
+        soulOrb.SetActive(false);
+        root.SetActive(true);
+        model.SetActive(true);
+
+         model.GetComponent<SkinnedMeshRenderer>().rootBone = 
+            selectMage.GetComponentInChildren<SkinnedMeshRenderer>().rootBone;
+
+        model.GetComponent<SkinnedMeshRenderer>().sharedMesh =
+            selectMage.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+
+        model.GetComponent<SkinnedMeshRenderer>().material =
+            selectMage.GetComponentInChildren<SkinnedMeshRenderer>().material;
+        
+        transform.position = newPlayerY;
+
     }
 }

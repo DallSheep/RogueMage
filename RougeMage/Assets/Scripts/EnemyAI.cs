@@ -48,7 +48,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
     bool destinationChosen;
     bool isAttacking;
-    bool isPlayingSteps;
+    public bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
 
