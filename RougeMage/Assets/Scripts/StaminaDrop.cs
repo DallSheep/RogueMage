@@ -5,7 +5,7 @@ using UnityEngine;
 public class StaminaDrop : MonoBehaviour
 {
     [Header("----- Stats -----")]
-    [SerializeField] float staminaAmount;
+    [SerializeField] int staminaAmount;
 
     private void OnTriggerEnter(Collider other)
     {

@@ -66,7 +66,10 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isPlayingSteps;
     bool isSprinting;
     bool isDashing;
-    int HPOrig;
+    public int HPOrig;
+    public int manaOrig;
+    public int staminaOrig;
+    public int goldOrig;
     int selectedGun;
 
     Vector3 newPlayerY;
@@ -75,6 +78,9 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Start()
     {
+        manaOrig = mana;
+        staminaOrig = stamina;
+        goldOrig = gold;
         HPOrig = Hp;
         spawnPlayer();
         setSpellStats(defaultSpell);

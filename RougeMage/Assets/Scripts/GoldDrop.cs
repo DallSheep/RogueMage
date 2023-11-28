@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GoldDrop : MonoBehaviour
 {
-    [SerializeField] float GoldAmount;
+    [Header("----- Stats -----")]
+    [SerializeField] int GoldAmount;
 
     private void OnTriggerEnter(Collider other)
     {
