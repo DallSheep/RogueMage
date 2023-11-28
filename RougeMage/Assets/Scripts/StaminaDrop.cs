@@ -6,17 +6,25 @@ public class StaminaDrop : MonoBehaviour
 {
     [Header("----- Stats -----")]
     [SerializeField] int staminaAmount;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip audCollected;
+    [Range(0, 1)][SerializeField] float audCollectedVol;
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.isTrigger)
+        if (other.isTrigger)
         {
             return;
         }
 
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-
+            PlayerController player = other.GetComponent<PlayerController>();
+            Mathf.Clamp(player.stamina += staminaAmount, 0, player.staminaOrig);
+            player.updatePlayerUI();
+            aud.PlayOneShot(audCollected, audCollectedVol);
+            Destroy(gameObject);
         }
     }
 }

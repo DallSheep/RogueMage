@@ -6,6 +6,10 @@ public class HealthDrop : MonoBehaviour
 {
     [Header("----- Stats -----")]
     [SerializeField] int healthAmount;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip audCollected;
+    [Range(0, 1)][SerializeField] float audCollectedVol;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,6 +22,9 @@ public class HealthDrop : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
             Mathf.Clamp(player.Hp += healthAmount, 0, player.HPOrig);
+            player.updatePlayerUI();
+            aud.PlayOneShot(audCollected, audCollectedVol);
+            Destroy(gameObject);
         }
     }
 }

@@ -5,7 +5,10 @@ using UnityEngine;
 public class GoldDrop : MonoBehaviour
 {
     [Header("----- Stats -----")]
-    [SerializeField] int GoldAmount;
+    [SerializeField] int goldAmount;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip audCollected;
+    [Range(0, 1)][SerializeField] float audCollectedVol;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +19,11 @@ public class GoldDrop : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-
+            PlayerController player = other.GetComponent<PlayerController>();
+            Mathf.Clamp(player.gold += goldAmount, 0, player.goldOrig);
+            player.updatePlayerUI();
+            aud.PlayOneShot(audCollected, audCollectedVol);
+            Destroy(gameObject);
         }
     }
 }
