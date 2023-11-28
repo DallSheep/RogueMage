@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(hitEffect, gameObject.transform.position, hitEffect.transform.rotation);
+        //Instantiate(hitEffect, gameObject.transform.position, hitEffect.transform.rotation);
 
         if (other.isTrigger)
         {

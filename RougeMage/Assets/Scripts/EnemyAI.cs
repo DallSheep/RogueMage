@@ -30,14 +30,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audDragonAwakensVol;
     [SerializeField] AudioClip[] audFootSteps;
     [Range(0, 1)][SerializeField] float audFootStepsVol;
-    [SerializeField] float timeBetweenSteps;
+    [Range(0, 3)][SerializeField] float timeBetweenSteps;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
 
     [Header("----- Sword Stuff -----")]
-    [Range(1, 5)][SerializeField] int timeBetweenSwings;
+    [Range(1, 5)][SerializeField] float timeBetweenSwings;
 
     [Header("----- Drop on Death -----")]
     [SerializeField] List<GameObject> groundItems;
@@ -65,6 +65,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        if(agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
+        {
+            StartCoroutine(playSteps());
+        }
+
         if (agent.isActiveAndEnabled)
         {
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
@@ -121,8 +126,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                     if (angleToPlayer <= shootCone && !isShooting && !isAttacking)
                     {
-                        StartCoroutine(attack());
-                        StartCoroutine(shoot());
+                        if (tag != "Skeleton Enemy")
+                        {
+                            StartCoroutine(shoot());
+                        }
+                        else if(agent.remainingDistance <= agent.stoppingDistance)
+                        {
+                            StartCoroutine(attack());
+                        }
                     }
 
                     if (agent.remainingDistance < agent.stoppingDistance)
@@ -143,13 +154,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator playSteps()
     {
-        isPlayingSteps = true;
+            isPlayingSteps = true;
 
-        aud.PlayOneShot(audFootSteps[Random.Range(0, audFootSteps.Length)], audFootStepsVol);
+            aud.PlayOneShot(audFootSteps[Random.Range(0, audFootSteps.Length)], audFootStepsVol);
 
-        yield return new WaitForSeconds(timeBetweenSteps);
+            yield return new WaitForSeconds(timeBetweenSteps);
 
-        isPlayingSteps = false;
+            isPlayingSteps = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -174,10 +185,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         isShooting = true;
         anim.SetTrigger("isShooting");
 
-        if (!gameObject.CompareTag("Skeleton Enemy"))
-        {
-            aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
-        }
+        aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
         CreateBullet();
 
         //using transform.rotation will shoot the bullet wherever the enemy is pointing
@@ -195,10 +203,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isAttacking = true;
         anim.SetBool("isAttacking", true);
-        if (gameObject.CompareTag("Skeleton Enemy"))
-        {
-            aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
-        }
+
+        aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
 
         yield return new WaitForSeconds(timeBetweenSwings);
 

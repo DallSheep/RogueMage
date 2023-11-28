@@ -52,7 +52,7 @@ MonoBehaviour:
   rb: {fileID: 7883776408380825784}
   damage: 2
   speed: 50
-  destroyTime: 3
+  destroyTime: 2
   hitEffect: {fileID: 6601394477244952807, guid: 71f1c01e6a36a5749a741967821eca17, type: 3}
 --- !u!33 &3203268566419774319
 MeshFilter:

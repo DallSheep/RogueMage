@@ -613,13 +613,20 @@ MonoBehaviour:
   audAttackVol: 0.2
   audDragonAwakens: {fileID: 0}
   audDragonAwakensVol: 0
-  audFootSteps: []
-  audFootStepsVol: 0
-  timeBetweenSteps: 0
+  audFootSteps:
+  - {fileID: 8300000, guid: 9c73212e16fc9394b960910bdd3ee586, type: 3}
+  - {fileID: 8300000, guid: a43c94450a390d2428a0c075f19a37d6, type: 3}
+  - {fileID: 8300000, guid: ede066452c9618d4096d4df9ae8feeac, type: 3}
+  - {fileID: 8300000, guid: 86690213defbe1e409e83dfd765541ac, type: 3}
+  - {fileID: 8300000, guid: 2246ae39f9a71b649a226564c646be35, type: 3}
+  - {fileID: 8300000, guid: ecf189554711865459871c83e0539666, type: 3}
+  audFootStepsVol: 0.1
+  timeBetweenSteps: 0.5
   bullet: {fileID: 66773969176077093, guid: e030dd4ca8bf53f4aa08880ad4174c6c, type: 3}
   shootRate: 2
   timeBetweenSwings: 0
   groundItems: []
+  isPlayingSteps: 0
 --- !u!95 &4715103383205689662
 Animator:
   serializedVersion: 5

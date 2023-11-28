@@ -2254,7 +2254,7 @@ MonoBehaviour:
   damageCol: {fileID: 4756839181669875967}
   aud: {fileID: 3228555983523815339}
   HP: 10
-  playerFaceSpeed: 15
+  playerFaceSpeed: 20
   viewCone: 180
   shootCone: 90
   roamDist: 10
@@ -2262,15 +2262,17 @@ MonoBehaviour:
   audAttack:
   - {fileID: 8300000, guid: 01053daf811a8e743bfd5a9b1272e0cf, type: 3}
   audAttackVol: 0.2
-  audDragonAwakens: {fileID: 8300000, guid: cfdd9afc828eb1749b49ceea473a4d1b, type: 3}
-  audDragonAwakensVol: 0
-  audFootSteps: []
-  audFootStepsVol: 0.1
-  timeBetweenSteps: 0.2
+  audDragonAwakens: {fileID: 8300000, guid: 4128553ef0d595847920477ba8d3cbed, type: 3}
+  audDragonAwakensVol: 0.5
+  audFootSteps:
+  - {fileID: 8300000, guid: 21db553e521ba6944924317408a08b41, type: 3}
+  audFootStepsVol: 0.2
+  timeBetweenSteps: 0.5
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
-  shootRate: 2
+  shootRate: 1
   timeBetweenSwings: 0
   groundItems: []
+  isPlayingSteps: 0
 --- !u!95 &3028502979530777588
 Animator:
   serializedVersion: 5
@@ -2306,7 +2308,7 @@ NavMeshAgent:
   m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 900
-  m_StoppingDistance: 10
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
