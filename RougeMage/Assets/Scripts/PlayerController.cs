@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
     [SerializeField] Camera cam;
     [SerializeField] GameObject mousePos;
+    [SerializeField] Transform shootPos;
     [SerializeField] public GameObject soulOrb;
     [SerializeField] public GameObject selectMage;
     [SerializeField] public GameObject model;
@@ -26,14 +27,21 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(8, 30)][SerializeField] float jumpHeight;
     [Range(1, 4)][SerializeField] int jumpsMax;
     [Range(-10, -40)][SerializeField] float gravityValue;
-    [SerializeField] int Hp;
+    [SerializeField] public int Hp;
+    [SerializeField] public int mana;
+    [SerializeField] public int stamina;
+    [SerializeField] public int gold;
 
-    [Header("----- Gun Stats -----")]
-    [SerializeField] List<GunStats> gunList = new List<GunStats>();
-    [SerializeField] GameObject gunmodel;
+    [Header("----- Spell Stats -----")]
+    [SerializeField] List<SpellStats> SpellList = new List<SpellStats>();
+    [SerializeField] SpellStats defaultSpell;
+
+    [SerializeField] GameObject bullet;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
+    [SerializeField] float manaCost;
+    [SerializeField] float cooldown;
     [SerializeField] public GameObject weapon;
 
     [Header("----- Audio -----")]
@@ -68,7 +76,8 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Start()
     {
         HPOrig = Hp;
-        spawnPlayer();    
+        spawnPlayer();
+        setSpellStats(defaultSpell);
     }
 
     void Update()
@@ -77,15 +86,14 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             movement();
             cameraMovement();
+
+            if(Input.GetButton("Shoot"))
+            {
+                StartCoroutine(specialAttack());
+            }
         }
 
-        if (gunList.Count > 0)
-        {
-            selectGun();
-
-            if (Input.GetButton("Shoot") && !isShooting)
-                StartCoroutine(shoot());
-        }
+        
         newPlayerY = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
@@ -146,6 +154,35 @@ public class PlayerController : MonoBehaviour, IDamage
         
     }
 
+    IEnumerator specialAttack()
+    {
+        isShooting = true;
+     
+        Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+        RaycastHit hit;
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit))
+        {
+            targetPoint = hit.point;
+        }
+        else
+        {
+            targetPoint = ray.GetPoint(50);
+        }
+
+        Vector3 shootDir = targetPoint - shootPos.position;
+
+        if (bullet != null)
+        {
+            GameObject currBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
+            currBullet.transform.forward = shootDir.normalized;
+        }
+
+        yield return new WaitForSeconds(cooldown);
+        isShooting = false;
+    }
+
+
     IEnumerator Dash()
     {
         //using 'Jump' because is is already bound to space
@@ -190,33 +227,19 @@ public class PlayerController : MonoBehaviour, IDamage
         isPlayingSteps = false;
     }
 
-    IEnumerator shoot()
+    public void setSpellStats(SpellStats spell)
     {
-        if (gunList[selectedGun].ammoCurr > 0)
-        {
-            isShooting = true;
+        SpellList.Add(spell);
 
-            gunList[selectedGun].ammoCurr--;
+        bullet = spell.bullet;
+        bullet.GetComponent<Bullet>().damage = spell.damage;
+        bullet.GetComponent<Bullet>().SetDestroyTime(spell.distance);
+        bullet.GetComponent<Bullet>().setHitEffect(spell.hitEffect);
 
-            aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVol);
+        cooldown = spell.cooldown;
 
-
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-            {
-
-                Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
-                IDamage damagable = hit.collider.GetComponent<IDamage>();
-
-                if (hit.transform != transform && damagable != null)
-                {
-                    damagable.takeDamage(shootDamage);
-                }
-            }
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
     }
+
     public void takeDamage(int amount)
     {
         Hp -= amount;
@@ -242,47 +265,6 @@ public class PlayerController : MonoBehaviour, IDamage
     public void updatePlayerUI()
     {
         GameManager.Instance.playerHPBar.fillAmount = (float)Hp / HPOrig;
-    }
-
-    void selectGun()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
-        {
-            selectedGun++;
-            changeGun();
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
-        {
-            selectedGun--;
-            changeGun();
-        }
-    }
-
-    void changeGun()
-    {
-        shootDamage = gunList[selectedGun].shootDamage;
-        shootDist = gunList[selectedGun].shootDist;
-        shootRate = gunList[selectedGun].shootRate;
-
-
-        gunmodel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
-        gunmodel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
-        isShooting = false;
-    }
-
-    public void getGunStats(GunStats gun)
-    {
-        gunList.Add(gun);
-
-        shootDamage = gun.shootDamage;
-        shootDist = gun.shootDist;
-        shootRate = gun.shootRate;
-
-
-        gunmodel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
-        gunmodel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        selectedGun = gunList.Count - 1;
     }
 
     public void ChangeModel()

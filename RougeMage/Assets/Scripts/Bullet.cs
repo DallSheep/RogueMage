@@ -8,10 +8,10 @@ public class Bullet : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     [Header("===== Stats =====")]
-    [SerializeField] int damage;
-    [SerializeField] int speed;
-    [SerializeField] int destroyTime;
-    [SerializeField] ParticleSystem hitEffect;
+    [SerializeField] public int damage;
+    [SerializeField] public int speed;
+    [SerializeField] public int destroyTime;
+    [SerializeField] public ParticleSystem hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,16 @@ public class Bullet : MonoBehaviour
 
         Destroy(gameObject);
         //Destroy(hitEffect);
+    }
+
+    public void SetDestroyTime(int time)
+    {
+        destroyTime = time;
+    }
+
+    public void setHitEffect(ParticleSystem spellHitEffect)
+    {
+        hitEffect = spellHitEffect;
     }
 
 }
