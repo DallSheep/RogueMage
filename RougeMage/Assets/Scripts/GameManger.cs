@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject blockedWall;
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
+    public float timescaleOrig;
 
     [Header("----- Player Components -----")]
     public Image playerHPBar;
     public Image playerManaBar;
     public Image playerStaminaBar;
+    public GameObject GoldCount;
 
     public GameObject playerSpawnPos;
     public GameObject player;
@@ -39,7 +41,6 @@ public class GameManager : MonoBehaviour
 
 
     public bool isPaused;
-    public float timescaleOrig;
     public int enemiesRemaining;
 
     [Header("----- Character Components -----")]
