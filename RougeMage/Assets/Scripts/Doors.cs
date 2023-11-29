@@ -42,10 +42,5 @@ public class Doors : MonoBehaviour
             gameObject.GetComponent<BoxCollider>().enabled = false;
             gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
         }
-        else
-        {
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-            gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
-        }
     }
 }

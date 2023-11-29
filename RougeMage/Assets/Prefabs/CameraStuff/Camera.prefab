@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  height: {x: 0, y: 20, z: 0}
+  height: {x: 0, y: 15, z: 0}
 --- !u!81 &2910395747918007920
 AudioListener:
   m_ObjectHideFlags: 0

@@ -1869,14 +1869,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 3904324142166210177, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
-      propertyPath: orthographic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3904324142166210177, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
-      propertyPath: orthographic size
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 4363832424825406601, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.06565
@@ -1921,6 +1913,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1890725651274002680}
+    - target: {fileID: 5338975520587277493, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
+      propertyPath: height.y
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
