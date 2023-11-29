@@ -456,8 +456,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 175f09a582f296a4fb42c59105a9db4b, type: 3}
   audFootStepsVol: 0.25
   timeBetweenSteps: 0.1
+  audHurt:
+  - {fileID: 8300000, guid: 7029064a47bdfd142ad53944b6ee4d3d, type: 3}
+  audHurtVol: 0.3
   bullet: {fileID: 8195922970094323667, guid: fdd85861f690a3542b489803a12c8b53, type: 3}
-  shootRate: 3
+  shootRate: 2
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 1055088719032747701, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
@@ -737,7 +740,7 @@ Transform:
   m_GameObject: {fileID: 4728469168093510525}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000020665516, y: -0.8305448, z: -0.55695176, w: -0.0000041113444}
-  m_LocalPosition: {x: 0, y: 1.128, z: -0.26}
+  m_LocalPosition: {x: 0, y: 1.348, z: -0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

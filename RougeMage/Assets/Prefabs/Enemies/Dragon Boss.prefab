@@ -2254,22 +2254,30 @@ MonoBehaviour:
   damageCol: {fileID: 4756839181669875967}
   aud: {fileID: 3228555983523815339}
   HP: 10
-  playerFaceSpeed: 20
+  playerFaceSpeed: 8
   viewCone: 180
   shootCone: 90
   roamDist: 10
   roamPauseTime: 5
   audAttack:
-  - {fileID: 8300000, guid: 01053daf811a8e743bfd5a9b1272e0cf, type: 3}
-  audAttackVol: 0.2
+  - {fileID: 8300000, guid: 510bf10fe53b9ba4eb554d1401215146, type: 3}
+  - {fileID: 8300000, guid: c478dc778f21bcc4cb72f4e6dbc192dc, type: 3}
+  - {fileID: 8300000, guid: df0fbf565ebe72342854e23f7a2552b2, type: 3}
+  audAttackVol: 0.5
   audDragonAwakens: {fileID: 8300000, guid: 4128553ef0d595847920477ba8d3cbed, type: 3}
   audDragonAwakensVol: 0.5
   audFootSteps:
   - {fileID: 8300000, guid: 21db553e521ba6944924317408a08b41, type: 3}
   audFootStepsVol: 0.2
   timeBetweenSteps: 0.5
+  audHurt:
+  - {fileID: 8300000, guid: 16b6f51ee82dcdb4c8c1888cb4ebcdb5, type: 3}
+  - {fileID: 8300000, guid: f7100569eca230c49854f170fd24fb70, type: 3}
+  - {fileID: 8300000, guid: 12323960ef59cfb40b5fa0aab3e5daa0, type: 3}
+  - {fileID: 8300000, guid: 1d09d0181462be84cab28041988603fd, type: 3}
+  audHurtVol: 0.3
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
-  shootRate: 1
+  shootRate: 0.5
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 1055088719032747701, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
@@ -3941,7 +3949,7 @@ Transform:
   m_GameObject: {fileID: 8391936973567741283}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00007013987, y: -7.1471176, z: 207.58041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

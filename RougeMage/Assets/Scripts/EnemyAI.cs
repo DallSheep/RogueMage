@@ -31,6 +31,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audFootSteps;
     [Range(0, 1)][SerializeField] float audFootStepsVol;
     [Range(0, 3)][SerializeField] float timeBetweenSteps;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0,1)][SerializeField] float audHurtVol;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
@@ -51,10 +53,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     public bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
+    PlayerController player;
 
     void Start()
     {
-        if(gameObject.CompareTag("Dragon Boss"))
+        player = player.GetComponent<PlayerController>();
+
+
+        if (gameObject.CompareTag("Dragon Boss"))
         {
             aud.PlayOneShot(audDragonAwakens, audDragonAwakensVol);
         }
@@ -65,7 +71,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-        if(agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
+        if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
         {
             StartCoroutine(playSteps());
         }
@@ -126,11 +132,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                     if (angleToPlayer <= shootCone && !isShooting && !isAttacking)
                     {
-                        if (tag != "Skeleton Enemy")
+                        if (!gameObject.CompareTag("Skeleton Enemy"))
                         {
                             StartCoroutine(shoot());
                         }
-                        else if(agent.remainingDistance <= agent.stoppingDistance)
+                        else if(gameObject.CompareTag("Skeleton Enemy") && agent.remainingDistance <= agent.stoppingDistance)
                         {
                             StartCoroutine(attack());
                         }
@@ -201,20 +207,23 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator attack()
     {
-        isAttacking = true;
-        anim.SetBool("isAttacking", true);
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            isAttacking = true;
+            anim.SetTrigger("isAttacking");
 
-        aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+            aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
 
-        yield return new WaitForSeconds(timeBetweenSwings);
+            yield return new WaitForSeconds(timeBetweenSwings);
 
-        isAttacking = false;
-        anim.SetBool("isAttacking", false);
+            isAttacking = false;
+        }
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
         if (HP <= 0)
         {

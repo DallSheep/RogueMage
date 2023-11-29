@@ -3457,6 +3457,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c896748d6d2948640b7d87d1b10523c4, type: 3}
   audFootStepsVol: 0.2
   timeBetweenSteps: 0.5
+  audHurt:
+  - {fileID: 8300000, guid: 7744ea785272ef34d993fe52a78767f7, type: 3}
+  audHurtVol: 0.3
   bullet: {fileID: 8471529950750269000, guid: 65ecea61bfff4b84fb98b4a4b9f7bd81, type: 3}
   shootRate: 0
   timeBetweenSwings: 1.37
