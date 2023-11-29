@@ -177,7 +177,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         isShooting = true;
      
-        RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
         Vector3 targetPoint;
         

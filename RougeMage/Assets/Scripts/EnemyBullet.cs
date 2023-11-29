@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     [Header("===== Components =====")]
     [SerializeField] Rigidbody rb;
@@ -32,35 +32,23 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter");
-        
-        if (tag != "Skeleton Temp Bullet")
-        {
-            Debug.Log("BeforeHitEffect");
-            //Instantiate(hitEffect, gameObject.transform.position, hitEffect.transform.rotation);
-            Debug.Log("HitEffect");
-        }
-        
-        Debug.Log("AfterSkeleton");
         if (other.isTrigger)
         {
-            Debug.Log("other");
             return;
         }
-        Debug.Log("BeforeIDamage");
+       
         IDamage damageable = other.GetComponent<IDamage>();
-        Debug.Log("AfterIDamage");
-        if(damageable != null)
+      
+        if (damageable != null)
         {
-            //if (other.CompareTag("Player"))
-            //{
-                //damageable.takeDamage(damage);
-            //}
+            if (other.CompareTag("Player"))
+            {
             damageable.takeDamage(damage);
-            Debug.Log("TakesDamage");
+            }
+           
         }
         Destroy(gameObject);
-        Debug.Log("Destory");
+      
     }
 
     public void SetDestroyTime(int time)
