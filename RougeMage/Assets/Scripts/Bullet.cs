@@ -50,11 +50,6 @@ public class Bullet : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 damageable.takeDamage(damage);
-
-                if (isHurting == false)
-                {
-                    StartCoroutine(StatusEffectInterval());
-                }
             }
         }
 
@@ -69,25 +64,5 @@ public class Bullet : MonoBehaviour
     public void setHitEffect(ParticleSystem spellHitEffect)
     {
         hitEffect = spellHitEffect;
-    }
-
-    IEnumerator StatusEffectInterval()
-    {
-        if (statusEffectCount < damageCount)
-        {
-            isHurting = true;
-
-            statusEffectCount++;
-
-            player = player.GetComponent<PlayerController>();
-
-            Mathf.Clamp(player.Hp - StatusEffectDamage, 0, player.HPOrig);
-
-            player.updatePlayerHealthUI();
-        }
-
-        yield return new WaitForSeconds(timeIntervalStatusEffect);
-
-        isHurting = true;
     }
 }
