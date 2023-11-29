@@ -22,7 +22,7 @@ public class HealthDrop : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
             Mathf.Clamp(player.Hp += healthAmount, 0, player.HPOrig);
-            player.updatePlayerUI();
+            player.updatePlayerHealthUI();
             aud.PlayOneShot(audCollected, audCollectedVol);
             Destroy(gameObject);
         }

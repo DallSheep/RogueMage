@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     [Header("----- Player Components -----")]
     public Image playerHPBar;
     public Image playerManaBar;
-    public Image playerDashBar;
+    public Image playerStaminaBar;
 
     public GameObject playerSpawnPos;
     public GameObject player;

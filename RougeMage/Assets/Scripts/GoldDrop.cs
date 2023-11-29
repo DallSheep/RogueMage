@@ -21,7 +21,7 @@ public class GoldDrop : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
             Mathf.Clamp(player.gold += goldAmount, 0, player.goldOrig);
-            player.updatePlayerUI();
+            player.updatePlayerGoldUI();
             aud.PlayOneShot(audCollected, audCollectedVol);
             Destroy(gameObject);
         }

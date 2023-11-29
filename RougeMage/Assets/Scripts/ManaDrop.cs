@@ -22,7 +22,7 @@ public class ManaDrop : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
             Mathf.Clamp(player.mana += manaAmount, 0, player.manaOrig);
-            player.updatePlayerUI();
+            player.updatePlayerManaUI();
             aud.PlayOneShot(audCollected, audCollectedVol);
             Destroy(gameObject);
         }
