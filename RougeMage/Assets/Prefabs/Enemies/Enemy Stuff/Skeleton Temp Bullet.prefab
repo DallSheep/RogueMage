@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6824696048584650153}
   m_Layer: 0
   m_Name: Skeleton Temp Bullet
-  m_TagString: Untagged
+  m_TagString: Skeleton Temp Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   destroyTime: 0
+  hitEffect: {fileID: 0}
 --- !u!54 &6824696048584650153
 Rigidbody:
   m_ObjectHideFlags: 0

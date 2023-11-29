@@ -461,6 +461,7 @@ MonoBehaviour:
   audHurtVol: 0.3
   bullet: {fileID: 8195922970094323667, guid: fdd85861f690a3542b489803a12c8b53, type: 3}
   shootRate: 2
+  timeIntervalStatusEffect: 1
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
