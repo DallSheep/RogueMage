@@ -87,6 +87,11 @@ public class PlayerController : MonoBehaviour, IDamage
         setSpellStats(defaultSpell);
         shootRateOrig = shootRate;
 
+        if (GameManager.Instance.playerSpawnPos != null)
+        {
+            spawnPlayer();
+        }
+
     }
 
     void Update()
@@ -156,9 +161,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
 
         //finds vector between the player and the mouse position
-        Vector3 relative =  mousePos.transform.position - transform.forward;
+        Vector3 relative =  mousePos.transform.position;
+
+        relative.y = transform.position.y;
         //looks at mouse position
-        transform.LookAt(relative, Vector3.up);
+        transform.LookAt(relative);
 
         
     }
@@ -267,6 +274,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //controller.enabled = false;
         Hp = HPOrig;
         updatePlayerUI();
+        controller.enabled = false;
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
