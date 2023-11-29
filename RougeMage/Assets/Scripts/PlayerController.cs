@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         Hp -= amount;
-        updatePlayerUI();
+        updatePlayerHealthUI();
         aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(GameManager.Instance.playerFlashDamage());
 
@@ -273,17 +273,31 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         //controller.enabled = false;
         Hp = HPOrig;
-        updatePlayerUI();
+        updatePlayerHealthUI();
         controller.enabled = false;
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
 
-    public void updatePlayerUI()
+    public void updatePlayerHealthUI()
     {
         GameManager.Instance.playerHPBar.fillAmount = (float)Hp / HPOrig;
     }
 
+    public void updatePlayerManaUI()
+    {
+        GameManager.Instance.playerManaBar.fillAmount = (float)mana / manaOrig;
+    }
+
+    public void updatePlayerStaminaUI()
+    {
+        GameManager.Instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
+    }
+
+    public void updatePlayerGoldUI()
+    {
+        
+    }
     public void ChangeModel()
     {
         //GameObject thisModel = Instantiate(selectMage, newPlayerY, transform.rotation);
