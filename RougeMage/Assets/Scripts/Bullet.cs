@@ -13,6 +13,16 @@ public class Bullet : MonoBehaviour
     [SerializeField] public int destroyTime;
     [SerializeField] public ParticleSystem hitEffect;
 
+    [Header("===== Status Effect =====")]
+    [Range(0, 5)][SerializeField] float damageCount;
+    [Range(1, 3)][SerializeField] float timeIntervalStatusEffect;
+    [Range(0, 3)][SerializeField] int StatusEffectDamage;
+
+    bool isHurting;
+    PlayerController player;
+    int statusEffectCount;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,21 +32,28 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Instantiate(hitEffect, gameObject.transform.position, hitEffect.transform.rotation);
+
+        if (tag != "Skeleton Temp Bullet")
+        {
+            Instantiate(hitEffect, gameObject.transform.position, hitEffect.transform.rotation);
+        }
 
         if (other.isTrigger)
         {
             return;
         }
+
         IDamage damageable = other.GetComponent<IDamage>();
 
         if(damageable != null)
         {
-            damageable.takeDamage(damage);
+            if (other.CompareTag("Player"))
+            {
+                damageable.takeDamage(damage);
+            }
         }
 
         Destroy(gameObject);
-        //Destroy(hitEffect);
     }
 
     public void SetDestroyTime(int time)
@@ -48,5 +65,4 @@ public class Bullet : MonoBehaviour
     {
         hitEffect = spellHitEffect;
     }
-
 }

@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 769886668496128912, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4363832424825406601, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.54
@@ -634,6 +638,10 @@ PrefabInstance:
       propertyPath: playerSpawnPos
       value: 
       objectReference: {fileID: 788521710}
+    - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+      propertyPath: doorWithColliders
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4371019760283380755, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
       propertyPath: m_Name
       value: UI
@@ -647,6 +655,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+--- !u!4 &1344788635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2481779648644908515, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+  m_PrefabInstance: {fileID: 995251768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1435305922 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7918368718999292420, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
