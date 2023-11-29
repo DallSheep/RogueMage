@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0.5
   damage: 1
-  distance: 50
+  distance: 3
   manaCost: 0
   hitEffect: {fileID: 0}
   castSound: {fileID: 0}
