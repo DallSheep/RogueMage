@@ -97,18 +97,16 @@ PrefabInstance:
       value: Old Mage Shop
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 797474f35c2a83c44ab616757a5007e6, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: d940c5b79307081489fb09723860a46e, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 797474f35c2a83c44ab616757a5007e6, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d235abffc5b305248bdede98a5169402, type: 2}
     - target: {fileID: 5866666021909216657, guid: 797474f35c2a83c44ab616757a5007e6, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'L_ankle_s:SSC'\n\tTransform 'hips_s:SSC'\n\tTransform
-        'L_lowerLeg_s:SSC'\n\tTransform 'neck_s:SSC'\n\tTransform 'R_lowerLeg_s:SSC'\n\tTransform
-        'R_ankle_s:SSC'\n\tTransform 'spine_upper_s:SSC'\n\tTransform 'R_elbow_s:SSC'\n\tTransform
-        'chest_s:SSC'\n\tTransform 'spine_mid_s:SSC'\n\tand more ...\n\tFrom animation
-        clip 'Old Mage Shop Close'"
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
