@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour, IDamage
         staminaOrig = stamina;
         goldOrig = gold;
         HPOrig = Hp;
-        spawnPlayer();
         setSpellStats(defaultSpell);
         shootRateOrig = shootRate;
 
@@ -181,14 +180,8 @@ public class PlayerController : MonoBehaviour, IDamage
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
         Vector3 targetPoint;
-        if (Physics.Raycast(ray, out hit))
-        {
-            targetPoint = hit.point;
-        }
-        else
-        {
-            targetPoint = ray.GetPoint(50);
-        }
+        
+        targetPoint = ray.GetPoint(50);
 
         Vector3 shootDir = targetPoint - shootPos.position;
 
@@ -285,12 +278,19 @@ public class PlayerController : MonoBehaviour, IDamage
         stamina = staminaOrig;
         updatePlayerHealthUI();
         updatePlayerManaUI();
+        Debug.Log("SaminaYes");
         updatePlayerStaminaUI();
+        Debug.Log("Gold");
         updatePlayerGoldUI();
         camOrig = cam;
+        Debug.Log("ControllerFalse");
         controller.enabled = false;
+        Debug.Log("PlayerPosition");
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+        Debug.Log("ControllerTrue");
         controller.enabled = true;
+        Time.timeScale = 1;
+        Debug.Log(GameManager.Instance.timescaleOrig);
     }
 
     public void updatePlayerHealthUI()

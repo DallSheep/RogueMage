@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
 
     public bool isPaused;
-    float timescaleOrig;
+    public float timescaleOrig;
     public int enemiesRemaining;
 
     [Header("----- Character Components -----")]
