@@ -57,13 +57,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Start()
     {
-        player = player.GetComponent<PlayerController>();
-
-
         if (gameObject.CompareTag("Dragon Boss"))
         {
             aud.PlayOneShot(audDragonAwakens, audDragonAwakensVol);
         }
+
         GameManager.Instance.UpdateGameGoal(1);
         stoppingDistOrig = agent.stoppingDistance;
         startingPos = transform.position;
@@ -116,8 +114,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         playerDir = GameManager.Instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-        //Debug.DrawRay(headPos.position, playerDir);
-        //Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPos.position, playerDir);
+        Debug.Log(angleToPlayer);
 
         RaycastHit hit;
 
@@ -129,16 +127,15 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                 if (angleToPlayer <= viewCone)
                 {
-
-                    if (angleToPlayer <= shootCone && !isShooting && !isAttacking)
+                    if (angleToPlayer <= shootCone)
                     {
-                        if (!gameObject.CompareTag("Skeleton Enemy"))
+                        if (tag != "Skeleton Enemy" && !isShooting)
                         {
-                            StartCoroutine(shoot());
+                          StartCoroutine(shoot());
                         }
-                        else if(gameObject.CompareTag("Skeleton Enemy") && agent.remainingDistance <= agent.stoppingDistance)
+                        else if(tag == "Skeleton Enemy" && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
                         {
-                            StartCoroutine(attack());
+                          StartCoroutine(attack());
                         }
                     }
 
@@ -151,10 +148,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                     return true;
                 }
-
             }
         }
-
         return false;
     }
 
@@ -171,6 +166,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.isTrigger)
+        {
+            return;
+        }
+
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
@@ -179,6 +179,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
+
         if (other.CompareTag("Player"))
         {
             agent.stoppingDistance = 0;
@@ -202,7 +207,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void CreateBullet()
     {
         Instantiate(bullet, shootPos.position, transform.rotation);
-
     }
 
     IEnumerator attack()
@@ -218,6 +222,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             isAttacking = false;
         }
+        
     }
 
     public void takeDamage(int amount)
