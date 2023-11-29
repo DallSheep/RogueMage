@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void movement()
     {
-        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
         sprint();
 
