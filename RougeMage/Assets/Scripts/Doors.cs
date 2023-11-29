@@ -21,7 +21,7 @@ public class Doors : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") /*&& GameManager.Instance.enemiesRemaining <= 0*/)
+        if (other.CompareTag("Player") && GameManager.Instance.enemiesRemaining <= 0)
         {
             Debug.Log("The box has been hit!");
             //This will only access the door in the very very beginning 
