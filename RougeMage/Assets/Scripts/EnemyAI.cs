@@ -236,7 +236,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
             Instantiate(groundItems[Random.Range(0, groundItems.Count)], transform.position, transform.rotation);
-            anim.SetBool("isDead", true);
+            Destroy(gameObject);
+            //anim.SetBool("isDead", true);
         }
         else
         {
