@@ -116,12 +116,15 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        sprint();
-
-        if(!isDashing)
+        if (stamina >= 100 && !isDashing)
         {
-            StartCoroutine(Dash());
+            Dash();
         }
+
+        //if(!isDashing)
+        //{
+        //    StartCoroutine(Dash());
+        //}
 
         if (groundedPlayer && move.normalized.magnitude > 0.3 && !isPlayingSteps)
         {
@@ -202,35 +205,39 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator Dash()
     {
-        //using 'Jump' because is is already bound to space
-        if (Input.GetButtonDown("Jump"))
+        if (stamina > 0)
         {
-            isDashing = true;
-            //tracking original speed
-            int ps = playerSpeed;
-            playerSpeed *= dashMod;
+            //using 'Jump' because is is already bound to space
+            if (Input.GetButtonDown("Sprint"))
+            {
+                isDashing = true;
+                //tracking original speed
+                int ps = playerSpeed;
+                playerSpeed *= dashMod;
+                stamina = stamina - 100;
 
-            yield return new WaitForSeconds(0.2f);
-            playerSpeed = ps;
+                yield return new WaitForSeconds(0.2f);
+                playerSpeed = ps;
 
-            yield return new WaitForSeconds(dashCooldown);
-            isDashing = false;
+                yield return new WaitForSeconds(dashCooldown);
+                isDashing = false;
+            }
         }
     }
 
-    void sprint()
-    {
-        if (Input.GetButtonDown("Sprint"))
-        {
-            isSprinting = true;
-            playerSpeed *= sprintMod;
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            isSprinting = false;
-            playerSpeed /= sprintMod;
-        }
-    }
+    //void sprint()
+    //{
+    //    if (Input.GetButtonDown("Sprint"))
+    //    {
+    //        isSprinting = true;
+    //        playerSpeed *= sprintMod;
+    //    }
+    //    else if (Input.GetButtonUp("Sprint"))
+    //    {
+    //        isSprinting = false;
+    //        playerSpeed /= sprintMod;
+    //    }
+    //}
 
     IEnumerator playSteps()
     {
@@ -274,7 +281,12 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         //controller.enabled = false;
         Hp = HPOrig;
-        updatePlayerUI();
+        mana = manaOrig;
+        stamina = staminaOrig;
+        updatePlayerHealthUI();
+        updatePlayerManaUI();
+        updatePlayerStaminaUI();
+        updatePlayerGoldUI();
         camOrig = cam;
         controller.enabled = false;
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
@@ -300,6 +312,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         
     }
+
     public void ChangeModel()
     {
         //GameObject thisModel = Instantiate(selectMage, newPlayerY, transform.rotation);
