@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetButton("Interact") && 
                 noTriggerCollider.CompareTag("Door Collider"))
             {
-                doors.doorAnimation.Play("DoorOpen", 0, 0.0f);
+                doors.doorAnimation.Play("Door Open", 0, 0.0f);
                 noTriggerCollider.GetComponentInChildren<BoxCollider>().enabled = false;
             }
         }

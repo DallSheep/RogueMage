@@ -19,8 +19,10 @@ public class ColliderPrompts : MonoBehaviour
                 GameManager.Instance.isPrompt = true;
             }
             else
+            {
                 GameManager.Instance.isPrompt = false;
-            GameManager.Instance.CharPrompts();
+                GameManager.Instance.CharPrompts();
+            }
         }
     }
 
