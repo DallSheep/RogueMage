@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isSprinting;
     bool isDashing;
     private float shootRateOrig;
+    private Camera camOrig;
     public int HPOrig;
     public int manaOrig;
     public int staminaOrig;
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void movement()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
         sprint();
 
@@ -174,8 +175,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         isShooting = true;
      
-        Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
         RaycastHit hit;
+        Ray ray = new Ray(transform.position, transform.forward);
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit))
         {
@@ -274,6 +275,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //controller.enabled = false;
         Hp = HPOrig;
         updatePlayerUI();
+        camOrig = cam;
         controller.enabled = false;
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
         controller.enabled = true;
