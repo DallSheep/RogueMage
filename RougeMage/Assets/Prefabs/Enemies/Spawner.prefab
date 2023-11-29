@@ -124,9 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1771934033045435386, guid: d0e2930b45dcb4c4db7d0eb0b01d3dd1, type: 3}
+  - {fileID: 8801395761837356012, guid: 2e9397e41d569524a9f8b4f65c464e9e, type: 3}
+  - {fileID: 3618387180181120978, guid: e57d7eb79541ea44d852ca46b2f4aa2f, type: 3}
   numberToSpawn: 3
   timeBetweenSpawns: 1
   spawnPos:

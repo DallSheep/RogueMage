@@ -629,7 +629,7 @@ MonoBehaviour:
   shootRate: 2
   timeBetweenSwings: 0
   groundItems:
-  - {fileID: 1055088719032747701, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
+  - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
   - {fileID: 5824782020029261339, guid: a71048811e808744ebcaad8f7887b334, type: 3}
   - {fileID: 1781496912647989605, guid: e0983656b7afc124d832ee37d862316b, type: 3}
   - {fileID: 2809295217708502080, guid: 683d9a14abf4607438da020e4e13992a, type: 3}
