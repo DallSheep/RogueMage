@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isPlayingSteps;
     bool isSprinting;
     bool isDashing;
+    private float shootRateOrig;
     public int HPOrig;
     public int manaOrig;
     public int staminaOrig;
@@ -84,6 +85,8 @@ public class PlayerController : MonoBehaviour, IDamage
         HPOrig = Hp;
         spawnPlayer();
         setSpellStats(defaultSpell);
+        shootRateOrig = shootRate;
+
     }
 
     void Update()

@@ -19,4 +19,4 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   castSound: {fileID: 0}
   castSoundVol: 0
-  bullet: {fileID: 3303086219372321571, guid: cdec0c98a33022149a3360c9d2a5b4ac, type: 3}
+  bullet: {fileID: 3540146517258177943, guid: fcf69d7f6a6282f4da825506d4ecf3a0, type: 3}
