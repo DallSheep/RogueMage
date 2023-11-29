@@ -34,9 +34,7 @@ public class GameManager : MonoBehaviour
 
     //Door Stuff
     [Header("----- Door Components -----")]
-    public Doors doors;
-    public GameObject doorWithColliders;
-    public BoxCollider noTriggerCollider;
+    
     public ColliderPrompts prompt;
 
 
@@ -61,8 +59,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Respawn");
-        doorWithColliders = GameObject.FindWithTag("Door");
-        noTriggerCollider = doorWithColliders.GetComponentInChildren<BoxCollider>();
+        
         prompt = blockedTrigger.GetComponent<ColliderPrompts>();
         charSelected = false;
         //characterSelection = characterSelection.fireMage.GetComponent<CharacterSelection>();
@@ -139,30 +136,7 @@ public class GameManager : MonoBehaviour
 
     public void DoorMenus()
     {
-        //Debug.Log(noTriggerCollider.tag);
-        if (noTriggerCollider.CompareTag("Start Collider"))
-        {
-            //Debug.Log("uhhhhh");
-            statePause();
-            //Debug.Log(menuActive);
-            menuActive = menuDungeon;
-            menuActive.SetActive(true);
-        }
-        else
-        {
-            //Debug.Log("okkkkk");
-            //Debug.Log("paused?");
-            doors.isLocked = false;
-            doors.unlockedDoor.gameObject.SetActive(true);
-
-            //This is for making the door interactable and letting you walk through by destroying the collider
-            if (Input.GetButton("Interact") && 
-                noTriggerCollider.CompareTag("Door Collider"))
-            {
-                doors.doorAnimation.Play("Door Open", 0, 0.0f);
-                noTriggerCollider.GetComponentInChildren<BoxCollider>().enabled = false;
-            }
-        }
+        
     }
 
     public void CharacterEntry()

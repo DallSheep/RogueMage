@@ -36,11 +36,6 @@ public class Doors : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && !GameManager.Instance.noTriggerCollider.CompareTag("Start Collider"))
-        {
-            doorAnimation.Play("DoorClose", 0, 0.0f);
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-            gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
-        }
+      
     }
 }
