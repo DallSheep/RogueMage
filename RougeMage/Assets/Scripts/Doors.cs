@@ -30,22 +30,28 @@ public class Doors : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && GameManager.Instance.enemiesRemaining <= 0)
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("The box has been hit!");
-            //This will only access the door in the very very beginning 
-            GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
-            isLocked = false;
-        }
-        else
-        {
-            isLocked = true;
-            lockedDoor.GetComponentInParent<Image>().gameObject.GetComponentInChildren<TMP_Text>().enabled = true;
+            doorAnimation.SetInteger("doorStop", 1);
+
+            if (GameManager.Instance.enemiesRemaining <= 0)
+            {
+                Debug.Log("The box has been hit!");
+                //This will only access the door in the very very beginning 
+                GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
+                isLocked = false;
+            }
+            else
+            {
+                isLocked = true;
+                lockedDoor.GetComponentInParent<Image>().gameObject.GetComponentInChildren<TMP_Text>().enabled = true;
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log(isLocked);
         if (other.CompareTag("Player") && !isLocked)
         {
             if (isInput && doorAnimation.GetInteger("doorStop") == 1)
@@ -63,7 +69,7 @@ public class Doors : MonoBehaviour
         {
             doorAnimation.SetInteger("doorStop", 0);
             GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
-            lockedDoor.gameObject.GetComponentInChildren<TMP_Text>().enabled = false;
+            lockedDoor.GetComponentInParent<Image>().gameObject.GetComponentInChildren<TMP_Text>().enabled = false;
             doorAnimation.SetBool("isPlayer", false);
             noTrigCollider.SetActive(true);
         }
