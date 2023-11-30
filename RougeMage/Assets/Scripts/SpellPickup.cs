@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpellPickup : MonoBehaviour
 {
     [SerializeField] SpellStats spell;
+    [SerializeField] PlayerController pController;
     [SerializeField] GameObject button;
 
     void Start()
@@ -17,7 +18,8 @@ public class SpellPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.playerScript.setSpellStats(spell);
+            pController.setSpellStats(spell);
+            //GameManager.Instance.playerScript.setSpellStats(spell);
             Destroy(gameObject);
         }
     }
