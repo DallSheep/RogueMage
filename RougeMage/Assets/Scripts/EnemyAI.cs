@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
 
     [Header("----- Enemy Stats -----")]
-    [Range(0, 10)][SerializeField] int HP;
+    [Range(0, 100)][SerializeField] int HP;
     [Range(1, 20)][SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int shootCone;
@@ -33,10 +33,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Range(0, 3)][SerializeField] float timeBetweenSteps;
     [SerializeField] AudioClip[] audHurt;
     [Range(0,1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip audDragonRageEnter;
+    [Range(0, 1)][SerializeField] float audDragonRageEnterVol;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+    [Range(0, 4)][SerializeField] float shootRateMod;
 
     [Header("----- Sword Stuff -----")]
     [Range(1, 5)][SerializeField] float timeBetweenSwings;
@@ -50,13 +53,20 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
     bool destinationChosen;
     bool isAttacking;
+    bool inRageMode = false;
+    bool inRageTransition = false;
     public bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
+    float HPOrig;
+    float halfHP;
     PlayerController player;
 
     void Start()
     {
+        HPOrig = HP;
+        halfHP = HPOrig / 2;
+
         if (gameObject.CompareTag("Dragon Boss"))
         {
             aud.PlayOneShot(audDragonAwakens, audDragonAwakensVol);
@@ -91,66 +101,91 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
-        if (agent.remainingDistance < 0.05f && !destinationChosen)
+        if (!inRageMode)
         {
-            destinationChosen = true;
-            agent.stoppingDistance = 0;
+            if (agent.remainingDistance < 0.05f && !destinationChosen)
+            {
+                destinationChosen = true;
+                agent.stoppingDistance = 0;
 
-            yield return new WaitForSeconds(roamPauseTime);
+                yield return new WaitForSeconds(roamPauseTime);
 
-            Vector3 randomPos = Random.insideUnitSphere * roamDist;
-            randomPos += startingPos;
+                Vector3 randomPos = Random.insideUnitSphere * roamDist;
+                randomPos += startingPos;
 
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
-            agent.SetDestination(hit.position);
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
+                agent.SetDestination(hit.position);
 
-            destinationChosen = false;
+                destinationChosen = false;
+            }
         }
     }
 
     bool canSeePlayer()
     {
-        playerDir = GameManager.Instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
-
-        Debug.DrawRay(headPos.position, playerDir);
-        //Debug.Log(angleToPlayer);
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        if (!inRageTransition)
         {
-            if (hit.collider.CompareTag("Player"))
+            playerDir = GameManager.Instance.player.transform.position - headPos.position;
+            angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+            Debug.DrawRay(headPos.position, playerDir);
+            //Debug.Log(angleToPlayer);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(headPos.position, playerDir, out hit))
             {
-                agent.stoppingDistance = stoppingDistOrig;
-
-                if (angleToPlayer <= viewCone)
+                if (hit.collider.CompareTag("Player"))
                 {
-                    if (angleToPlayer <= shootCone)
+                    agent.stoppingDistance = stoppingDistOrig;
+
+                    if (angleToPlayer <= viewCone)
                     {
-                        if (tag != "Skeleton Enemy" && !isShooting)
+                        if (angleToPlayer <= shootCone)
                         {
-                          StartCoroutine(shoot());
+                            if (tag != "Skeleton Enemy" && !isShooting && !inRageTransition)
+                            {
+                                if (inRageMode)
+                                {
+                                    switch(Random.Range(0, 1))
+                                    {
+                                        case 0:
+                                            StartCoroutine(shoot());
+                                            break;
+                                        case 1:
+                                            StartCoroutine(shoot());
+                                            //StartCoroutine(FlameSpray());
+                                            break;
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    StartCoroutine(shoot());
+                                }
+                            }
+                            else if (tag == "Skeleton Enemy" && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
+                            {
+                                StartCoroutine(attack());
+                            }
                         }
-                        else if(tag == "Skeleton Enemy" && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
+
+                        if (agent.remainingDistance < agent.stoppingDistance)
                         {
-                          StartCoroutine(attack());
+                            faceTarget();
                         }
+
+                        agent.SetDestination(GameManager.Instance.player.transform.position);
+
+                        return true;
                     }
-
-                    if (agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        faceTarget();
-                    }
-
-                    agent.SetDestination(GameManager.Instance.player.transform.position);
-
-                    return true;
                 }
             }
         }
         return false;
+
     }
 
     IEnumerator playSteps()
@@ -241,9 +276,35 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         else
         {
+            if (gameObject.CompareTag("Dragon Boss"))
+            {
+                if (HP <= halfHP && !inRageMode)
+                {
+                    inRageMode = true;
+
+                    anim.SetBool("isEnteringRageMode", true);
+
+                    StartCoroutine(DragonRageTransition());
+
+                    shootRate /= shootRateMod;
+                }
+            }
             StartCoroutine(flashRed());
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
+    }
+
+    IEnumerator DragonRageTransition()
+    {
+        inRageTransition = true;
+
+        aud.PlayOneShot(audDragonRageEnter, audDragonRageEnterVol);
+
+        yield return new WaitForSeconds(4);
+
+        anim.SetBool("isEnteringRageMode", false);
+
+        inRageTransition = false;
     }
 
     IEnumerator flashRed()

@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ab1dfe1c2473d4c9aa5d9ecefa99d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaAmount: 1
+  staminaAmount: 5
   aud: {fileID: 6782701662211332742}
   audCollected: {fileID: 8300000, guid: 6258a8b65895aa74ead97307eee380ff, type: 3}
   audCollectedVol: 0.2

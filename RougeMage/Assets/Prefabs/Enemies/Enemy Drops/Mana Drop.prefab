@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c613f650dbcdd4048b9f279e3db31ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaAmount: 1
+  manaAmount: 5
   aud: {fileID: 5436487000182191408}
   audCollected: {fileID: 8300000, guid: 6258a8b65895aa74ead97307eee380ff, type: 3}
   audCollectedVol: 0.2

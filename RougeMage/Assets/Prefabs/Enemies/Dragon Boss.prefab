@@ -2264,7 +2264,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c478dc778f21bcc4cb72f4e6dbc192dc, type: 3}
   - {fileID: 8300000, guid: df0fbf565ebe72342854e23f7a2552b2, type: 3}
   audAttackVol: 0.5
-  audDragonAwakens: {fileID: 8300000, guid: 4128553ef0d595847920477ba8d3cbed, type: 3}
+  audDragonAwakens: {fileID: 8300000, guid: 7cd8695b26bae344592b5cc0b2b4f265, type: 3}
   audDragonAwakensVol: 0.5
   audFootSteps:
   - {fileID: 8300000, guid: 21db553e521ba6944924317408a08b41, type: 3}
@@ -2276,15 +2276,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 12323960ef59cfb40b5fa0aab3e5daa0, type: 3}
   - {fileID: 8300000, guid: 1d09d0181462be84cab28041988603fd, type: 3}
   audHurtVol: 0.3
+  audDragonRageEnter: {fileID: 8300000, guid: 4128553ef0d595847920477ba8d3cbed, type: 3}
+  audDragonRageEnterVol: 0.5
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
-  shootRate: 0.5
-  timeIntervalStatusEffect: 1
+  shootRate: 1
+  shootRateMod: 2
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
-  - {fileID: 5824782020029261339, guid: a71048811e808744ebcaad8f7887b334, type: 3}
-  - {fileID: 1781496912647989605, guid: e0983656b7afc124d832ee37d862316b, type: 3}
-  - {fileID: 2809295217708502080, guid: 683d9a14abf4607438da020e4e13992a, type: 3}
   isPlayingSteps: 0
 --- !u!95 &3028502979530777588
 Animator:

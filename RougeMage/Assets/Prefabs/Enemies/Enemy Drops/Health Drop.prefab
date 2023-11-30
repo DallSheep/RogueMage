@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bb814aaf688954982ca45418f3fd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmount: 1
+  healthAmount: 5
   aud: {fileID: 5172214382661283782}
   audCollected: {fileID: 8300000, guid: 6258a8b65895aa74ead97307eee380ff, type: 3}
   audCollectedVol: 0.2
