@@ -14,14 +14,13 @@ public class ColliderPrompts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(gameObject.CompareTag("Block Collider"))
+            if(gameObject.GetComponent<GameObject>().CompareTag("Block Collider"))
             {
-                GameManager.Instance.isPrompt = true;
+                GameManager.Instance.blockedTrigger.SetActive(true);
             }
             else
             {
-                GameManager.Instance.isPrompt = false;
-                GameManager.Instance.CharPrompts();
+                GameManager.Instance.charTrigger.SetActive(true);
             }
         }
     }
@@ -30,7 +29,8 @@ public class ColliderPrompts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.CharacterExit();
+            GameManager.Instance.blockedTrigger.SetActive(false);
+            GameManager.Instance.charTrigger.SetActive(false);
         }
     }
 }

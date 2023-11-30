@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Hardware;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -340,9 +339,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (GameManager.Instance.charSelected)
         {
-            GameManager.Instance.blockedPath.enabled = false;
-            GameManager.Instance.blockedTrigger.enabled = false;
-            GameManager.Instance.charTrigger.enabled = false;
+            GameManager.Instance.blockedTrigger.SetActive(false);
+            GameManager.Instance.charTrigger.SetActive(false);
         }
 
     }

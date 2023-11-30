@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using TMPro;
 using UnityEngine;
 
 public class CharacterSelection : MonoBehaviour
@@ -43,7 +44,7 @@ public class CharacterSelection : MonoBehaviour
                     GameManager.Instance.playerScript.selectMage = earthMage;
                     break;
             }
-            GameManager.Instance.CharacterEntry();
+            GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
         }
     }
 
@@ -64,7 +65,7 @@ public class CharacterSelection : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.CharacterExit();
+            GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
         }
     }
 }

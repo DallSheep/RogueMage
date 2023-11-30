@@ -19,6 +19,9 @@ TagManager:
   - Weapon
   - Block Collider
   - Character Trigger
+  - Skeleton Temp Bullet
+  - Prompt Obj
+  - Interact Prompt
   layers:
   - Default
   - TransparentFX

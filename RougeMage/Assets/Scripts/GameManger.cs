@@ -17,12 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuDungeon;
-    [SerializeField] GameObject menuInteract;
     [SerializeField] GameObject charSelect;
     [SerializeField] GameObject blockedWall;
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
     public float timescaleOrig;
+    public GameObject interactPrompt;
 
     [Header("----- Player Components -----")]
     public Image playerHPBar;
@@ -36,20 +36,18 @@ public class GameManager : MonoBehaviour
 
     //Door Stuff
     [Header("----- Door Components -----")]
-    
     public ColliderPrompts prompt;
-
-
+    public GameObject promptObj;
     public bool isPaused;
     public int enemiesRemaining;
+    public GameObject door;
+    Doors doorScript;
 
     [Header("----- Character Components -----")]
     //public CharacterSelection characterSelection;
-    [SerializeField] public BoxCollider blockedPath;
-    [SerializeField] public BoxCollider blockedTrigger;
-    [SerializeField] public BoxCollider charTrigger;
+    [SerializeField] public GameObject blockedTrigger;
+    [SerializeField] public GameObject charTrigger;
     public bool charSelected;
-    public bool isPrompt;
 
 
 
@@ -60,9 +58,13 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         playerSpawnPos = GameObject.FindWithTag("Respawn");
-        
-        prompt = blockedTrigger.GetComponent<ColliderPrompts>();
+        blockedTrigger = GameObject.FindWithTag("Block Collider");
         charSelected = false;
+        door = GameObject.FindWithTag("Door");
+        doorScript = door.GetComponent<Doors>();
+        promptObj = GameObject.FindWithTag("Prompt Obj");
+        prompt = promptObj.GetComponent<ColliderPrompts>();
+        interactPrompt = GameObject.FindWithTag("Interact Prompt");
         //characterSelection = characterSelection.fireMage.GetComponent<CharacterSelection>();
     }
 
@@ -135,34 +137,4 @@ public class GameManager : MonoBehaviour
        
     }
 
-    public void DoorMenus()
-    {
-        
-    }
-
-    public void CharacterEntry()
-    {
-        menuActive = menuInteract;
-        menuActive.SetActive(true);
-    }
-
-    public void CharPrompts()
-    {
-        Debug.Log("Got here");
-        if(prompt.gameObject.CompareTag("Block Collider") && isPrompt)
-        {
-            menuActive = blockedWall;
-            menuActive.SetActive(true);
-        }
-        else
-        {
-            Debug.Log(prompt.gameObject.tag);
-            menuActive = charSelect;
-            menuActive.SetActive(true);
-        }
-    }
-    public void CharacterExit()
-    {
-        menuActive.SetActive(false);
-    }
 }
