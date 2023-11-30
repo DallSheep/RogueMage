@@ -105,18 +105,18 @@ public class GameManager : MonoBehaviour
 
         if (enemiesRemaining <= 0)
         {
-            StartCoroutine(youWin());
+            //StartCoroutine(youWin());
         }
     }
 
-    public IEnumerator youWin()
-    {
-        yield return new WaitForSeconds(3);
-        statePause();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
+    //public IEnumerator youWin()
+    //{
+    //    yield return new WaitForSeconds(3);
+    //    statePause();
+    //    menuActive = menuWin;
+    //    menuActive.SetActive(true);
 
-    }
+    //}
 
     public void youLose()
     {

@@ -70,6 +70,7 @@ public class Doors : MonoBehaviour
             doorAnimation.SetInteger("doorStop", 0);
             GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
             lockedDoor.GetComponentInParent<Image>().gameObject.GetComponentInChildren<TMP_Text>().enabled = false;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
             doorAnimation.SetBool("isPlayer", false);
             noTrigCollider.SetActive(true);
         }
