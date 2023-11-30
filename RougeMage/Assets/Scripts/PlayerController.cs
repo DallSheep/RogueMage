@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public GameObject selectMage;
     [SerializeField] public GameObject model;
     [SerializeField] public GameObject root;
+    [SerializeField] TMP_Text goldCounter;
 
     [Header("----- Player Stats -----")]
     [Range(1, 8)][SerializeField] int playerSpeed;
@@ -70,7 +72,6 @@ public class PlayerController : MonoBehaviour, IDamage
     public int HPOrig;
     public int manaOrig;
     public int staminaOrig;
-    public int goldOrig;
     int selectedGun;
 
     Vector3 newPlayerY;
@@ -80,9 +81,8 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Start()
     {
         manaOrig = mana;
-        staminaOrig = stamina;
-        goldOrig = gold;
         HPOrig = Hp;
+        staminaOrig = stamina;
         setSpellStats(defaultSpell);
         shootRateOrig = shootRate;
 
@@ -274,18 +274,14 @@ public class PlayerController : MonoBehaviour, IDamage
         Hp = HPOrig;
         mana = manaOrig;
         stamina = staminaOrig;
+        Debug.Log(gold);
         updatePlayerHealthUI();
         updatePlayerManaUI();
-        Debug.Log("SaminaYes");
         updatePlayerStaminaUI();
-        Debug.Log("Gold");
-        updatePlayerGoldUI();
+        updatePlayerGoldUI(0);
         camOrig = cam;
-        Debug.Log("ControllerFalse");
         controller.enabled = false;
-        Debug.Log("PlayerPosition");
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-        Debug.Log("ControllerTrue");
         controller.enabled = true;
         Time.timeScale = 1;
         Debug.Log(GameManager.Instance.timescaleOrig);
@@ -306,9 +302,12 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.Instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
     }
 
-    public void updatePlayerGoldUI()
+    public void updatePlayerGoldUI(int amount)
     {
-        
+        gold += amount;
+        Debug.Log(gold);
+        goldCounter.text = gold.ToString("0");
+        Debug.Log(goldCounter);
     }
 
     public void ChangeModel()
