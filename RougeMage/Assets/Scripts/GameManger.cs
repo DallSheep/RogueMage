@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuInventory;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuDungeon;
@@ -77,6 +78,15 @@ public class GameManager : MonoBehaviour
             menuActive = menuPause;
             menuPause.SetActive(isPaused);
         }
+
+        if (Input.GetButtonDown("Inventory") && menuActive == null)
+        {
+            statePause();
+            menuActive = menuInventory;
+            menuInventory.SetActive(isPaused);
+        }
+        
+
     }
 
     public void statePause()
@@ -101,7 +111,7 @@ public class GameManager : MonoBehaviour
     public void UpdateGameGoal(int amount)
     {
         enemiesRemaining += amount;
-        //enemyCountText.text = enemiesRemaining.ToString("0");
+        enemyCountText.text = enemiesRemaining.ToString("0");
 
         if (enemiesRemaining <= 0)
         {
