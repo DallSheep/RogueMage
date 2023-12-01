@@ -29,6 +29,8 @@ TagManager:
   - buttonNo
   - Start Collider
   - Gold
+  - Acid Spitball
+  - Flameball
   layers:
   - Default
   - TransparentFX

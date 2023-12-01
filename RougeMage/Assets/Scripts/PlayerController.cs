@@ -348,7 +348,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         Hp -= amount;
         updatePlayerHealthUI();
-        aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+        //aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(GameManager.Instance.playerFlashDamage());
 
         if (Hp <= 0)

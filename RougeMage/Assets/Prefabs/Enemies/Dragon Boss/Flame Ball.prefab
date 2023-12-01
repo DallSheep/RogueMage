@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 754881701112208578}
   - component: {fileID: 6587249983910146927}
   - component: {fileID: 7787489096690049822}
-  - component: {fileID: 6625499088154698315}
+  - component: {fileID: 2875610393441700149}
   - component: {fileID: 4614324114397920409}
   - component: {fileID: 6524333116655912838}
   m_Layer: 0
   m_Name: Flame Ball
-  m_TagString: Untagged
+  m_TagString: Flameball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6625499088154698315
+--- !u!114 &2875610393441700149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,17 +117,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5259874742371074253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d01f2303819d94d419530eeeb79330e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fc7ae62c63510f4ea20583802ce7c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4614324114397920409}
+  player: {fileID: 0}
   damage: 3
   speed: 20
   destroyTime: 3
-  hitEffect: {fileID: 5719430615588939649, guid: 8b750922e14d11247a5a1d89fdf0950a, type: 3}
+  hitEffect: {fileID: 0}
   damageCount: 3
-  timeIntervalStatusEffect: 0
-  StatusEffectDamage: 1
+  timeIntervalStatusEffect: 2
+  statusEffectDamage: 3
 --- !u!54 &4614324114397920409
 Rigidbody:
   m_ObjectHideFlags: 0

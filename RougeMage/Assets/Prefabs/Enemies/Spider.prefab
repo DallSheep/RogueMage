@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 677699824685984817}
   - component: {fileID: 7238016521455854197}
   - component: {fileID: 4335927123129687000}
+  - component: {fileID: 2428206119837945827}
   m_Layer: 6
   m_Name: Spider
   m_TagString: Spider Enemy
@@ -459,9 +460,14 @@ MonoBehaviour:
   audHurt:
   - {fileID: 8300000, guid: 7029064a47bdfd142ad53944b6ee4d3d, type: 3}
   audHurtVol: 0.3
+  audDragonRageEnter: {fileID: 0}
+  audDragonRageEnterVol: 0
   bullet: {fileID: 8195922970094323667, guid: fdd85861f690a3542b489803a12c8b53, type: 3}
   shootRate: 2
-  timeIntervalStatusEffect: 1
+  shootRateMod: 0
+  Bullet1: {fileID: 0}
+  shootRate1: 0
+  randomAttackIntervalTime: 0
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
@@ -652,6 +658,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &2428206119837945827
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3618387180181120978}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3917258810409514595
 GameObject:
   m_ObjectHideFlags: 0

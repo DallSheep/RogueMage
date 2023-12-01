@@ -557,6 +557,7 @@ GameObject:
   - component: {fileID: 1651399165738112864}
   - component: {fileID: 4496357758685748136}
   - component: {fileID: -2357600015837562969}
+  - component: {fileID: -7016625259904072430}
   m_Layer: 6
   m_Name: GoblinHunterMain
   m_TagString: Goblin Enemy
@@ -625,9 +626,14 @@ MonoBehaviour:
   audHurt:
   - {fileID: 8300000, guid: ebbb13608693f584ead8471fa4360750, type: 3}
   audHurtVol: 0.3
+  audDragonRageEnter: {fileID: 0}
+  audDragonRageEnterVol: 0
   bullet: {fileID: 66773969176077093, guid: e030dd4ca8bf53f4aa08880ad4174c6c, type: 3}
   shootRate: 2
-  timeIntervalStatusEffect: 1
+  shootRateMod: 0
+  Bullet1: {fileID: 0}
+  shootRate1: 0
+  randomAttackIntervalTime: 0
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
@@ -818,6 +824,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &-7016625259904072430
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771934033045435386}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1789481217611122409
 GameObject:
   m_ObjectHideFlags: 0

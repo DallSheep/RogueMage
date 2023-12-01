@@ -2210,6 +2210,7 @@ GameObject:
   - component: {fileID: 4756839181669875967}
   - component: {fileID: 988053799785976325}
   - component: {fileID: 3228555983523815339}
+  - component: {fileID: -415610827751241590}
   m_Layer: 6
   m_Name: Dragon Boss
   m_TagString: Dragon Boss
@@ -2253,7 +2254,7 @@ MonoBehaviour:
   anim: {fileID: 3028502979530777588}
   damageCol: {fileID: 4756839181669875967}
   aud: {fileID: 3228555983523815339}
-  HP: 10
+  HP: 2
   playerFaceSpeed: 8
   viewCone: 180
   shootCone: 90
@@ -2281,6 +2282,9 @@ MonoBehaviour:
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
   shootRate: 1
   shootRateMod: 2
+  Bullet1: {fileID: 3692549162058541380, guid: f16685f2532a55f479f7a2aa884573fc, type: 3}
+  shootRate1: 0.05
+  randomAttackIntervalTime: 0
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
@@ -2466,6 +2470,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &-415610827751241590
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4437502265736599791}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4559880924967341673
 GameObject:
   m_ObjectHideFlags: 0

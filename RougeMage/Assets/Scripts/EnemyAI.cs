@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,6 +41,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
     [Range(0, 4)][SerializeField] float shootRateMod;
+    [SerializeField] GameObject Bullet1;
+    [Range(0, 4)][SerializeField] float shootRate1;
+    [Range(0, 5)][SerializeField] float randomAttackIntervalTime;
 
     [Header("----- Sword Stuff -----")]
     [Range(1, 5)][SerializeField] float timeBetweenSwings;
@@ -55,6 +59,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool isAttacking;
     bool inRageMode = false;
     bool inRageTransition = false;
+    bool isRageAttacking = false;
+    bool inSecondFlameAttack = false;
     public bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
@@ -146,24 +152,14 @@ public class EnemyAI : MonoBehaviour, IDamage
                         {
                             if (tag != "Skeleton Enemy" && !isShooting && !inRageTransition)
                             {
-                                if (inRageMode)
+                                //if (inRageMode && !isRageAttacking)
+                                //{
+                                //    StartCoroutine(randomAttack());
+                                //}
+                                StartCoroutine(shoot());
+                                if (isRageAttacking)
                                 {
-                                    switch(Random.Range(0, 1))
-                                    {
-                                        case 0:
-                                            StartCoroutine(shoot());
-                                            break;
-                                        case 1:
-                                            StartCoroutine(shoot());
-                                            //StartCoroutine(FlameSpray());
-                                            break;
-                                    }
 
-
-                                }
-                                else
-                                {
-                                    StartCoroutine(shoot());
                                 }
                             }
                             else if (tag == "Skeleton Enemy" && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
@@ -239,6 +235,51 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         isShooting = false;
     }
+
+    public void SecondFlameAttack()
+    {
+        anim.SetTrigger("isShooting");
+
+        aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+        CreateBullet();
+    }
+
+    IEnumerator randomAttack()
+    {
+        isRageAttacking = true;
+
+        int max = 1;
+        int min = 0;
+        int rand = RandomNumberGenerator.GetInt32(min, max);
+        switch (rand)
+        {
+            case 0:
+                StartCoroutine(shoot());
+                break;
+            case 1:
+                if (!inSecondFlameAttack)
+                {
+                    StartCoroutine(FlameBurst());
+                }
+                break;
+        }
+
+        yield return new WaitForSeconds(randomAttackIntervalTime);
+
+        isRageAttacking = false;
+    }
+
+    IEnumerator FlameBurst()
+    {
+        inSecondFlameAttack = true;
+
+        SecondFlameAttack();
+
+        yield return new WaitForSeconds(randomAttackIntervalTime);
+
+        inSecondFlameAttack = false;
+    }
+
     public void CreateBullet()
     {
         Instantiate(bullet, shootPos.position, transform.rotation);
@@ -282,7 +323,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 {
                     inRageMode = true;
 
-                    anim.SetBool("isEnteringRageMode", true);
+                    anim.SetBool("isEnteringRage", true);
 
                     StartCoroutine(DragonRageTransition());
 
@@ -302,7 +343,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(4);
 
-        anim.SetBool("isEnteringRageMode", false);
+        anim.SetBool("isEnteringRage", false);
 
         inRageTransition = false;
     }
