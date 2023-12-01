@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject player;
     public PlayerController playerScript;
+    public CharacterSelection selectChar;
+    public GameObject mages;
 
     //Door Stuff
     [Header("----- Door Components -----")]
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         timescaleOrig = Time.timeScale;
-        //StartCoroutine(PlayerSpawnDelay());
+
         playerSpawnPos = GameObject.FindWithTag("Respawn");
         blockedTrigger = GameObject.FindWithTag("Block Collider");
         blockedPrompt = GameObject.FindWithTag("Blocked Wall Prompt");
@@ -78,6 +80,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        playerSpawnPos = GameObject.FindWithTag("Respawn");
+
         if (Input.GetButtonDown("Cancel") && menuActive == null)
         {
             statePause();
@@ -91,17 +95,11 @@ public class GameManager : MonoBehaviour
             menuActive = menuInventory;
             menuInventory.SetActive(isPaused);
         }
-        
 
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
     }
 
-    //IEnumerator PlayerSpawnDelay()
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-        
-    //}
 
     public void statePause()
     {

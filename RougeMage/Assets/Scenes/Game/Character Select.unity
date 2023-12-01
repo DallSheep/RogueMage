@@ -202,6 +202,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4100683814371560, guid: dea84a3662be77b4bad1db42d2b32262, type: 3}
   m_PrefabInstance: {fileID: 64176093}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &94789404 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 135654260142043741, guid: 3ee7b3a2043e5fd4d8c9ee915192298c, type: 3}
+  m_PrefabInstance: {fileID: 7175913137891668733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &103073768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -519,6 +524,11 @@ Transform:
   - {fileID: 1546221866}
   m_Father: {fileID: 1758419008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &210823641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8676392709813034825, guid: 676b4d6901760b64f9c734e1ac1f5f83, type: 3}
+  m_PrefabInstance: {fileID: 8798589716920591074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &220857305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1079,6 +1089,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2795318547083434876, guid: dc20bf501e8161b40859eb66568d49f6, type: 3}
   m_PrefabInstance: {fileID: 1215201031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &501527597 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7755242091977882344, guid: 6cb880494fec4b244b4adb301e51e977, type: 3}
+  m_PrefabInstance: {fileID: 4143091408459755146}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &517451436 stripped
 Transform:
@@ -2905,6 +2920,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!4 &1654889620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2045967518525365018, guid: a62422aa751283d43a4a62cd0e7fa801, type: 3}
+  m_PrefabInstance: {fileID: 9134627380819054865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1659122035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5001475580491234167, guid: 93098c71c4b0d9046b0427bdd0affdf8, type: 3}
@@ -4071,6 +4091,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1248813821201099}
     - target: {fileID: 2050602348107255136, guid: 6cb880494fec4b244b4adb301e51e977, type: 3}
+      propertyPath: charShootPos
+      value: 
+      objectReference: {fileID: 501527597}
+    - target: {fileID: 2050602348107255136, guid: 6cb880494fec4b244b4adb301e51e977, type: 3}
       propertyPath: lightningMage
       value: 
       objectReference: {fileID: 1248814499945450}
@@ -4081,6 +4105,10 @@ PrefabInstance:
     - target: {fileID: 3357288514104600839, guid: 6cb880494fec4b244b4adb301e51e977, type: 3}
       propertyPath: m_Name
       value: Earth Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357288514104600839, guid: 6cb880494fec4b244b4adb301e51e977, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7761586246448038227, guid: 6cb880494fec4b244b4adb301e51e977, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4228,6 +4256,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+      propertyPath: mages
+      value: 
+      objectReference: {fileID: 1248814365755485}
+    - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
       propertyPath: charTrigger
       value: 
       objectReference: {fileID: 1842846643}
@@ -4304,6 +4336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire Mage
       objectReference: {fileID: 0}
+    - target: {fileID: 734669114049311190, guid: 3ee7b3a2043e5fd4d8c9ee915192298c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7827193326647285784, guid: 3ee7b3a2043e5fd4d8c9ee915192298c, type: 3}
       propertyPath: earthMage
       value: 
@@ -4312,6 +4348,10 @@ PrefabInstance:
       propertyPath: waterMage
       value: 
       objectReference: {fileID: 1248813821201099}
+    - target: {fileID: 7827193326647285784, guid: 3ee7b3a2043e5fd4d8c9ee915192298c, type: 3}
+      propertyPath: charShootPos
+      value: 
+      objectReference: {fileID: 94789404}
     - target: {fileID: 7827193326647285784, guid: 3ee7b3a2043e5fd4d8c9ee915192298c, type: 3}
       propertyPath: lightningMage
       value: 
@@ -4461,9 +4501,17 @@ PrefabInstance:
       propertyPath: waterMage
       value: 
       objectReference: {fileID: 1248813821201099}
+    - target: {fileID: 421162442149233322, guid: 676b4d6901760b64f9c734e1ac1f5f83, type: 3}
+      propertyPath: charShootPos
+      value: 
+      objectReference: {fileID: 210823641}
     - target: {fileID: 3422603705953127918, guid: 676b4d6901760b64f9c734e1ac1f5f83, type: 3}
       propertyPath: m_Name
       value: Lightning Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3422603705953127918, guid: 676b4d6901760b64f9c734e1ac1f5f83, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8684768411941335259, guid: 676b4d6901760b64f9c734e1ac1f5f83, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4567,6 +4615,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1248814847034528}
     - target: {fileID: 5102957876689689555, guid: a62422aa751283d43a4a62cd0e7fa801, type: 3}
+      propertyPath: charShootPos
+      value: 
+      objectReference: {fileID: 1654889620}
+    - target: {fileID: 5102957876689689555, guid: a62422aa751283d43a4a62cd0e7fa801, type: 3}
       propertyPath: lightningMage
       value: 
       objectReference: {fileID: 1248814499945450}
@@ -4577,6 +4629,10 @@ PrefabInstance:
     - target: {fileID: 6193761240555121691, guid: a62422aa751283d43a4a62cd0e7fa801, type: 3}
       propertyPath: m_Name
       value: Water Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193761240555121691, guid: a62422aa751283d43a4a62cd0e7fa801, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6729688439876272881, guid: a62422aa751283d43a4a62cd0e7fa801, type: 3}
       propertyPath: m_Materials.Array.data[0]

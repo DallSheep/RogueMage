@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
     [SerializeField] Camera cam;
     [SerializeField] GameObject mousePos;
-    [SerializeField] Transform shootPos;
+    [SerializeField] public Transform shootPos;
     [SerializeField] public GameObject soulOrb;
     [SerializeField] public GameObject selectMage;
     [SerializeField] public GameObject finalMage;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public GameObject root;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 8)][SerializeField] int playerSpeed;
+    [Range(1, 10)][SerializeField] int playerSpeed;
     [Range(1, 4)][SerializeField] int sprintMod;
     [Range(3, 10)][SerializeField] int dashMod;
     [SerializeField] float dashCooldown;
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public int staminaOrig;
     int selectedGun;
 
-    int isStarted;
+    public int isStarted;
 
     Vector3 newPlayerY;
 
@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             spawnPlayer();
         }
-
     }
 
     void Update()
@@ -348,8 +347,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         Hp -= amount;
         updatePlayerHealthUI();
-        //aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
-        StartCoroutine(GameManager.Instance.playerFlashDamage());
+        aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+        //StartCoroutine(GameManager.Instance.playerFlashDamage());
 
         if (Hp <= 0)
         {
@@ -407,6 +406,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //selectMage = thisModel;
 
         isCharSlected = true;
+
 
         soulOrb.SetActive(false);
         root.SetActive(true);

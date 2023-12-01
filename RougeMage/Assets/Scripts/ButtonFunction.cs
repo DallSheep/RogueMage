@@ -30,6 +30,12 @@ public class ButtonFunction : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+        GameManager.Instance.isPaused = !GameManager.Instance.isPaused;
+        GameManager.Instance.playerScript.enabled = true;
+        Time.timeScale = GameManager.Instance.timescaleOrig;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void BuyMe()

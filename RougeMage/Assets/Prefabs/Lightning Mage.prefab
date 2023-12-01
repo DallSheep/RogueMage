@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 3941031714502322259}
   - component: {fileID: 8701547025880369290}
   - component: {fileID: 7899968136207092222}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lightning Mage
   m_TagString: Lightning Mage
   m_Icon: {fileID: 0}
@@ -1112,8 +1112,8 @@ MonoBehaviour:
   waterMage: {fileID: 0}
   lightningMage: {fileID: 3422603705953127918}
   earthMage: {fileID: 0}
-  charSelected: 0
   isInteractPressed: 0
+  isCharSelection: 0
 --- !u!95 &3941031714502322259
 Animator:
   serializedVersion: 5

@@ -31,6 +31,11 @@ TagManager:
   - Gold
   - Acid Spitball
   - Flameball
+  - Shoot Pos
+  - Fire Pos
+  - Water Pos
+  - Lighning Pos
+  - Earth Pos
   layers:
   - Default
   - TransparentFX
@@ -42,7 +47,7 @@ TagManager:
   - Ground
   - Player
   - Bullet
-  - 
+  - Mages
   - 
   - 
   - 

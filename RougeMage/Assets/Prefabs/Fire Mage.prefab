@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 5789830944558103900}
   - component: {fileID: 7334319080102241953}
   - component: {fileID: 3673964225393023009}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire Mage
   m_TagString: Fire Mage
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734669114049311190}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.4999988, z: -0, w: 0.8660261}
+  m_LocalRotation: {x: 0, y: -0.5, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 3.1632514, y: -16.863, z: -4.0127296}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
@@ -374,8 +374,8 @@ MonoBehaviour:
   waterMage: {fileID: 0}
   lightningMage: {fileID: 0}
   earthMage: {fileID: 0}
-  charSelected: 0
   isInteractPressed: 0
+  isCharSelection: 0
 --- !u!95 &5789830944558103900
 Animator:
   serializedVersion: 5

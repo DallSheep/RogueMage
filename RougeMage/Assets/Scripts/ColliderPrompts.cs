@@ -38,6 +38,7 @@ public class ColliderPrompts : MonoBehaviour
                     GameManager.Instance.buttonYes.GetComponentInChildren<TMP_Text>().enabled = true;
                     GameManager.Instance.buttonNo.GetComponent<Image>().enabled = true;
                     GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = true;
+                    GameManager.Instance.statePause();
                     break;
             }
         }
