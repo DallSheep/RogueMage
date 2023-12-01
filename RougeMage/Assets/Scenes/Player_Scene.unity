@@ -123,12 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &207448051 stripped
+--- !u!1 &68219995 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3426677895300380531, guid: 2bf6589da28f1794b9e4beedd7db8208, type: 3}
   m_PrefabInstance: {fileID: 778901875}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &599302654
+--- !u!1001 &564149737
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -185,14 +185,61 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1812700337}
     - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: maxMana
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: stamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: currMana
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: manaCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
       propertyPath: mousePos
       value: 
-      objectReference: {fileID: 207448051}
+      objectReference: {fileID: 68219995}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: bulletFire
+      value: 
+      objectReference: {fileID: 3303086219372321571, guid: cdec0c98a33022149a3360c9d2a5b4ac, type: 3}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: bulletEarth
+      value: 
+      objectReference: {fileID: 3540146517258177943, guid: fa9bfbd039722b6479a4fea3e0a45fde, type: 3}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: bulletWater
+      value: 
+      objectReference: {fileID: 3540146517258177943, guid: fcf69d7f6a6282f4da825506d4ecf3a0, type: 3}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: manaRegenSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: bulletLightning
+      value: 
+      objectReference: {fileID: 3540146517258177943, guid: 8b0313ad79156194090dbcb53c71dd37, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+--- !u!114 &717706704 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+  m_PrefabInstance: {fileID: 564149737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322e16cae219a0f4fad9663338ee1890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &778901875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,23 +356,12 @@ PrefabInstance:
     - target: {fileID: 5338975520587277493, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1710113191}
+      objectReference: {fileID: 717706704}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
---- !u!114 &1710113191 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
-  m_PrefabInstance: {fileID: 599302654}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 322e16cae219a0f4fad9663338ee1890, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &1812700337 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3904324142166210177, guid: 90c1633836143aa4bb6cd7616b9fb554, type: 3}
@@ -337,4 +373,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 778901875}
   - {fileID: 1562683682}
-  - {fileID: 599302654}
+  - {fileID: 564149737}

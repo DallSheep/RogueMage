@@ -1702,17 +1702,23 @@ MonoBehaviour:
   jumpsMax: 0
   gravityValue: -10
   Hp: 1
-  mana: 0
-  stamina: 0
+  maxMana: 100
+  currMana: 100
+  stamina: 100
   gold: 0
+  manaRegenSpeed: 1
   isCharSlected: 0
   SpellList: []
   defaultSpell: {fileID: 11400000, guid: f20addeaea9dea24bb9428bf06c917c7, type: 2}
-  bullet: {fileID: 0}
+  bulletMain: {fileID: 0}
+  bulletFire: {fileID: 3303086219372321571, guid: cdec0c98a33022149a3360c9d2a5b4ac, type: 3}
+  bulletWater: {fileID: 3540146517258177943, guid: fcf69d7f6a6282f4da825506d4ecf3a0, type: 3}
+  bulletLightning: {fileID: 3540146517258177943, guid: 8b0313ad79156194090dbcb53c71dd37, type: 3}
+  bulletEarth: {fileID: 3540146517258177943, guid: fa9bfbd039722b6479a4fea3e0a45fde, type: 3}
   shootDamage: 1
   shootDist: 50
   shootRate: 1
-  manaCost: 0
+  manaCost: 1
   cooldown: 0.5
   weapon: {fileID: 0}
   audSteps: []
@@ -1726,7 +1732,6 @@ MonoBehaviour:
   HPOrig: 0
   manaOrig: 0
   staminaOrig: 0
-  goldOrig: 0
 --- !u!143 &5521843639130267959
 CharacterController:
   m_ObjectHideFlags: 0

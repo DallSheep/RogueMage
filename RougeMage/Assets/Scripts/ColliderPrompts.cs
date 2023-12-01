@@ -63,9 +63,10 @@ public class ColliderPrompts : MonoBehaviour
                     Debug.Log(gameObject.tag);
                     Debug.Log("Dungeon");
                     GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
-                    GameManager.Instance.dungeonPrompt.GetComponentInChildren<Image>().enabled = false;
                     GameManager.Instance.dungeonPrompt.GetComponent<Image>().enabled = false;
+                    GameManager.Instance.buttonYes.GetComponent<Image>().enabled = false;
                     GameManager.Instance.buttonYes.GetComponentInChildren<TMP_Text>().enabled = false;
+                    GameManager.Instance.buttonNo.GetComponent<Image>().enabled = false;
                     GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = false;
                     break;
             }

@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public GameObject finalMage;
     [SerializeField] public GameObject model;
     [SerializeField] public GameObject root;
-    [SerializeField] TMP_Text goldCounter;
 
     [Header("----- Player Stats -----")]
     [Range(1, 8)][SerializeField] int playerSpeed;
@@ -42,7 +41,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] List<SpellStats> SpellList = new List<SpellStats>();
     [SerializeField] SpellStats defaultSpell;
 
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletMain;
+    [SerializeField] GameObject bulletFire;
+    [SerializeField] GameObject bulletWater;
+    [SerializeField] GameObject bulletLightning;
+    [SerializeField] GameObject bulletEarth;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
@@ -84,20 +87,19 @@ public class PlayerController : MonoBehaviour, IDamage
 
     Vector3 newPlayerY;
 
-
-
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(mousePos);
+        DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(cam);
+        
+
         //sets mana to full from start
         currMana = maxMana;
         manaOrig = currMana;
         
 
         isCharSlected = false;
-        manaOrig = mana;
         staminaOrig = stamina;
         //goldOrig = gold;
         HPOrig = Hp;
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.isPaused)
         {
-            if (SceneManager.GetActiveScene().name == "Dungeon_Scene" && isStarted == 1)
+            if (SceneManager.GetActiveScene().name != "Main Menu" && isStarted == 1)
             {
                 spawnPlayer();
                 isStarted = 0;
@@ -125,9 +127,14 @@ public class PlayerController : MonoBehaviour, IDamage
             movement();
             cameraMovement();
 
-            if(Input.GetButton("Fire2") && !isShooting)
+            if(Input.GetButton("Fire2") && !isShooting && isCharSlected)
             {
                 StartCoroutine(specialAttack());
+            }
+
+            if (Input.GetButton("Shoot") && !isShooting && isCharSlected)
+            {
+                StartCoroutine(baseAttack());
             }
 
             //updatePlayerManaUI();
@@ -224,9 +231,50 @@ public class PlayerController : MonoBehaviour, IDamage
 
             Vector3 shootDir = targetPoint - shootPos.position;
 
-            if (bullet != null)
+            if (bulletMain != null)
             {
-                GameObject currBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
+                GameObject currBullet = Instantiate(bulletMain, shootPos.position, Quaternion.identity);
+                currBullet.transform.forward = shootDir.normalized;
+            }
+
+            yield return new WaitForSeconds(cooldown);
+        }
+        isShooting = false;
+    }
+
+    IEnumerator baseAttack()
+    {
+        isShooting = true;
+
+        switch (finalMage.tag)
+        {
+            case "Fire Mage":
+                bulletMain = bulletFire;
+                break;
+            case "Water Mage":
+                bulletMain = bulletWater;
+                break;
+            case "Lightning Mage":
+                bulletMain = bulletLightning;
+                break;
+            case "Earth Mage":
+                bulletMain = bulletEarth;
+                break;
+        }
+
+        if (currMana >= manaCost)
+        {
+            currMana -= manaCost;
+            Ray ray = new Ray(transform.position, transform.forward);
+            Vector3 targetPoint;
+
+            targetPoint = ray.GetPoint(50);
+
+            Vector3 shootDir = targetPoint - shootPos.position;
+
+            if (bulletMain != null)
+            {
+                GameObject currBullet = Instantiate(bulletMain, shootPos.position, Quaternion.identity);
                 currBullet.transform.forward = shootDir.normalized;
             }
 
@@ -240,7 +288,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (stamina > 0)
         {
-            //using 'Jump' because is is already bound to space
             if (Input.GetButtonDown("Sprint"))
             {
                 isDashing = true;
@@ -288,10 +335,10 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         SpellList.Add(spell);
 
-        bullet = spell.bullet;
-        bullet.GetComponent<Bullet>().damage = spell.damage;
-        bullet.GetComponent<Bullet>().SetDestroyTime(spell.distance);
-        bullet.GetComponent<Bullet>().setHitEffect(spell.hitEffect);
+        bulletMain = spell.bullet;
+        bulletMain.GetComponent<Bullet>().damage = spell.damage;
+        bulletMain.GetComponent<Bullet>().SetDestroyTime(spell.distance);
+        bulletMain.GetComponent<Bullet>().setHitEffect(spell.hitEffect);
         manaCost = spell.manaCost;
         cooldown = spell.cooldown;
 
@@ -348,8 +395,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         gold += amount;
         Debug.Log(gold);
-        goldCounter.text = gold.ToString("0");
-        Debug.Log(goldCounter);
+        GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
+        Debug.Log(GameManager.Instance.goldCount.GetComponentInChildren<TMP_Text>().text);
     }
 
     public void ChangeModel()

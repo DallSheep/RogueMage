@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public Image playerManaBar;
     public Image playerStaminaBar;
-    public GameObject GoldCount;
+    public GameObject goldCount;
 
     public GameObject playerSpawnPos;
     public GameObject player;
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         promptObj = GameObject.FindWithTag("Prompt Obj");
         prompt = promptObj.GetComponent<ColliderPrompts>();
         interactPrompt = GameObject.FindWithTag("Interact Prompt");
+        goldCount = GameObject.FindWithTag("Gold");
     }
 
 

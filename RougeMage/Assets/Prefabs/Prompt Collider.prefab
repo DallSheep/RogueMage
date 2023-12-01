@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2232276295487958957}
   - component: {fileID: 2284432139091235816}
+  - component: {fileID: 7962842654218806700}
   m_Layer: 0
   m_Name: Door Collider
   m_TagString: Door Collider
@@ -53,6 +54,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.2775364, y: 3.984031, z: 3.3994503}
   m_Center: {x: -0.14409733, y: 1.4920155, z: 0.49711704}
+--- !u!114 &7962842654218806700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519382619094866593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d59a13f46aa0c47984ea48ad80c99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4162154665536066835
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +77,8 @@ GameObject:
   - component: {fileID: 3022638207523285979}
   - component: {fileID: 5553694946665565981}
   - component: {fileID: 3145374321791076315}
+  - component: {fileID: 6792277650029549977}
+  - component: {fileID: 6142220758469873125}
   m_Layer: 0
   m_Name: CharPromptTrigger
   m_TagString: Character Trigger
@@ -119,6 +134,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 3.2, z: 1.81}
   m_Center: {x: -0.2710979, y: 1.561851, z: -7.547168}
+--- !u!65 &6792277650029549977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4162154665536066835}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 3.2, z: 1.81}
+  m_Center: {x: -0.2710979, y: 1.561851, z: -7.547168}
+--- !u!114 &6142220758469873125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4162154665536066835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d59a13f46aa0c47984ea48ad80c99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6342567362195867317
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +225,8 @@ GameObject:
   - component: {fileID: 5581174395061660788}
   - component: {fileID: 3123486639565322366}
   - component: {fileID: 6118104410458676527}
+  - component: {fileID: 5399243572070046756}
+  - component: {fileID: 7558042450362681876}
   m_Layer: 0
   m_Name: Blocking Trigger
   m_TagString: Block Collider
@@ -193,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 6609589177112508382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -230,5 +280,38 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
+  m_Size: {x: 1.5828533, y: 8.594496, z: 17.7329}
+  m_Center: {x: 0.29142672, y: 3.797248, z: -8.36645}
+--- !u!65 &5399243572070046756
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6609589177112508382}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
   m_Size: {x: 1, y: 8.594496, z: 17.7329}
   m_Center: {x: 0, y: 3.797248, z: -8.36645}
+--- !u!114 &7558042450362681876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6609589177112508382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d59a13f46aa0c47984ea48ad80c99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
