@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Start Collider
   - Door Collider
   - End Text
   - Spider Enemy
@@ -22,6 +21,12 @@ TagManager:
   - Skeleton Temp Bullet
   - Prompt Obj
   - Interact Prompt
+  - Blocked Wall
+  - Character Select
+  - Dungeon
+  - Blocked Wall Prompt
+  - buttonYes
+  - buttonNo
   layers:
   - Default
   - TransparentFX

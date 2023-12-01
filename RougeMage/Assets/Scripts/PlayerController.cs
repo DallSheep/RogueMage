@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] public GameObject soulOrb;
     [SerializeField] public GameObject selectMage;
+    [SerializeField] public GameObject finalMage;
     [SerializeField] public GameObject model;
     [SerializeField] public GameObject root;
     [SerializeField] TMP_Text goldCounter;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public int stamina;
     [SerializeField] public int gold;
     [Range(0,5)] [SerializeField] float manaRegenSpeed;
+    public bool isCharSlected;
 
     [Header("----- Spell Stats -----")]
     [SerializeField] List<SpellStats> SpellList = new List<SpellStats>();
@@ -77,21 +80,32 @@ public class PlayerController : MonoBehaviour, IDamage
     public int staminaOrig;
     int selectedGun;
 
+    int isStarted;
+
     Vector3 newPlayerY;
 
 
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(mousePos);
+        DontDestroyOnLoad(cam);
         //sets mana to full from start
         currMana = maxMana;
         manaOrig = currMana;
+        
+
+        isCharSlected = false;
+        manaOrig = mana;
         staminaOrig = stamina;
         //goldOrig = gold;
         HPOrig = Hp;
         staminaOrig = stamina;
         setSpellStats(defaultSpell);
         shootRateOrig = shootRate;
+        isStarted = 1;
+
         if (GameManager.Instance.playerSpawnPos != null)
         {
             spawnPlayer();
@@ -103,6 +117,11 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.isPaused)
         {
+            if (SceneManager.GetActiveScene().name == "Dungeon_Scene" && isStarted == 1)
+            {
+                spawnPlayer();
+                isStarted = 0;
+            }
             movement();
             cameraMovement();
 
@@ -340,6 +359,8 @@ public class PlayerController : MonoBehaviour, IDamage
         //thisModel.transform.parent = transform;
         //selectMage = thisModel;
 
+        isCharSlected = true;
+
         soulOrb.SetActive(false);
         root.SetActive(true);
         model.SetActive(true);
@@ -356,14 +377,12 @@ public class PlayerController : MonoBehaviour, IDamage
             selectMage.GetComponentInChildren<SkinnedMeshRenderer>().material;
         
         transform.position = newPlayerY;
-
-        GameManager.Instance.charSelected = true;
-
-        if (GameManager.Instance.charSelected)
+        Debug.Log(isCharSlected);
+        if(isCharSlected)
         {
             GameManager.Instance.blockedTrigger.SetActive(false);
             GameManager.Instance.charTrigger.SetActive(false);
+            GameManager.Instance.blockedWall.SetActive(false);
         }
-
     }
 }

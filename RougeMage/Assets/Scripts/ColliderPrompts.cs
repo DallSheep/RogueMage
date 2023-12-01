@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColliderPrompts : MonoBehaviour
 {
@@ -14,13 +16,29 @@ public class ColliderPrompts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(gameObject.GetComponent<GameObject>().CompareTag("Block Collider"))
+            Debug.Log("Got Here");
+
+            switch (gameObject.tag)
             {
-                GameManager.Instance.blockedTrigger.SetActive(true);
-            }
-            else
-            {
-                GameManager.Instance.charTrigger.SetActive(true);
+                case "Block Collider":
+                    Debug.Log(gameObject.tag);
+                    Debug.Log("Blocked Wall");
+                    GameManager.Instance.blockedPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
+                    break;
+                case "Character Trigger":
+                    Debug.Log(gameObject.tag);
+                    Debug.Log("Characters");
+                    GameManager.Instance.charSelect.GetComponentInChildren<TMP_Text>().enabled = true;
+                    break;
+                case "Door Collider":
+                    Debug.Log(gameObject.tag);
+                    GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
+                    GameManager.Instance.dungeonPrompt.GetComponent<Image>().enabled = true;
+                    GameManager.Instance.buttonYes.GetComponent<Image>().enabled = true;
+                    GameManager.Instance.buttonYes.GetComponentInChildren<TMP_Text>().enabled = true;
+                    GameManager.Instance.buttonNo.GetComponent<Image>().enabled = true;
+                    GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = true;
+                    break;
             }
         }
     }
@@ -29,8 +47,28 @@ public class ColliderPrompts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.blockedTrigger.SetActive(false);
-            GameManager.Instance.charTrigger.SetActive(false);
+            switch (gameObject.tag)
+            {
+                case "Block Collider":
+                    Debug.Log(gameObject.tag);
+                    Debug.Log("Blocked Wall");
+                    GameManager.Instance.blockedPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
+                    break;
+                case "Character Trigger":
+                    Debug.Log(gameObject.tag);
+                    Debug.Log("Characters");
+                    GameManager.Instance.charSelect.GetComponentInChildren<TMP_Text>().enabled = false;
+                    break;
+                case "Door Collider":
+                    Debug.Log(gameObject.tag);
+                    Debug.Log("Dungeon");
+                    GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
+                    GameManager.Instance.dungeonPrompt.GetComponentInChildren<Image>().enabled = false;
+                    GameManager.Instance.dungeonPrompt.GetComponent<Image>().enabled = false;
+                    GameManager.Instance.buttonYes.GetComponentInChildren<TMP_Text>().enabled = false;
+                    GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = false;
+                    break;
+            }
         }
     }
 }
