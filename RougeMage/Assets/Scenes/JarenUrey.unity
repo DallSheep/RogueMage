@@ -741,6 +741,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3303086219372321571, guid: cdec0c98a33022149a3360c9d2a5b4ac, type: 3}
     - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: maxMana
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
       propertyPath: stamina
       value: 100
       objectReference: {fileID: 0}
@@ -748,6 +752,14 @@ PrefabInstance:
       propertyPath: mousePos
       value: 
       objectReference: {fileID: 917719360}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: dashCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: manaRegenSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7058200282016675977, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -906,6 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: 2e7b2683d8d0e124d85dd65a82e74776, type: 2}
+  pController: {fileID: 1850385828}
   button: {fileID: 0}
 --- !u!4 &1678800756
 Transform:
@@ -916,7 +929,7 @@ Transform:
   m_GameObject: {fileID: 1678800751}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: 1.6, z: 8.362303}
+  m_LocalPosition: {x: -7.8, y: 0.96, z: 8.362303}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

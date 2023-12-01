@@ -14,11 +14,9 @@ public class GameManager : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuInventory;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject menuDungeon;
-    [SerializeField] GameObject charSelect;
-    [SerializeField] GameObject blockedWall;
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
     public float timescaleOrig;
@@ -28,7 +26,7 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public Image playerManaBar;
     public Image playerStaminaBar;
-    public GameObject GoldCount;
+    public GameObject goldCount;
 
     public GameObject playerSpawnPos;
     public GameObject player;
@@ -36,18 +34,23 @@ public class GameManager : MonoBehaviour
 
     //Door Stuff
     [Header("----- Door Components -----")]
-    public ColliderPrompts prompt;
-    public GameObject promptObj;
     public bool isPaused;
     public int enemiesRemaining;
     public GameObject door;
     Doors doorScript;
 
-    [Header("----- Character Components -----")]
-    //public CharacterSelection characterSelection;
+    [Header("----- Prompt Components -----")]
+    public ColliderPrompts prompt;
+    public GameObject promptObj;
     [SerializeField] public GameObject blockedTrigger;
     [SerializeField] public GameObject charTrigger;
-    public bool charSelected;
+    [SerializeField] public GameObject blockedPrompt;
+    [SerializeField] public GameObject dungeonPrompt;
+    [SerializeField] public GameObject charSelect;
+    [SerializeField] public GameObject blockedWall;
+    [SerializeField] public GameObject buttonYes;
+    [SerializeField] public GameObject buttonNo;
+
 
 
 
@@ -55,17 +58,21 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         timescaleOrig = Time.timeScale;
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
+        //StartCoroutine(PlayerSpawnDelay());
         playerSpawnPos = GameObject.FindWithTag("Respawn");
         blockedTrigger = GameObject.FindWithTag("Block Collider");
-        charSelected = false;
+        blockedPrompt = GameObject.FindWithTag("Blocked Wall Prompt");
+        blockedWall = GameObject.FindWithTag("Blocked Wall");
+        charSelect = GameObject.FindWithTag("Character Select");
+        dungeonPrompt = GameObject.FindWithTag("Dungeon");
+        buttonYes = GameObject.FindWithTag("buttonYes");
+        buttonNo = GameObject.FindWithTag("buttonNo");
         door = GameObject.FindWithTag("Door");
         doorScript = door.GetComponent<Doors>();
         promptObj = GameObject.FindWithTag("Prompt Obj");
         prompt = promptObj.GetComponent<ColliderPrompts>();
         interactPrompt = GameObject.FindWithTag("Interact Prompt");
-        //characterSelection = characterSelection.fireMage.GetComponent<CharacterSelection>();
+        goldCount = GameObject.FindWithTag("Gold");
     }
 
 
@@ -77,7 +84,24 @@ public class GameManager : MonoBehaviour
             menuActive = menuPause;
             menuPause.SetActive(isPaused);
         }
+
+        if (Input.GetButtonDown("Inventory") && menuActive == null)
+        {
+            statePause();
+            menuActive = menuInventory;
+            menuInventory.SetActive(isPaused);
+        }
+        
+
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerController>();
     }
+
+    //IEnumerator PlayerSpawnDelay()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+        
+    //}
 
     public void statePause()
     {
@@ -101,22 +125,22 @@ public class GameManager : MonoBehaviour
     public void UpdateGameGoal(int amount)
     {
         enemiesRemaining += amount;
-        //enemyCountText.text = enemiesRemaining.ToString("0");
+        enemyCountText.text = enemiesRemaining.ToString("0");
 
         if (enemiesRemaining <= 0)
         {
-            StartCoroutine(youWin());
+            //StartCoroutine(youWin());
         }
     }
 
-    public IEnumerator youWin()
-    {
-        yield return new WaitForSeconds(3);
-        statePause();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
+    //public IEnumerator youWin()
+    //{
+    //    yield return new WaitForSeconds(3);
+    //    statePause();
+    //    menuActive = menuWin;
+    //    menuActive.SetActive(true);
 
-    }
+    //}
 
     public void youLose()
     {

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] public GameObject soulOrb;
     [SerializeField] public GameObject selectMage;
+    [SerializeField] public GameObject finalMage;
     [SerializeField] public GameObject model;
     [SerializeField] public GameObject root;
 
@@ -27,15 +30,22 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(1, 4)][SerializeField] int jumpsMax;
     [Range(-10, -40)][SerializeField] float gravityValue;
     [SerializeField] public int Hp;
-    [SerializeField] public int mana;
+    [SerializeField] public float maxMana;
+    [SerializeField] public float currMana; //Used just to see current mana, remove when done
     [SerializeField] public int stamina;
     [SerializeField] public int gold;
+    [Range(0,5)] [SerializeField] float manaRegenSpeed;
+    public bool isCharSlected;
 
     [Header("----- Spell Stats -----")]
     [SerializeField] List<SpellStats> SpellList = new List<SpellStats>();
     [SerializeField] SpellStats defaultSpell;
 
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletMain;
+    [SerializeField] GameObject bulletFire;
+    [SerializeField] GameObject bulletWater;
+    [SerializeField] GameObject bulletLightning;
+    [SerializeField] GameObject bulletEarth;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
@@ -65,26 +75,38 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isPlayingSteps;
     bool isSprinting;
     bool isDashing;
+    bool manaRegen;
     private float shootRateOrig;
     private Camera camOrig;
     public int HPOrig;
-    public int manaOrig;
+    public float manaOrig;
     public int staminaOrig;
-    public int goldOrig;
     int selectedGun;
+
+    int isStarted;
 
     Vector3 newPlayerY;
 
-
-
     private void Start()
     {
-        manaOrig = mana;
+        DontDestroyOnLoad(mousePos);
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(cam);
+        
+
+        //sets mana to full from start
+        currMana = maxMana;
+        manaOrig = currMana;
+        
+
+        isCharSlected = false;
         staminaOrig = stamina;
-        goldOrig = gold;
+        //goldOrig = gold;
         HPOrig = Hp;
+        staminaOrig = stamina;
         setSpellStats(defaultSpell);
         shootRateOrig = shootRate;
+        isStarted = 1;
 
         if (GameManager.Instance.playerSpawnPos != null)
         {
@@ -97,12 +119,29 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.isPaused)
         {
+            if (SceneManager.GetActiveScene().name != "Main Menu" && isStarted == 1)
+            {
+                spawnPlayer();
+                isStarted = 0;
+            }
             movement();
             cameraMovement();
 
-            if(Input.GetButton("Fire2") && !isShooting)
+            if(Input.GetButton("Fire2") && !isShooting && isCharSlected)
             {
                 StartCoroutine(specialAttack());
+            }
+
+            if (Input.GetButton("Shoot") && !isShooting && isCharSlected)
+            {
+                StartCoroutine(baseAttack());
+            }
+
+            //updatePlayerManaUI();
+            //Regens mana when mana is not full
+            if ((currMana < maxMana) && !manaRegen)
+            {
+                StartCoroutine(regenMana());
             }
         }
 
@@ -118,11 +157,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             Dash();
         }
-
-        //if(!isDashing)
-        //{
-        //    StartCoroutine(Dash());
-        //}
 
         if (groundedPlayer && move.normalized.magnitude > 0.3 && !isPlayingSteps)
         {
@@ -172,24 +206,80 @@ public class PlayerController : MonoBehaviour, IDamage
         
     }
 
+    IEnumerator regenMana()
+    {
+        manaRegen = true;
+        //Lower the faster regen speed
+        yield return new WaitForSeconds(manaRegenSpeed);
+
+        currMana++;
+
+        manaRegen = false;
+    }
+
     IEnumerator specialAttack()
     {
         isShooting = true;
-     
-        Ray ray = new Ray(transform.position, transform.forward);
-        Vector3 targetPoint;
-        
-        targetPoint = ray.GetPoint(50);
 
-        Vector3 shootDir = targetPoint - shootPos.position;
-
-        if (bullet != null)
+        if (currMana >= manaCost)
         {
-            GameObject currBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
-            currBullet.transform.forward = shootDir.normalized;
+            currMana -= manaCost;
+            Ray ray = new Ray(transform.position, transform.forward);
+            Vector3 targetPoint;
+
+            targetPoint = ray.GetPoint(50);
+
+            Vector3 shootDir = targetPoint - shootPos.position;
+
+            if (bulletMain != null)
+            {
+                GameObject currBullet = Instantiate(bulletMain, shootPos.position, Quaternion.identity);
+                currBullet.transform.forward = shootDir.normalized;
+            }
+
+            yield return new WaitForSeconds(cooldown);
+        }
+        isShooting = false;
+    }
+
+    IEnumerator baseAttack()
+    {
+        isShooting = true;
+
+        switch (finalMage.tag)
+        {
+            case "Fire Mage":
+                bulletMain = bulletFire;
+                break;
+            case "Water Mage":
+                bulletMain = bulletWater;
+                break;
+            case "Lightning Mage":
+                bulletMain = bulletLightning;
+                break;
+            case "Earth Mage":
+                bulletMain = bulletEarth;
+                break;
         }
 
-        yield return new WaitForSeconds(cooldown);
+        if (currMana >= manaCost)
+        {
+            currMana -= manaCost;
+            Ray ray = new Ray(transform.position, transform.forward);
+            Vector3 targetPoint;
+
+            targetPoint = ray.GetPoint(50);
+
+            Vector3 shootDir = targetPoint - shootPos.position;
+
+            if (bulletMain != null)
+            {
+                GameObject currBullet = Instantiate(bulletMain, shootPos.position, Quaternion.identity);
+                currBullet.transform.forward = shootDir.normalized;
+            }
+
+            yield return new WaitForSeconds(cooldown);
+        }
         isShooting = false;
     }
 
@@ -198,7 +288,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (stamina > 0)
         {
-            //using 'Jump' because is is already bound to space
             if (Input.GetButtonDown("Sprint"))
             {
                 isDashing = true;
@@ -246,11 +335,11 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         SpellList.Add(spell);
 
-        bullet = spell.bullet;
-        bullet.GetComponent<Bullet>().damage = spell.damage;
-        bullet.GetComponent<Bullet>().SetDestroyTime(spell.distance);
-        bullet.GetComponent<Bullet>().setHitEffect(spell.hitEffect);
-
+        bulletMain = spell.bullet;
+        bulletMain.GetComponent<Bullet>().damage = spell.damage;
+        bulletMain.GetComponent<Bullet>().SetDestroyTime(spell.distance);
+        bulletMain.GetComponent<Bullet>().setHitEffect(spell.hitEffect);
+        manaCost = spell.manaCost;
         cooldown = spell.cooldown;
 
     }
@@ -272,20 +361,16 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         //controller.enabled = false;
         Hp = HPOrig;
-        mana = manaOrig;
+        currMana = manaOrig;
         stamina = staminaOrig;
+        Debug.Log(gold);
         updatePlayerHealthUI();
         updatePlayerManaUI();
-        Debug.Log("SaminaYes");
         updatePlayerStaminaUI();
-        Debug.Log("Gold");
-        updatePlayerGoldUI();
+        updatePlayerGoldUI(0);
         camOrig = cam;
-        Debug.Log("ControllerFalse");
         controller.enabled = false;
-        Debug.Log("PlayerPosition");
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-        Debug.Log("ControllerTrue");
         controller.enabled = true;
         Time.timeScale = 1;
         Debug.Log(GameManager.Instance.timescaleOrig);
@@ -298,7 +383,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void updatePlayerManaUI()
     {
-        GameManager.Instance.playerManaBar.fillAmount = (float)mana / manaOrig;
+        GameManager.Instance.playerManaBar.fillAmount = (float)currMana / manaOrig;
     }
 
     public void updatePlayerStaminaUI()
@@ -306,9 +391,12 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.Instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
     }
 
-    public void updatePlayerGoldUI()
+    public void updatePlayerGoldUI(int amount)
     {
-        
+        gold += amount;
+        Debug.Log(gold);
+        GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
+        Debug.Log(GameManager.Instance.goldCount.GetComponentInChildren<TMP_Text>().text);
     }
 
     public void ChangeModel()
@@ -317,6 +405,8 @@ public class PlayerController : MonoBehaviour, IDamage
         //thisModel.GetComponent<SphereCollider>().enabled = false;
         //thisModel.transform.parent = transform;
         //selectMage = thisModel;
+
+        isCharSlected = true;
 
         soulOrb.SetActive(false);
         root.SetActive(true);
@@ -334,14 +424,12 @@ public class PlayerController : MonoBehaviour, IDamage
             selectMage.GetComponentInChildren<SkinnedMeshRenderer>().material;
         
         transform.position = newPlayerY;
-
-        GameManager.Instance.charSelected = true;
-
-        if (GameManager.Instance.charSelected)
+        Debug.Log(isCharSlected);
+        if(isCharSlected)
         {
             GameManager.Instance.blockedTrigger.SetActive(false);
             GameManager.Instance.charTrigger.SetActive(false);
+            GameManager.Instance.blockedWall.SetActive(false);
         }
-
     }
 }

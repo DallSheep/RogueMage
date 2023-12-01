@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunction : MonoBehaviour
 {
-    public void resume()
+    public void Resume()
     {
         GameManager.Instance.stateUnpause();
     }
 
-    public void restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.Instance.stateUnpause();
@@ -22,13 +22,23 @@ public class ButtonFunction : MonoBehaviour
         GameManager.Instance.stateUnpause();
     }
 
-    public void quit()
+    public void Quit()
     {
         Application.Quit();
     }
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void BuyMe()
+    {
+        if(GameManager.Instance.playerScript.gold > 25)
+        {
+            GameManager.Instance.playerScript.gold -= 25;
+
+
+        }
     }
 }
