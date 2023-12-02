@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+
 
 
 public class EnemyAI : MonoBehaviour, IDamage
@@ -24,6 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
     public bool isBossDefeated;
+    public bool dead;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audAttack;
@@ -71,8 +74,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Start()
     {
+        dead = false;
         HPOrig = HP;
         halfHP = HPOrig / 2;
+
+        updateBossHealthUI();
 
         if (gameObject.CompareTag("Dragon Boss"))
         {
@@ -108,7 +114,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
-        if (!inRageMode)
+        if (!inRageTransition)
         {
             if (agent.remainingDistance < 0.05f && !destinationChosen)
             {
@@ -259,14 +265,20 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if (tag == "Dragon Boss")
             {
-                GameManager.Instance.YouWin();
+                GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = false;
+                GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = false;
+                dead = true;
+                GameManager.Instance.UpdateWinCondition(dead);
             }
-            //damageCol.enabled = false;
-            //agent.enabled = false;
-            GameManager.Instance.UpdateGameGoal(-1);
-            Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x, transform.position.x + 1), transform.position.y, Random.Range(transform.position.z, transform.position.z + 1)), transform.rotation);
-            Destroy(gameObject);
-            //anim.SetBool("isDead", true);
+            else
+            {
+                //damageCol.enabled = false;
+                //agent.enabled = false;
+                GameManager.Instance.UpdateGameGoal(-1);
+                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x, transform.position.x + 1), transform.position.y, Random.Range(transform.position.z, transform.position.z + 1)), transform.rotation);
+                Destroy(gameObject);
+                //anim.SetBool("isDead", true);
+            }
         }
         else
         {
@@ -286,6 +298,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             StartCoroutine(flashRed());
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
+        updateBossHealthUI();
     }
 
     IEnumerator DragonRageTransition()

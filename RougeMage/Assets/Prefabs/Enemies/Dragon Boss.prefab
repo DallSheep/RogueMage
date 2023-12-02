@@ -2260,6 +2260,8 @@ MonoBehaviour:
   shootCone: 90
   roamDist: 10
   roamPauseTime: 5
+  isBossDefeated: 0
+  dead: 0
   audAttack:
   - {fileID: 8300000, guid: 510bf10fe53b9ba4eb554d1401215146, type: 3}
   - {fileID: 8300000, guid: c478dc778f21bcc4cb72f4e6dbc192dc, type: 3}
@@ -2269,7 +2271,7 @@ MonoBehaviour:
   audDragonAwakensVol: 0.5
   audFootSteps:
   - {fileID: 8300000, guid: 21db553e521ba6944924317408a08b41, type: 3}
-  audFootStepsVol: 0.2
+  audFootStepsVol: 0.3
   timeBetweenSteps: 0.5
   audHurt:
   - {fileID: 8300000, guid: 16b6f51ee82dcdb4c8c1888cb4ebcdb5, type: 3}
@@ -2278,7 +2280,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1d09d0181462be84cab28041988603fd, type: 3}
   audHurtVol: 0.3
   audDragonRageEnter: {fileID: 8300000, guid: 4128553ef0d595847920477ba8d3cbed, type: 3}
-  audDragonRageEnterVol: 0.5
+  audDragonRageEnterVol: 0.7
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
   shootRate: 1
   shootRateMod: 2

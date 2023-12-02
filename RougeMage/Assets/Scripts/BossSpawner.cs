@@ -35,6 +35,7 @@ public class BossSpawner : MonoBehaviour
             startSpawning = true;
             GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = true;
             GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = true;
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 

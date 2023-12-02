@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     [Header("----- Boss Components -----")]
     [SerializeField] public Image bossHPBackground;
     public Image bossHPBar;
+    public bool isBossDead;
+    public GameObject boss;
 
     //Door Stuff
     [Header("----- Door Components -----")]
@@ -62,6 +64,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        isBossDead = false;
+
         Instance = this;
         timescaleOrig = Time.timeScale;
 
@@ -133,6 +137,10 @@ public class GameManager : MonoBehaviour
         {
             //We can make a short and simple UI pop up to notify the player to move to the next room
         }
+        else if(enemiesRemaining <= 0 && isBossDead)
+        {
+
+        }
     }
 
     public void youWin()
@@ -146,7 +154,17 @@ public class GameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
+    }
 
+    public void UpdateWinCondition(bool dead)
+    {
+        isBossDead = dead;
+        if (isBossDead)
+        {
+            boss = GameObject.FindWithTag("Dragon Boss");
+            Destroy(boss);
+        }
+        youWin();
     }
 
     public void youLose()

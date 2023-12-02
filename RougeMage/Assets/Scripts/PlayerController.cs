@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour, IDamage
         manaOrig = currMana;
         
 
-        isCharSlected = false;
+        //isCharSlected = false;
         staminaOrig = stamina;
         //goldOrig = gold;
         HPOrig = Hp;
