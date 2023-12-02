@@ -123,6 +123,11 @@ public class PlayerController : MonoBehaviour, IDamage
                 spawnPlayer();
                 isStarted = 0;
             }
+
+            GameManager.Instance.playerSpawnPos = GameObject.FindWithTag("Respawn");
+
+            transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+
             movement();
             cameraMovement();
 
@@ -136,7 +141,11 @@ public class PlayerController : MonoBehaviour, IDamage
                 StartCoroutine(baseAttack());
             }
 
-            //updatePlayerManaUI();
+            updatePlayerHealthUI();
+            updatePlayerManaUI();
+            updatePlayerStaminaUI();
+            updatePlayerGoldUI(0);
+
             //Regens mana when mana is not full
             if ((currMana < maxMana) && !manaRegen)
             {
@@ -368,9 +377,13 @@ public class PlayerController : MonoBehaviour, IDamage
         updatePlayerStaminaUI();
         updatePlayerGoldUI(0);
         camOrig = cam;
+        Debug.Log("in spawnPlayer");
         controller.enabled = false;
+        Debug.Log("in spawnPlayer");
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+        Debug.Log("in spawnPlayer");
         controller.enabled = true;
+        Debug.Log("out spawnPlayer");
         Time.timeScale = 1;
         Debug.Log(GameManager.Instance.timescaleOrig);
     }

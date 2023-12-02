@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  offSet: {x: 0, y: 0, z: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 128
