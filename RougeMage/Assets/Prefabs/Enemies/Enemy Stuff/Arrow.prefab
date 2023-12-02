@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7883776408380825784}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,13 +50,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7883776408380825784}
+  player: {fileID: 0}
   damage: 2
   speed: 50
   destroyTime: 2
   hitEffect: {fileID: 0}
   damageCount: 0
   timeIntervalStatusEffect: 0
-  StatusEffectDamage: 0
+  statusEffectDamage: 0
+  statusEffectFlameUI: {fileID: 0}
 --- !u!33 &3203268566419774319
 MeshFilter:
   m_ObjectHideFlags: 0

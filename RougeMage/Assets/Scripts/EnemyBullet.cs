@@ -35,7 +35,7 @@ public class EnemyBullet : MonoBehaviour
         Destroy(gameObject, destroyTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         player = other.GetComponent<PlayerController>();
 
@@ -97,8 +97,6 @@ public class EnemyBullet : MonoBehaviour
 
             Mathf.Clamp(player.Hp - statusEffectDamage, 0, player.HPOrig);
             player.updatePlayerHealthUI();
-
-            Debug.Log("Status Effect");
 
             yield return new WaitForSeconds(timeIntervalStatusEffect);
         }

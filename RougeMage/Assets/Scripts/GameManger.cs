@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     public CharacterSelection selectChar;
     public GameObject mages;
 
+    [Header("----- Boss Components -----")]
+    public Image bossHPBackground;
+    public Image bossHPBar;
+
     //Door Stuff
     [Header("----- Door Components -----")]
     public bool isPaused;
@@ -127,18 +131,23 @@ public class GameManager : MonoBehaviour
 
         if (enemiesRemaining <= 0)
         {
-            //StartCoroutine(youWin());
+            //We can make a short and simple UI pop up to notify the player to move to the next room
         }
     }
 
-    //public IEnumerator youWin()
-    //{
-    //    yield return new WaitForSeconds(3);
-    //    statePause();
-    //    menuActive = menuWin;
-    //    menuActive.SetActive(true);
+    public void youWin()
+    {
+        StartCoroutine(YouWin());
+    }
 
-    //}
+    public IEnumerator YouWin()
+    {
+        yield return new WaitForSeconds(3);
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+
+    }
 
     public void youLose()
     {

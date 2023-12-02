@@ -23,6 +23,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootCone;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
+    public bool isBossDefeated;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audAttack;
@@ -152,15 +153,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                         {
                             if (tag != "Skeleton Enemy" && !isShooting && !inRageTransition)
                             {
-                                //if (inRageMode && !isRageAttacking)
-                                //{
-                                //    StartCoroutine(randomAttack());
-                                //}
                                 StartCoroutine(shoot());
-                                if (isRageAttacking)
-                                {
-
-                                }
                             }
                             else if (tag == "Skeleton Enemy" && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
                             {
@@ -236,50 +229,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    public void SecondFlameAttack()
-    {
-        anim.SetTrigger("isShooting");
-
-        aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
-        CreateBullet();
-    }
-
-    IEnumerator randomAttack()
-    {
-        isRageAttacking = true;
-
-        int max = 1;
-        int min = 0;
-        int rand = RandomNumberGenerator.GetInt32(min, max);
-        switch (rand)
-        {
-            case 0:
-                StartCoroutine(shoot());
-                break;
-            case 1:
-                if (!inSecondFlameAttack)
-                {
-                    StartCoroutine(FlameBurst());
-                }
-                break;
-        }
-
-        yield return new WaitForSeconds(randomAttackIntervalTime);
-
-        isRageAttacking = false;
-    }
-
-    IEnumerator FlameBurst()
-    {
-        inSecondFlameAttack = true;
-
-        SecondFlameAttack();
-
-        yield return new WaitForSeconds(randomAttackIntervalTime);
-
-        inSecondFlameAttack = false;
-    }
-
     public void CreateBullet()
     {
         Instantiate(bullet, shootPos.position, transform.rotation);
@@ -308,6 +257,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            if (tag == "Dragon Boss")
+            {
+                GameManager.Instance.YouWin();
+            }
             //damageCol.enabled = false;
             //agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
@@ -359,5 +312,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
+    }
+
+    public void updateBossHealthUI()
+    {
+        GameManager.Instance.bossHPBar.fillAmount = (float)HP / HPOrig;
     }
 }
