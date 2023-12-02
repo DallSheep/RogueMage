@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public GameObject mages;
 
     [Header("----- Boss Components -----")]
-    public Image bossHPBackground;
+    [SerializeField] public Image bossHPBackground;
     public Image bossHPBar;
 
     //Door Stuff

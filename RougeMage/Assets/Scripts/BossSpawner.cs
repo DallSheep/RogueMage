@@ -14,12 +14,6 @@ public class BossSpawner : MonoBehaviour
     bool isSpawning;
     bool startSpawning;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -39,7 +33,8 @@ public class BossSpawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             startSpawning = true;
-            GameManager.Instance.bossHPBackground.enabled = true;
+            GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = true;
+            GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = true;
         }
     }
 
