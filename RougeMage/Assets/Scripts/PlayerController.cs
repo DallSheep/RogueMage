@@ -372,6 +372,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void spawnPlayer()
     {
+        playerAnim.SetBool("isDead", false);
         //controller.enabled = false;
         Hp = HPOrig;
         currMana = manaOrig;
