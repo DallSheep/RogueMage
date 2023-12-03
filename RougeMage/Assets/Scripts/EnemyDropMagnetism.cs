@@ -16,12 +16,6 @@ public class EnemyDropMagnetism : MonoBehaviour
     public GameObject goblinEnemy;
     public GameObject spiderEnemy;
 
-    void Start()
-    {
-        finished = false;
-    }
-
-
     void Update()
     {
         if (gameObject.transform.childCount == 0)
@@ -73,7 +67,6 @@ public class EnemyDropMagnetism : MonoBehaviour
             playerInRange = false;
         }
     }
-
 
     IEnumerator move(Vector3 destination, float duration)
     {
