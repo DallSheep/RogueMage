@@ -2254,7 +2254,7 @@ MonoBehaviour:
   anim: {fileID: 3028502979530777588}
   damageCol: {fileID: 4756839181669875967}
   aud: {fileID: 3228555983523815339}
-  HP: 100
+  HP: 5
   playerFaceSpeed: 8
   viewCone: 180
   shootCone: 90
@@ -2494,8 +2494,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

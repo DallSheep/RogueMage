@@ -310,7 +310,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             while (dropCounter != dropsToSpawn)
             {
                 dropCounter++;
-                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 2), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 2)), transform.rotation);
+                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 5), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 5)), transform.rotation);
             }
         }
         else
@@ -321,7 +321,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             while (dropCounter != dropsToSpawn)
             {
                 dropCounter++;
-                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 2), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 2)), transform.rotation);
+                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 3), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 3)), transform.rotation);
             }
         }
     }
