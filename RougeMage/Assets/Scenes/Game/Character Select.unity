@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_AmbientIntensity: 0.2
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1700716a8dd8948cf8c66ea34a2786d5, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2077333292}
-  m_IndirectSpecularColor: {r: 0.4374898, g: 0.48531318, b: 0.5655881, a: 1}
+  m_IndirectSpecularColor: {r: 0.63824207, g: 0.8875856, b: 0.9159561, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4647,6 +4647,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6609589177112508382, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
   m_PrefabInstance: {fileID: 8133632301696745603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1972409029
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 356178585451330504, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_Name
+      value: Old Mage Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.60876286
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7933523
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822107522516402215, guid: ec1a70192979fee49861876c30f1522f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec1a70192979fee49861876c30f1522f, type: 3}
 --- !u!4 &1973860967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4100683814371560, guid: dea84a3662be77b4bad1db42d2b32262, type: 3}
@@ -5965,3 +6022,4 @@ SceneRoots:
   - {fileID: 324716337}
   - {fileID: 1184499582}
   - {fileID: 6464077019296739708}
+  - {fileID: 1972409029}
