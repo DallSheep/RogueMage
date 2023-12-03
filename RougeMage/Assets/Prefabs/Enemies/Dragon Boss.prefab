@@ -2268,7 +2268,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: df0fbf565ebe72342854e23f7a2552b2, type: 3}
   audAttackVol: 0.5
   audDragonAwakens: {fileID: 8300000, guid: 7cd8695b26bae344592b5cc0b2b4f265, type: 3}
-  audDragonAwakensVol: 0.5
+  audDragonAwakensVol: 0.8
   audFootSteps:
   - {fileID: 8300000, guid: 21db553e521ba6944924317408a08b41, type: 3}
   audFootStepsVol: 0.3
@@ -2280,7 +2280,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1d09d0181462be84cab28041988603fd, type: 3}
   audHurtVol: 0.3
   audDragonRageEnter: {fileID: 8300000, guid: 4128553ef0d595847920477ba8d3cbed, type: 3}
-  audDragonRageEnterVol: 0.7
+  audDragonRageEnterVol: 1
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
   shootRate: 1
   shootRateMod: 2

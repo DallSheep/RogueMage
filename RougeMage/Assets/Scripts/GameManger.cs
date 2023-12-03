@@ -61,8 +61,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject buttonNo;
 
 
-
-
     void Awake()
     {
         isBossDead = false;
