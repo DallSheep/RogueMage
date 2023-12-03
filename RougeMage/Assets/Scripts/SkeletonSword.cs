@@ -7,19 +7,11 @@ public class SkeletonSword : MonoBehaviour
 {
     [Header("----- Sword Stats -----")]
     [SerializeField] int damage;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    bool isAttacking;
+    IDamage damageable;
 
-    private void Update()
-    {
-
-    }
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
         {
@@ -27,11 +19,24 @@ public class SkeletonSword : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            IDamage damageable = other.GetComponent<IDamage>();
+            damageable = other.GetComponent<IDamage>();
             if (damageable != null)
             {
-                damageable.takeDamage(damage);
+                if (other.CompareTag("Player") && !isAttacking)
+                {
+                    StartCoroutine(attacking());
+                }
             }
         }
     }
+
+    public IEnumerator attacking()
+    {
+        isAttacking = true;
+        damageable.takeDamage(damage);
+        yield return new WaitForSeconds(2);
+
+        isAttacking = false;
+    }
+
 }

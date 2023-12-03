@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 677699824685984817}
   - component: {fileID: 7238016521455854197}
   - component: {fileID: 4335927123129687000}
-  - component: {fileID: 2428206119837945827}
+  - component: {fileID: -2759992064572487697}
   m_Layer: 6
   m_Name: Spider
   m_TagString: Spider Enemy
@@ -660,7 +660,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &2428206119837945827
+--- !u!54 &-2759992064572487697
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

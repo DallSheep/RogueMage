@@ -3391,7 +3391,7 @@ GameObject:
   - component: {fileID: 2319126428094692215}
   - component: {fileID: 7860033125700898279}
   - component: {fileID: 3787467791635627229}
-  - component: {fileID: -7653981781818824254}
+  - component: {fileID: -8138974171193330630}
   m_Layer: 6
   m_Name: SkeletonOutlaw_Armor - LOD0
   m_TagString: Skeleton Enemy
@@ -3661,7 +3661,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &-7653981781818824254
+--- !u!54 &-8138974171193330630
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

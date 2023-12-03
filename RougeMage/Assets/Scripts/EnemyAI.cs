@@ -267,13 +267,14 @@ public class EnemyAI : MonoBehaviour, IDamage
                 GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = false;
                 dead = true;
                 GameManager.Instance.UpdateWinCondition(dead);
+                SpawnDrops();
             }
             else
             {
                 //damageCol.enabled = false;
                 //agent.enabled = false;
                 GameManager.Instance.UpdateGameGoal(-1);
-                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x, transform.position.x + 1), transform.position.y + 3, Random.Range(transform.position.z, transform.position.z + 1)), transform.rotation);
+                SpawnDrops();
                 Destroy(gameObject);
                 //anim.SetBool("isDead", true);
             }
@@ -297,6 +298,32 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
         updateBossHealthUI();
+    }
+
+    public void SpawnDrops()
+    {
+        if (tag == "Dragon Boss")
+        {
+            int dropCounter = 0;
+            int dropsToSpawn = Random.Range(3, 10);
+
+            while (dropCounter != dropsToSpawn)
+            {
+                dropCounter++;
+                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 2), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 2)), transform.rotation);
+            }
+        }
+        else
+        {
+            int dropCounter = 0;
+            int dropsToSpawn = Random.Range(1, 3);
+
+            while (dropCounter != dropsToSpawn)
+            {
+                dropCounter++;
+                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 2), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 2)), transform.rotation);
+            }
+        }
     }
 
     IEnumerator DragonRageTransition()

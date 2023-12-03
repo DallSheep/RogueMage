@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1651399165738112864}
   - component: {fileID: 4496357758685748136}
   - component: {fileID: -2357600015837562969}
-  - component: {fileID: -7016625259904072430}
+  - component: {fileID: -2740211175601856613}
   m_Layer: 6
   m_Name: GoblinHunterMain
   m_TagString: Goblin Enemy
@@ -826,7 +826,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &-7016625259904072430
+--- !u!54 &-2740211175601856613
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

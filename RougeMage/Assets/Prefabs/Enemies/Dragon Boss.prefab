@@ -2210,7 +2210,7 @@ GameObject:
   - component: {fileID: 4756839181669875967}
   - component: {fileID: 988053799785976325}
   - component: {fileID: 3228555983523815339}
-  - component: {fileID: -1942948123043984325}
+  - component: {fileID: -560776744602345130}
   m_Layer: 6
   m_Name: Dragon Boss
   m_TagString: Dragon Boss
@@ -2472,7 +2472,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &-1942948123043984325
+--- !u!54 &-560776744602345130
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
