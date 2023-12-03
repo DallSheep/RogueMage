@@ -36,6 +36,8 @@ TagManager:
   - Water Pos
   - Lighning Pos
   - Earth Pos
+  - Shop Collider
+  - Locked Door
   layers:
   - Default
   - TransparentFX

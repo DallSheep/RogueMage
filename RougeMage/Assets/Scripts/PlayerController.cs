@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audJumpVol;
 
     [Header("----- Animation -----")]
-    [SerializeField] Animator playerAnim;
+    [SerializeField] public Animator playerAnim;
 
 
     public Vector3 move;
@@ -226,6 +226,7 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator specialAttack()
     {
         isShooting = true;
+        playerAnim.SetBool("isAttacking", true);
 
         if (currMana >= manaCost)
         {
@@ -246,11 +247,13 @@ public class PlayerController : MonoBehaviour, IDamage
             yield return new WaitForSeconds(cooldown);
         }
         isShooting = false;
+        playerAnim.SetBool("isAttacking", false);
     }
 
     IEnumerator baseAttack()
     {
         isShooting = true;
+        playerAnim.SetBool("isAttacking", true);
 
         switch (finalMage.tag)
         {
@@ -287,6 +290,7 @@ public class PlayerController : MonoBehaviour, IDamage
             yield return new WaitForSeconds(cooldown);
         }
         isShooting = false;
+        playerAnim.SetBool("isAttacking", false);
     }
 
 
@@ -352,6 +356,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
+        playerAnim.SetBool("isHit", true);
         Hp -= amount;
         updatePlayerHealthUI();
         //aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
@@ -359,8 +364,10 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (Hp <= 0)
         {
+            playerAnim.SetBool("isDead", true);
             GameManager.Instance.youLose();
         }
+        playerAnim.SetBool("isHit", false);
     }
 
     public void spawnPlayer()

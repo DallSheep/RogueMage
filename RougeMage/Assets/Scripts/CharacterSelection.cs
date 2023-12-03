@@ -54,6 +54,7 @@ public class CharacterSelection : MonoBehaviour
         {
             if (isInteractPressed)
             {
+                GameManager.Instance.playerScript.playerAnim.SetBool("isInteract", true);
                 Debug.Log("pressed");
                 GameManager.Instance.playerScript.ChangeModel();
 
@@ -72,6 +73,7 @@ public class CharacterSelection : MonoBehaviour
                         GameManager.Instance.playerScript.finalMage.tag = earthMage.tag;
                         break;
                 }
+                GameManager.Instance.playerScript.playerAnim.SetBool("isInteract", false);
             }
         }
             

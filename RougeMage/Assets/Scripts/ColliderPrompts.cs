@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
+using Input = UnityEngine.Input;
 
 public class ColliderPrompts : MonoBehaviour
 {
-   
+    [SerializeField] public Animator shopAnimation;
+
+    public bool isEPressed;
 
     private void Start()
     {
    
+    }
+
+    private void Update()
+    {
+        isEPressed = Input.GetButton("Interact");
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -40,6 +49,24 @@ public class ColliderPrompts : MonoBehaviour
                     GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = true;
                     GameManager.Instance.statePause();
                     break;
+                case "Shop Collider":
+                    shopAnimation.SetBool("isPlayer", true);
+                    break;
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (gameObject.tag == "Shop Collider")
+            {
+                GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
+                if (isEPressed)
+                {
+                    
+                }
             }
         }
     }
@@ -69,6 +96,10 @@ public class ColliderPrompts : MonoBehaviour
                     GameManager.Instance.buttonYes.GetComponentInChildren<TMP_Text>().enabled = false;
                     GameManager.Instance.buttonNo.GetComponent<Image>().enabled = false;
                     GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = false;
+                    break;
+                case "Shop Collider":
+                    shopAnimation.SetBool("isPlayer", false);
+                    GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
                     break;
             }
         }

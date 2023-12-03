@@ -9,7 +9,7 @@ public class Doors : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] public Animator doorAnimation;
-    [SerializeField] public TMP_Text lockedDoor;
+    [SerializeField] public GameObject lockedDoor;
     [SerializeField] GameObject noTrigCollider;
 
     //Just to keep track of locked doors
@@ -21,6 +21,7 @@ public class Doors : MonoBehaviour
         isLocked = true;
         doorAnimation.SetInteger("doorStop", 1);
         noTrigCollider = GameObject.FindWithTag("Door Collider");
+        lockedDoor = GameObject.FindWithTag("Locked Door");
     }
 
     private void Update()
@@ -44,7 +45,7 @@ public class Doors : MonoBehaviour
             else
             {
                 isLocked = true;
-                lockedDoor.GetComponentInParent<Image>().gameObject.GetComponentInChildren<TMP_Text>().enabled = true;
+                lockedDoor.GetComponentInChildren<TMP_Text>().enabled = true;
             }
         }
     }
@@ -56,9 +57,11 @@ public class Doors : MonoBehaviour
         {
             if (isInput && doorAnimation.GetInteger("doorStop") == 1)
             {
+                GameManager.Instance.playerScript.playerAnim.SetBool("isInteract", true);
                 Debug.Log(isInput);
                 doorAnimation.SetBool("isPlayer", true);
                 noTrigCollider.SetActive(false);
+                GameManager.Instance.playerScript.playerAnim.SetBool("isInteract", false);
             }
         }
     }
@@ -69,7 +72,7 @@ public class Doors : MonoBehaviour
         {
             doorAnimation.SetInteger("doorStop", 0);
             GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
-            lockedDoor.GetComponentInParent<Image>().gameObject.GetComponentInChildren<TMP_Text>().enabled = false;
+            lockedDoor.GetComponentInChildren<TMP_Text>().enabled = false;
             doorAnimation.SetBool("isPlayer", false);
             noTrigCollider.SetActive(true);
         }
