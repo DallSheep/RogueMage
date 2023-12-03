@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour, IDamage
         manaOrig = currMana;
         
 
-        //isCharSlected = false;
+        isCharSlected = false;
         staminaOrig = stamina;
         //goldOrig = gold;
         HPOrig = Hp;
@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour, IDamage
                 StartCoroutine(baseAttack());
             }
 
+            
             updatePlayerManaUI();
             updatePlayerHealthUI();
             //Regens mana when mana is not full
@@ -373,6 +374,8 @@ public class PlayerController : MonoBehaviour, IDamage
     public void spawnPlayer()
     {
         //controller.enabled = false;
+        playerAnim.SetBool("isDead", false);
+
         Hp = HPOrig;
         currMana = manaOrig;
         stamina = staminaOrig;
@@ -408,16 +411,16 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.Instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
     }
 
+    //this was working before the parameter was added -Dami
     /*
     public void updatePlayerGoldUI(int amount)
     {
         gold += amount;
         Debug.Log(gold);
-        //GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
+        GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
         Debug.Log(GameManager.Instance.goldCount.GetComponentInChildren<TMP_Text>().text);
     }
     */
-
     public void ChangeModel()
     {
         //GameObject thisModel = Instantiate(selectMage, newPlayerY, transform.rotation);

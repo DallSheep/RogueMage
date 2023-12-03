@@ -57,12 +57,10 @@ public class Doors : MonoBehaviour
         {
             if (isInput && doorAnimation.GetInteger("doorStop") == 1)
             {
-                GameManager.Instance.playerScript.playerAnim.SetBool("isInteract", true);
-                Debug.Log(isInput);
                 doorAnimation.SetBool("isPlayer", true);
                 noTrigCollider.SetActive(false);
-                GameManager.Instance.playerScript.playerAnim.SetBool("isInteract", false);
             }
+
         }
     }
 

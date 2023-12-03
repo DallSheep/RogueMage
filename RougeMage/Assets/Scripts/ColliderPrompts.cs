@@ -63,9 +63,10 @@ public class ColliderPrompts : MonoBehaviour
             if (gameObject.tag == "Shop Collider")
             {
                 GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
+
                 if (isEPressed)
                 {
-                    
+                    GameManager.Instance.ShopScreen();
                 }
             }
         }

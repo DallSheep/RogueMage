@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuInventory;
+    [SerializeField] GameObject menuShop;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject playerDamageScreen;
@@ -181,9 +182,10 @@ public class GameManager : MonoBehaviour
         playerDamageScreen.SetActive(false);
     }
 
-    internal void ExitDoorCondition()
+    public void ShopScreen()
     {
-       
+        statePause();
+        menuActive = menuShop;
+        menuActive.SetActive(true);
     }
-
 }
