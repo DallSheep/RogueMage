@@ -35,7 +35,7 @@ public class ButtonFunction : MonoBehaviour
 
     public void BuyMe()
     {
-        if(GameManager.Instance.playerScript.gold > 25)
+        if(GameManager.Instance.playerScript.gold >= 25)
         {
             GameManager.Instance.playerScript.gold -= 25;
             GameManager.Instance.playerScript.Hp += (GameManager.Instance.playerScript.Hp/4);

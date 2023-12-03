@@ -10671,11 +10671,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544072428}
   m_Mesh: {fileID: 6862825500457477414, guid: a59f6548c14dfa84ba2ca07e21ce1543, type: 3}
---- !u!1 &549652039 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3617307152199706703, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
-  m_PrefabInstance: {fileID: 3219444337362390935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &551213116
 GameObject:
   m_ObjectHideFlags: 0
@@ -39097,14 +39092,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
-      propertyPath: menuShop
-      value: 
-      objectReference: {fileID: 549652039}
-    - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
       propertyPath: charSelect
       value: 
       objectReference: {fileID: 5925266926567320336}
@@ -39112,22 +39099,6 @@ PrefabInstance:
       propertyPath: blockedWall
       value: 
       objectReference: {fileID: 4892688604590942165}
-    - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
-      propertyPath: charTrigger
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
-      propertyPath: blockedTrigger
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3042300431255277077, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
-      propertyPath: playerSpawnPos
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3617307152199706703, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4371019760283380755, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
       propertyPath: m_Name
       value: UI

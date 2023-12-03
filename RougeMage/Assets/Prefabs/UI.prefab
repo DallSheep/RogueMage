@@ -475,7 +475,7 @@ MonoBehaviour:
   menuActive: {fileID: 0}
   menuPause: {fileID: 1048439401764753592}
   menuInventory: {fileID: 4156659748428058335}
-  menuShop: {fileID: 0}
+  menuShop: {fileID: 3617307152199706703}
   menuWin: {fileID: 8528147337346140985}
   menuLose: {fileID: 3136533601318960838}
   playerDamageScreen: {fileID: 0}
@@ -508,6 +508,7 @@ MonoBehaviour:
   blockedWall: {fileID: 0}
   buttonYes: {fileID: 0}
   buttonNo: {fileID: 0}
+  oldMage: {fileID: 0}
 --- !u!114 &7219864801893380857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3373,7 +3374,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7219864801893380857}
         m_TargetAssemblyTypeName: ButtonFunction, Assembly-CSharp
-        m_MethodName: resume
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4883,7 +4884,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8987318753405610811}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7219864801893380857}
+        m_TargetAssemblyTypeName: ButtonFunction, Assembly-CSharp
+        m_MethodName: BuyMe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8193055705812268081
 GameObject:
   m_ObjectHideFlags: 0
