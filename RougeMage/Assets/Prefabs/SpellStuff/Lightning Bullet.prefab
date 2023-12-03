@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7086690201634171808}
   - component: {fileID: 6763664337996997755}
   - component: {fileID: 7200445396672020806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4845,7 +4845,7 @@ GameObject:
   - component: {fileID: 4195583548661323865}
   - component: {fileID: 8664158921821298280}
   - component: {fileID: 6344779556857674743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lightning Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4884,7 +4884,7 @@ MonoBehaviour:
   rb: {fileID: 8664158921821298280}
   damage: 1
   speed: 5
-  destroyTime: 3
+  destroyTime: 20
   hitEffect: {fileID: 0}
   damageCount: 0
   timeIntervalStatusEffect: 0
@@ -5102,7 +5102,7 @@ GameObject:
   - component: {fileID: 8666110208900381358}
   - component: {fileID: 2606992101436315975}
   - component: {fileID: 2588186464535116537}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Outer Electricity
   m_TagString: Untagged
   m_Icon: {fileID: 0}

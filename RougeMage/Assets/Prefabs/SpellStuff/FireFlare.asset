@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9eca70e068d89174ebd9fa6fc27a2cd1, type: 3}
-  m_Name: Spell1
+  m_Name: FireFlare
   m_EditorClassIdentifier: 
-  cooldown: 0.5
+  cooldown: 0.1
   damage: 1
-  distance: 3
-  manaCost: 5
+  distance: 0.5
+  manaCost: 3
   hitEffect: {fileID: 0}
   castSound: {fileID: 0}
   castSoundVol: 0
-  bullet: {fileID: 3303086219372321571, guid: cdec0c98a33022149a3360c9d2a5b4ac, type: 3}
+  bullet: {fileID: 8286919476976497052, guid: 09f0d567459a761499d549f7ac59e622, type: 3}

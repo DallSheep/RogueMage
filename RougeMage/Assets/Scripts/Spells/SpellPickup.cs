@@ -18,9 +18,11 @@ public class SpellPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("TriggerEnter");
             pController.setSpellStats(spell);
             //GameManager.Instance.playerScript.setSpellStats(spell);
             Destroy(gameObject);
+            Debug.Log("TriggerExit");
         }
     }
 

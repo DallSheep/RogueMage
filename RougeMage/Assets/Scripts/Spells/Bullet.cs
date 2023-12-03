@@ -9,8 +9,8 @@ public class Bullet : MonoBehaviour
 
     [Header("===== Stats =====")]
     [SerializeField] public int damage;
-    [SerializeField] public int speed;
-    [SerializeField] public int destroyTime;
+    [SerializeField] public float speed;
+    [SerializeField] public float destroyTime;
     [SerializeField] public ParticleSystem hitEffect;
 
     [Header("===== Status Effect =====")]
@@ -32,31 +32,22 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-/*        if (tag != "Skeleton Temp Bullet")
-        {
-            Instantiate(hitEffect, gameObject.transform.position, hitEffect.transform.rotation);
-        }*/
-        
         if (other.isTrigger)
         {
             return;
         }
-
+        Debug.Log("BeforeIDamage");
         IDamage damageable = other.GetComponent<IDamage>();
-
-        if(damageable != null)
+        
+        if(damageable != null && !other.CompareTag("Player"))
         {
-            //if (other.CompareTag("Player"))
-            //{
-                damageable.takeDamage(damage);
-            //}
+            damageable.takeDamage(damage);
         }
 
         Destroy(gameObject);
     }
 
-    public void SetDestroyTime(int time)
+    public void SetDestroyTime(float time)
     {
         destroyTime = time;
     }

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9eca70e068d89174ebd9fa6fc27a2cd1, type: 3}
-  m_Name: Spell2
+  m_Name: JetStream
   m_EditorClassIdentifier: 
-  cooldown: 0.1
+  cooldown: 0.05
   damage: 1
-  distance: 50
-  manaCost: 0
+  distance: 0.5
+  manaCost: 1
   hitEffect: {fileID: 0}
   castSound: {fileID: 0}
   castSoundVol: 0
-  bullet: {fileID: 3540146517258177943, guid: fcf69d7f6a6282f4da825506d4ecf3a0, type: 3}
+  bullet: {fileID: 5346050849726141275, guid: 4cf71874133969b4d808d265fbb31cc4, type: 3}

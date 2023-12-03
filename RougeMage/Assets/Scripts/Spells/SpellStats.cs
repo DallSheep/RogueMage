@@ -7,8 +7,8 @@ public class SpellStats : ScriptableObject
 {
     public float cooldown;
     public int damage;
-    public int distance;
-    public int manaCost;
+    public float distance;
+    public float manaCost;
 
     public ParticleSystem hitEffect;
     public AudioClip castSound;

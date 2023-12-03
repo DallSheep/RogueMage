@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] GameObject bulletLightning;
     [SerializeField] GameObject bulletEarth;
     [SerializeField] int shootDamage;
-    [SerializeField] int shootDist;
+    [SerializeField] float shootDist;
     [SerializeField] float shootRate;
     [SerializeField] float manaCost;
     [SerializeField] float cooldown;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //goldOrig = gold;
         HPOrig = Hp;
         staminaOrig = stamina;
-        setSpellStats(defaultSpell);
+        //setSpellStats(defaultSpell);
         shootRateOrig = shootRate;
         isStarted = 1;
 
@@ -131,8 +131,9 @@ public class PlayerController : MonoBehaviour, IDamage
             movement();
             cameraMovement();
 
-            if(Input.GetButton("Fire2") && !isShooting && isCharSlected)
+            if(Input.GetButton("Fire2") && !isShooting)
             {
+                
                 StartCoroutine(specialAttack());
             }
 
@@ -141,11 +142,8 @@ public class PlayerController : MonoBehaviour, IDamage
                 StartCoroutine(baseAttack());
             }
 
-            updatePlayerHealthUI();
             updatePlayerManaUI();
-            updatePlayerStaminaUI();
-            updatePlayerGoldUI(0);
-
+            updatePlayerHealthUI();
             //Regens mana when mana is not full
             if ((currMana < maxMana) && !manaRegen)
             {
@@ -375,7 +373,7 @@ public class PlayerController : MonoBehaviour, IDamage
         updatePlayerHealthUI();
         updatePlayerManaUI();
         updatePlayerStaminaUI();
-        updatePlayerGoldUI(0);
+        //updatePlayerGoldUI(0);
         camOrig = cam;
         Debug.Log("in spawnPlayer");
         controller.enabled = false;
@@ -403,13 +401,15 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.Instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
     }
 
+    /*
     public void updatePlayerGoldUI(int amount)
     {
         gold += amount;
         Debug.Log(gold);
-        GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
+        //GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
         Debug.Log(GameManager.Instance.goldCount.GetComponentInChildren<TMP_Text>().text);
     }
+    */
 
     public void ChangeModel()
     {
