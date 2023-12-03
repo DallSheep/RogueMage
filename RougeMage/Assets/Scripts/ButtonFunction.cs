@@ -38,8 +38,7 @@ public class ButtonFunction : MonoBehaviour
         if(GameManager.Instance.playerScript.gold > 25)
         {
             GameManager.Instance.playerScript.gold -= 25;
-
-
+            GameManager.Instance.playerScript.Hp += (GameManager.Instance.playerScript.Hp/4);
         }
     }
 }
