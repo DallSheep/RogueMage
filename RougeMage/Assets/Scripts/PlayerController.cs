@@ -32,9 +32,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public int Hp;
     [SerializeField] public float maxMana;
     [SerializeField] public float currMana; //Used just to see current mana, remove when done
-    [SerializeField] public int stamina;
+    [SerializeField] public int currStamina;
+    [SerializeField] public int maxStamina;
     [SerializeField] public int gold;
     [Range(0,5)] [SerializeField] float manaRegenSpeed;
+    [Range(0, 5)][SerializeField] float staminaRegenSpeed;
     public bool isCharSlected;
 
     [Header("----- Spell Stats -----")]
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isSprinting;
     bool isDashing;
     bool manaRegen;
+    bool staminaRegen;
     private float shootRateOrig;
     private Camera camOrig;
     public int HPOrig;
@@ -97,13 +100,14 @@ public class PlayerController : MonoBehaviour, IDamage
         //sets mana to full from start
         currMana = maxMana;
         manaOrig = currMana;
+
+        staminaOrig = currStamina;
         
 
         isCharSlected = false;
-        staminaOrig = stamina;
+        currStamina = maxStamina;
         //goldOrig = gold;
         HPOrig = Hp;
-        staminaOrig = stamina;
         //setSpellStats(defaultSpell);
         shootRateOrig = shootRate;
         isStarted = 1;
@@ -145,10 +149,17 @@ public class PlayerController : MonoBehaviour, IDamage
             
             updatePlayerManaUI();
             updatePlayerHealthUI();
+            updatePlayerStaminaUI();
+
             //Regens mana when mana is not full
             if ((currMana < maxMana) && !manaRegen)
             {
                 StartCoroutine(regenMana());
+            }
+
+            if ((currStamina < maxStamina) && !staminaRegen)
+            {
+                StartCoroutine(regenStamina());
             }
         }
 
@@ -160,9 +171,9 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        if (stamina >= 100 && !isDashing)
+        if (currStamina >= 100 && !isDashing)
         {
-            Dash();
+            StartCoroutine(Dash());
         }
 
         if (groundedPlayer && move.normalized.magnitude > 0.3 && !isPlayingSteps)
@@ -211,6 +222,16 @@ public class PlayerController : MonoBehaviour, IDamage
         transform.LookAt(relative);
 
         
+    }
+
+    IEnumerator regenStamina()
+    {
+        staminaRegen = true;
+        yield return new WaitForSeconds(staminaRegenSpeed);
+
+        currStamina++;
+
+        staminaRegen = false;
     }
 
     IEnumerator regenMana()
@@ -297,15 +318,17 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator Dash()
     {
-        if (stamina > 0)
+        Debug.Log("EnterDash");
+        if (currStamina > 0)
         {
             if (Input.GetButtonDown("Sprint"))
             {
+                Debug.Log("Dash");
                 isDashing = true;
                 //tracking original speed
                 int ps = playerSpeed;
                 playerSpeed *= dashMod;
-                stamina = stamina - 100;
+                currStamina = currStamina - 100;
 
                 yield return new WaitForSeconds(0.2f);
                 playerSpeed = ps;
@@ -377,8 +400,8 @@ public class PlayerController : MonoBehaviour, IDamage
         playerAnim.SetBool("isDead", false);
 
         Hp = HPOrig;
-        currMana = manaOrig;
-        stamina = staminaOrig;
+        currMana = maxMana;
+        currStamina = maxStamina;
         Debug.Log(gold);
         updatePlayerHealthUI();
         updatePlayerManaUI();
@@ -408,7 +431,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void updatePlayerStaminaUI()
     {
-        GameManager.Instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
+        GameManager.Instance.playerStaminaBar.fillAmount = (float)currStamina / maxStamina;
     }
 
     //this was working before the parameter was added -Dami
