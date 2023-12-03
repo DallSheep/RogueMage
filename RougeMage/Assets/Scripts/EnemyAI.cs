@@ -283,6 +283,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if (gameObject.CompareTag("Dragon Boss"))
             {
+                updateBossHealthUI();
                 if (HP <= halfHP && !inRageMode)
                 {
                     inRageMode = true;
@@ -297,7 +298,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             StartCoroutine(flashRed());
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
-        updateBossHealthUI();
     }
 
     public void SpawnDrops()
@@ -305,7 +305,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (tag == "Dragon Boss")
         {
             int dropCounter = 0;
-            int dropsToSpawn = Random.Range(3, 10);
+            int dropsToSpawn = Random.Range(50, 100);
 
             while (dropCounter != dropsToSpawn)
             {

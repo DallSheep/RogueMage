@@ -8,9 +8,19 @@ public class EnemyDropMagnetism : MonoBehaviour
 
     [Range(0, 1)][SerializeField] float magnetizationSpeed;
 
+    bool finished;
     bool playerInRange;
     bool followPlayer;
     public PlayerController player;
+    public GameObject skeletonEnemy;
+    public GameObject goblinEnemy;
+    public GameObject spiderEnemy;
+
+    void Start()
+    {
+        finished = false;
+    }
+
 
     void Update()
     {
@@ -23,6 +33,17 @@ public class EnemyDropMagnetism : MonoBehaviour
             
             StartCoroutine(move(player.transform.position, magnetizationSpeed));
 
+        }
+        else if (GameManager.Instance.isBossDead == true)
+        {
+            skeletonEnemy = GameObject.FindWithTag("Skeleton Enemy");
+            goblinEnemy = GameObject.FindWithTag("Goblin Enemy");
+            spiderEnemy = GameObject.FindWithTag("Spider Enemy");
+            Destroy(skeletonEnemy);
+            Destroy(goblinEnemy);
+            Destroy(spiderEnemy);
+            GameManager.Instance.isPaused = true;
+            transform.position = Vector3.Lerp(transform.position, GameManager.Instance.player.transform.position, 0.005f);
         }
     }
 
