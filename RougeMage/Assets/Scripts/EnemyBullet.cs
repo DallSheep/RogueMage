@@ -18,19 +18,14 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] public int destroyTime;
     [SerializeField] public ParticleSystem hitEffect;
 
-    [Header("===== Status Effect =====")]
-    [Range(0, 5)][SerializeField] public float damageCount;
-    [Range(1, 3)][SerializeField] public float timeIntervalStatusEffect;
-    [Range(0, 10)][SerializeField] public int statusEffectDamage;
-
-    [Header("===== Status Effect UI =====")]
-    public Image statusEffectFlameUI;
-
-    bool isPlayerCurrAffected;
-    int statusEffectCount = 0;
+    [Header("===== Status Effect components =====")]
+    public AcidStatusEffect acidStatusEffect;
+    public FireStatusEffect fireStatusEffect;
+    public GameObject statusEffect;
 
     void Start()
     {
+        statusEffect = GameObject.FindWithTag("Status Effect");
         rb.velocity = transform.forward * speed;
         Destroy(gameObject, destroyTime);
     }
@@ -50,21 +45,36 @@ public class EnemyBullet : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                if (gameObject.CompareTag("Acid Spitball") || gameObject.CompareTag("Flameball"))
+                if (gameObject.CompareTag("Acid Spitball"))
                 {
-                    if (isPlayerCurrAffected)
+                    damageable.takeDamage(damage);
+                    player.updatePlayerHealthUI();
+
+                    acidStatusEffect = player.GetComponent<AcidStatusEffect>();
+
+                    if (acidStatusEffect == null)
                     {
-                        damageable.takeDamage(damage);
+                        player.AddComponent<AcidStatusEffect>();
+                        statusEffect.GetComponent<StatusEffect>().StartDamage();
                     }
-                    else
+                }
+                else if (gameObject.CompareTag("Flameball"))
+                {
+                    damageable.takeDamage(damage);
+                    player.updatePlayerHealthUI();
+
+                    fireStatusEffect = player.GetComponent<FireStatusEffect>();
+
+                    if (fireStatusEffect == null)
                     {
-                        damageable.takeDamage(damage);
-                        StartCoroutine(StatusEffect());
+                        player.AddComponent<FireStatusEffect>();
+                        statusEffect.GetComponent<StatusEffect>().StartDamage();
                     }
                 }
                 else
                 {
                     damageable.takeDamage(damage);
+                    player.updatePlayerHealthUI();
                 }
             }
         }
@@ -80,25 +90,5 @@ public class EnemyBullet : MonoBehaviour
     public void setHitEffect(ParticleSystem spellHitEffect)
     {
         hitEffect = spellHitEffect;
-    }
-
-    public IEnumerator StatusEffect()
-    {
-        isPlayerCurrAffected = true;
-        while (isPlayerCurrAffected)
-        {
-            if (statusEffectCount == damageCount || player.Hp == 1)
-            {
-                isPlayerCurrAffected = false;
-                statusEffectCount = 0;
-            }
-
-            statusEffectCount++;
-
-            Mathf.Clamp(player.Hp - statusEffectDamage, 0, player.HPOrig);
-            player.updatePlayerHealthUI();
-
-            yield return new WaitForSeconds(timeIntervalStatusEffect);
-        }
     }
 }

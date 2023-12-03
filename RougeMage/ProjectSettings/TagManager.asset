@@ -38,6 +38,7 @@ TagManager:
   - Earth Pos
   - Shop Collider
   - Locked Door
+  - Status Effect
   layers:
   - Default
   - TransparentFX

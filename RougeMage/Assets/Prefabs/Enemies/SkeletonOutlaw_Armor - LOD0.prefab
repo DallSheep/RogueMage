@@ -3441,12 +3441,14 @@ MonoBehaviour:
   anim: {fileID: 2769687780209992635}
   damageCol: {fileID: 2319126428094692215}
   aud: {fileID: 3787467791635627229}
-  HP: 4
+  HP: 8
   playerFaceSpeed: 6
   viewCone: 90
   shootCone: 45
   roamDist: 10
   roamPauseTime: 3
+  isBossDefeated: 0
+  dead: 0
   audAttack:
   - {fileID: 8300000, guid: e36caa1ec957d1347b3ecf38888dff2f, type: 3}
   - {fileID: 8300000, guid: 13acbece963ac59458f6469d81d20faf, type: 3}

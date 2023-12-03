@@ -63,8 +63,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool isAttacking;
     bool inRageMode = false;
     bool inRageTransition = false;
-    bool isRageAttacking = false;
-    bool inSecondFlameAttack = false;
     public bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
@@ -275,7 +273,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 //damageCol.enabled = false;
                 //agent.enabled = false;
                 GameManager.Instance.UpdateGameGoal(-1);
-                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x, transform.position.x + 1), transform.position.y, Random.Range(transform.position.z, transform.position.z + 1)), transform.rotation);
+                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x, transform.position.x + 1), transform.position.y + 3, Random.Range(transform.position.z, transform.position.z + 1)), transform.rotation);
                 Destroy(gameObject);
                 //anim.SetBool("isDead", true);
             }

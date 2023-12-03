@@ -2210,7 +2210,7 @@ GameObject:
   - component: {fileID: 4756839181669875967}
   - component: {fileID: 988053799785976325}
   - component: {fileID: 3228555983523815339}
-  - component: {fileID: -415610827751241590}
+  - component: {fileID: -1942948123043984325}
   m_Layer: 6
   m_Name: Dragon Boss
   m_TagString: Dragon Boss
@@ -2254,12 +2254,12 @@ MonoBehaviour:
   anim: {fileID: 3028502979530777588}
   damageCol: {fileID: 4756839181669875967}
   aud: {fileID: 3228555983523815339}
-  HP: 2
+  HP: 100
   playerFaceSpeed: 8
   viewCone: 180
   shootCone: 90
   roamDist: 10
-  roamPauseTime: 5
+  roamPauseTime: 1
   isBossDefeated: 0
   dead: 0
   audAttack:
@@ -2472,7 +2472,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &-415610827751241590
+--- !u!54 &-1942948123043984325
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
