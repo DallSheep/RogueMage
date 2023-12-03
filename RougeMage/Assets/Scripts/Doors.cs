@@ -19,7 +19,6 @@ public class Doors : MonoBehaviour
     private void Start()
     {
         isLocked = true;
-        doorAnimation.SetInteger("doorStop", 1);
         noTrigCollider = GameObject.FindWithTag("Door Collider");
         lockedDoor = GameObject.FindWithTag("Locked Door");
     }
@@ -33,7 +32,6 @@ public class Doors : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnimation.SetInteger("doorStop", 1);
 
             if (GameManager.Instance.enemiesRemaining <= 0)
             {
@@ -55,7 +53,7 @@ public class Doors : MonoBehaviour
         Debug.Log(isLocked);
         if (other.CompareTag("Player") && !isLocked)
         {
-            if (isInput && doorAnimation.GetInteger("doorStop") == 1)
+            if (isInput && GameManager.Instance.enemiesRemaining == 0)
             {
                 doorAnimation.SetBool("isPlayer", true);
                 noTrigCollider.SetActive(false);
@@ -68,11 +66,9 @@ public class Doors : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnimation.SetInteger("doorStop", 0);
             GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
             lockedDoor.GetComponentInChildren<TMP_Text>().enabled = false;
             doorAnimation.SetBool("isPlayer", false);
-            noTrigCollider.SetActive(true);
         }
     }
 }

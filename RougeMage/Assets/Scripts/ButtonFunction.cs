@@ -20,6 +20,7 @@ public class ButtonFunction : MonoBehaviour
     {
         GameManager.Instance.playerScript.spawnPlayer();
         GameManager.Instance.stateUnpause();
+        GameManager.Instance.doorScript.doorAnimation.SetInteger("doorStop", 1);
     }
 
     public void Quit()

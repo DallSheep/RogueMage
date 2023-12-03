@@ -45,8 +45,9 @@ public class GameManager : MonoBehaviour
     [Header("----- Door Components -----")]
     public bool isPaused;
     public int enemiesRemaining;
-    public GameObject door;
-    Doors doorScript;
+    public GameObject doors;
+    public Doors doorScript;
+    
 
     [Header("----- Prompt Components -----")]
     public ColliderPrompts prompt;
@@ -77,8 +78,8 @@ public class GameManager : MonoBehaviour
         dungeonPrompt = GameObject.FindWithTag("Dungeon");
         buttonYes = GameObject.FindWithTag("buttonYes");
         buttonNo = GameObject.FindWithTag("buttonNo");
-        door = GameObject.FindWithTag("Door");
-        doorScript = door.GetComponent<Doors>();
+        doors = GameObject.FindWithTag("Door Parent");
+        doorScript = doors.GetComponentInChildren<Doors>();
         promptObj = GameObject.FindWithTag("Prompt Obj");
         prompt = promptObj.GetComponent<ColliderPrompts>();
         interactPrompt = GameObject.FindWithTag("Interact Prompt");

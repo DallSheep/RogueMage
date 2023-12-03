@@ -39,6 +39,8 @@ TagManager:
   - Shop Collider
   - Locked Door
   - Status Effect
+  - Arrow
+  - Door Parent
   layers:
   - Default
   - TransparentFX

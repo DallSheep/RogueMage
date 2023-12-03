@@ -289,7 +289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2165165588142190782
 Transform:
   m_ObjectHideFlags: 0
@@ -10909,7 +10909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1599670140090726552
 Transform:
   m_ObjectHideFlags: 0
@@ -11363,7 +11363,7 @@ MonoBehaviour:
   jumpHeight: 0
   jumpsMax: 0
   gravityValue: -10
-  Hp: 1
+  Hp: 100
   maxMana: 100
   currMana: 100
   stamina: 100

@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("----- Animation -----")]
     [SerializeField] public Animator playerAnim;
-    [SerializeField] public Animator doorAnim;
+    
 
 
     public Vector3 move;
@@ -93,14 +93,13 @@ public class PlayerController : MonoBehaviour, IDamage
         DontDestroyOnLoad(mousePos);
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(cam);
-        
 
         //sets mana to full from start
         currMana = maxMana;
         manaOrig = currMana;
         
 
-        //isCharSlected = false;
+        isCharSlected = false;
         staminaOrig = stamina;
         //goldOrig = gold;
         HPOrig = Hp;
@@ -126,7 +125,6 @@ public class PlayerController : MonoBehaviour, IDamage
             }
 
             GameManager.Instance.playerSpawnPos = GameObject.FindWithTag("Respawn");
-
             transform.position = GameManager.Instance.playerSpawnPos.transform.position;
 
             movement();
@@ -376,7 +374,6 @@ public class PlayerController : MonoBehaviour, IDamage
     public void spawnPlayer()
     {
         playerAnim.SetBool("isDead", false);
-        doorAnim.SetInteger("doorStop", 1);
         //controller.enabled = false;
         Hp = HPOrig;
         currMana = manaOrig;
