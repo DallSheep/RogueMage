@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject blockedWall;
     [SerializeField] public GameObject buttonYes;
     [SerializeField] public GameObject buttonNo;
+    [SerializeField] public GameObject oldMage;
 
 
     void Awake()

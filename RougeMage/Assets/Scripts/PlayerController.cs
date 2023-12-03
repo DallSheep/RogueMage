@@ -450,6 +450,7 @@ public class PlayerController : MonoBehaviour, IDamage
             GameManager.Instance.blockedTrigger.SetActive(false);
             GameManager.Instance.charTrigger.SetActive(false);
             GameManager.Instance.blockedWall.SetActive(false);
+            GameManager.Instance.oldMage.SetActive(false);
         }
     }
 }

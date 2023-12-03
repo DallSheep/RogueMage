@@ -71,6 +71,8 @@ public class CharacterSelection : MonoBehaviour
                         GameManager.Instance.playerScript.finalMage.tag = earthMage.tag;
                         break;
                 }
+
+
                 
             }
         }
