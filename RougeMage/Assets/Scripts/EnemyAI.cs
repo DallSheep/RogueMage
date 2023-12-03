@@ -355,6 +355,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void updateBossHealthUI()
     {
+        if (tag == "Dragon Boss")
         GameManager.Instance.bossHPBar.fillAmount = (float)HP / HPOrig;
     }
 }
