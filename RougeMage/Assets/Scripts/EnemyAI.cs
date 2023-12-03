@@ -305,7 +305,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (tag == "Dragon Boss")
         {
             int dropCounter = 0;
-            int dropsToSpawn = Random.Range(50, 100);
+            int dropsToSpawn = Random.Range(5, 10);
 
             while (dropCounter != dropsToSpawn)
             {
