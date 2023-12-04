@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: -2357600015837562969}
   - component: {fileID: -2740211175601856613}
   m_Layer: 6
-  m_Name: GoblinHunterMain
+  m_Name: Goblin
   m_TagString: Goblin Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

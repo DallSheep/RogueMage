@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAIBoss : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
@@ -49,9 +49,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Range(0, 4)][SerializeField] float shootRate1;
     [Range(0, 5)][SerializeField] float randomAttackIntervalTime;
 
-    [Header("----- Sword Stuff -----")]
-    [Range(1, 5)][SerializeField] float timeBetweenSwings;
-
     [Header("----- Drop on Death -----")]
     [SerializeField] List<GameObject> groundItems;
 
@@ -61,8 +58,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInRange;
     bool destinationChosen;
     bool isAttacking;
-    bool inRageMode = false;
-    bool inRageTransition = false;
+    bool inRageMode;
+    bool inRageTransition;
     public bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
@@ -78,10 +75,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         updateBossHealthUI();
 
-        if (gameObject.CompareTag("Dragon Boss"))
-        {
-            aud.PlayOneShot(audDragonAwakens, audDragonAwakensVol);
-        }
+        aud.PlayOneShot(audDragonAwakens, audDragonAwakensVol);
 
         GameManager.Instance.UpdateGameGoal(1);
         stoppingDistOrig = agent.stoppingDistance;
@@ -153,16 +147,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                     if (angleToPlayer <= viewCone)
                     {
-                        if (angleToPlayer <= shootCone)
+                        if (angleToPlayer <= shootCone && !isShooting)
                         {
-                            if (tag != "Skeleton Enemy" && !isShooting && !inRageTransition)
-                            {
-                                StartCoroutine(shoot());
-                            }
-                            else if (tag == "Skeleton Enemy" && agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
-                            {
-                                StartCoroutine(attack());
-                            }
+                            StartCoroutine(shoot());
                         }
 
                         if (agent.remainingDistance < agent.stoppingDistance)
@@ -183,13 +170,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator playSteps()
     {
-            isPlayingSteps = true;
+        isPlayingSteps = true;
 
-            aud.PlayOneShot(audFootSteps[Random.Range(0, audFootSteps.Length)], audFootStepsVol);
+        aud.PlayOneShot(audFootSteps[Random.Range(0, audFootSteps.Length)], audFootStepsVol);
 
-            yield return new WaitForSeconds(timeBetweenSteps);
+        yield return new WaitForSeconds(timeBetweenSteps);
 
-            isPlayingSteps = false;
+        isPlayingSteps = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -238,22 +225,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         Instantiate(bullet, shootPos.position, transform.rotation);
     }
 
-    IEnumerator attack()
-    {
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            isAttacking = true;
-            anim.SetTrigger("isAttacking");
-
-            aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
-
-            yield return new WaitForSeconds(timeBetweenSwings);
-
-            isAttacking = false;
-        }
-        
-    }
-
     public void takeDamage(int amount)
     {
         HP -= amount;
@@ -261,44 +232,28 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            if (tag == "Dragon Boss")
-            {
-                GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = false;
-                GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = false;
-                dead = true;
-                GameManager.Instance.UpdateWinCondition(dead);
-                SpawnDrops();
-            }
-            else
-            {
-                //damageCol.enabled = false;
-                //agent.enabled = false;
-                GameManager.Instance.UpdateGameGoal(-1);
-                SpawnDrops();
-                Destroy(gameObject);
-                //anim.SetBool("isDead", true);
-            }
+            GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = false;
+            GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = false;
+            dead = true;
+            GameManager.Instance.UpdateWinCondition(dead);
+            SpawnDrops();
         }
         else
         {
-            if (gameObject.CompareTag("Dragon Boss"))
+            if (HP <= halfHP && !inRageMode)
             {
-                if (HP <= halfHP && !inRageMode)
-                {
-                    inRageMode = true;
+                inRageMode = true;
 
-                    anim.SetBool("isEnteringRage", true);
+                anim.SetBool("isEnteringRage", true);
 
-                    StartCoroutine(DragonRageTransition());
+                StartCoroutine(DragonRageTransition());
 
-                    shootRate /= shootRateMod;
-                }
+                shootRate /= shootRateMod;
             }
             StartCoroutine(flashRed());
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
         updateBossHealthUI();
-
     }
 
     public void SpawnDrops()
@@ -312,17 +267,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 dropCounter++;
                 Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 5), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 5)), transform.rotation);
-            }
-        }
-        else
-        {
-            int dropCounter = 0;
-            int dropsToSpawn = Random.Range(1, 3);
-
-            while (dropCounter != dropsToSpawn)
-            {
-                dropCounter++;
-                Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 3), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 3)), transform.rotation);
             }
         }
     }
@@ -355,7 +299,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void updateBossHealthUI()
     {
-        if (tag == "Dragon Boss")
         GameManager.Instance.bossHPBar.fillAmount = (float)HP / HPOrig;
     }
 }

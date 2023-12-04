@@ -45,37 +45,39 @@ public class EnemyBullet : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                if (gameObject.CompareTag("Acid Spitball"))
-                {
-                    damageable.takeDamage(damage);
-                    player.updatePlayerHealthUI();
+                /*                if (gameObject.CompareTag("Acid Spitball"))
+                                {
+                                    damageable.takeDamage(damage);
+                                    player.updatePlayerHealthUI();
 
-                    acidStatusEffect = player.GetComponent<AcidStatusEffect>();
+                                    acidStatusEffect = player.GetComponent<AcidStatusEffect>();
 
-                    if (acidStatusEffect == null)
-                    {
-                        player.AddComponent<AcidStatusEffect>();
-                        //statusEffect.GetComponent<StatusEffect>().StartDamage();
-                    }
-                }
-                else if (gameObject.CompareTag("Flameball"))
-                {
-                    damageable.takeDamage(damage);
-                    player.updatePlayerHealthUI();
+                                    if (acidStatusEffect == null)
+                                    {
+                                        player.AddComponent<AcidStatusEffect>();
+                                        //statusEffect.GetComponent<StatusEffect>().StartDamage();
+                                    }
+                                }
+                                else if (gameObject.CompareTag("Flameball"))
+                                {
+                                    damageable.takeDamage(damage);
+                                    player.updatePlayerHealthUI();
 
-                    fireStatusEffect = player.GetComponent<FireStatusEffect>();
+                                    fireStatusEffect = player.GetComponent<FireStatusEffect>();
 
-                    if (fireStatusEffect == null)
-                    {
-                        player.AddComponent<FireStatusEffect>();
-                        statusEffect.GetComponent<StatusEffect>().StartDamage();
-                    }
-                }
-                else
-                {
-                    damageable.takeDamage(damage);
-                    player.updatePlayerHealthUI();
-                }
+                                    if (fireStatusEffect == null)
+                                    {
+                                        player.AddComponent<FireStatusEffect>();
+                                        statusEffect.GetComponent<StatusEffect>().StartDamage();
+                                    }
+                                }
+                                else
+                                {
+                                    damageable.takeDamage(damage);
+                                    player.updatePlayerHealthUI();
+                                }*/
+                damageable.takeDamage(damage);
+                player.updatePlayerHealthUI();
             }
         }
 
