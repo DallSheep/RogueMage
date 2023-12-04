@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         blockedPrompt = GameObject.FindWithTag("Blocked Wall Prompt");
         blockedWall = GameObject.FindWithTag("Blocked Wall");
         charSelect = GameObject.FindWithTag("Character Select");
+        charTrigger = GameObject.FindWithTag("Character Trigger");
         dungeonPrompt = GameObject.FindWithTag("Dungeon");
         buttonYes = GameObject.FindWithTag("buttonYes");
         buttonNo = GameObject.FindWithTag("buttonNo");
