@@ -147,7 +147,8 @@ public class PlayerController : MonoBehaviour, IDamage
             updatePlayerManaUI();
             updatePlayerHealthUI();
             updatePlayerStaminaUI();
-            //updatePlayerGoldUI();
+            updatePlayerGoldUI(0);
+            
             //Regens mana when mana is not full
             if ((currMana < maxMana) && !manaRegen)
             {

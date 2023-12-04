@@ -25,6 +25,8 @@ public class ColliderPrompts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManager.Instance.player.GetComponent<CapsuleCollider>().enabled = false;
+
             Debug.Log("Got Here");
 
             switch (gameObject.tag)
@@ -66,6 +68,7 @@ public class ColliderPrompts : MonoBehaviour
 
                 if (isEPressed)
                 {
+                    Debug.Log("Fuck");
                     GameManager.Instance.ShopScreen();
                 }
             }
@@ -104,5 +107,6 @@ public class ColliderPrompts : MonoBehaviour
                     break;
             }
         }
+        GameManager.Instance.player.GetComponent<CapsuleCollider>().enabled = true;
     }
 }
