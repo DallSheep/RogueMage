@@ -378,21 +378,21 @@ public class PlayerController : MonoBehaviour, IDamage
         Hp = HPOrig;
         currMana = manaOrig;
         stamina = staminaOrig;
-        Debug.Log(gold);
+        
         updatePlayerHealthUI();
         updatePlayerManaUI();
         updatePlayerStaminaUI();
         //updatePlayerGoldUI(0);
         camOrig = cam;
-        Debug.Log("in spawnPlayer");
+        
         controller.enabled = false;
-        Debug.Log("in spawnPlayer");
+        
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-        Debug.Log("in spawnPlayer");
+       
         controller.enabled = true;
-        Debug.Log("out spawnPlayer");
+        
         Time.timeScale = 1;
-        Debug.Log(GameManager.Instance.timescaleOrig);
+        
     }
 
     public void updatePlayerHealthUI()
@@ -414,9 +414,9 @@ public class PlayerController : MonoBehaviour, IDamage
     public void updatePlayerGoldUI(int amount)
     {
         gold += amount;
-        Debug.Log(gold);
+        
         GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
-        Debug.Log(GameManager.Instance.goldCount.GetComponentInChildren<TMP_Text>().text);
+        //Debug.Log(GameManager.Instance.goldCount.GetComponentInChildren<TMP_Text>().text);
     }
 
 

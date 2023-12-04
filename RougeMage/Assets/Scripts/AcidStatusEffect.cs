@@ -15,7 +15,7 @@ public class AcidStatusEffect : MonoBehaviour
     void Start()
     {
         statusEffect = GameObject.FindWithTag("Status Effect");
-        statusEffect.GetComponent<StatusEffect>().statusEffectDamage = acidStatusEffectDamage;
+        //statusEffect.GetComponent<StatusEffect>().statusEffectDamage = acidStatusEffectDamage;
         statusEffect.GetComponent<StatusEffect>().damageCount = acidDamageCount;
         statusEffect.GetComponent<StatusEffect>().timeIntervalStatusEffect = acidTimeIntervalStatusEffect;
     }

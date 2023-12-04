@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuInventory;
+    [SerializeField] public GameObject menuInventory;
     [SerializeField] GameObject menuShop;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject buttonNo;
     [SerializeField] public GameObject oldMage;
 
+    //[Header("----- Items -----")]
+    //[SerializeField] public GameObject heroesHeart;
+    //[SerializeField] public TMP_Text heart;
 
     void Awake()
     {
@@ -84,6 +87,8 @@ public class GameManager : MonoBehaviour
         prompt = promptObj.GetComponent<ColliderPrompts>();
         interactPrompt = GameObject.FindWithTag("Interact Prompt");
         goldCount = GameObject.FindWithTag("Gold");
+        //heroesHeart = GameObject.FindWithTag("HeroesHeart");
+        //heart = heroesHeart.GetComponentInChildren<TMP_Text>();
     }
 
 
@@ -125,8 +130,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timescaleOrig;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(false);
-        menuActive = null;
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+            menuActive = null;
+        }
+        
     }
 
     public void UpdateGameGoal(int amount)
@@ -184,7 +193,7 @@ public class GameManager : MonoBehaviour
 
     public void ShopScreen()
     {
-        statePause();
+      statePause();
         menuActive = menuShop;
         menuActive.SetActive(true);
     }

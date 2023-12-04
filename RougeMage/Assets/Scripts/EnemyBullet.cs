@@ -55,7 +55,7 @@ public class EnemyBullet : MonoBehaviour
                     if (acidStatusEffect == null)
                     {
                         player.AddComponent<AcidStatusEffect>();
-                        statusEffect.GetComponent<StatusEffect>().StartDamage();
+                        //statusEffect.GetComponent<StatusEffect>().StartDamage();
                     }
                 }
                 else if (gameObject.CompareTag("Flameball"))

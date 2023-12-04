@@ -1737,10 +1737,6 @@ PrefabInstance:
       value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
-      propertyPath: Hp
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 657941733}

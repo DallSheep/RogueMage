@@ -5569,6 +5569,10 @@ PrefabInstance:
       propertyPath: blockedTrigger
       value: 
       objectReference: {fileID: 1949913322}
+    - target: {fileID: 4156659748428058335, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4371019760283380755, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
       propertyPath: m_Name
       value: UI
@@ -5616,6 +5620,22 @@ PrefabInstance:
     - target: {fileID: 6124266911573296189, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498903248832285504, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228039154915779691, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239775635544146833, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239775635544146833, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7498946661486276282, guid: 75c3d2ee079146843b7c699710eaf3fc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

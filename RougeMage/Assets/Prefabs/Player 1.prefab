@@ -11367,7 +11367,7 @@ MonoBehaviour:
   maxMana: 100
   currMana: 100
   stamina: 100
-  gold: 0
+  gold: 100
   manaRegenSpeed: 1
   isCharSlected: 0
   SpellList: []

@@ -41,6 +41,7 @@ TagManager:
   - Status Effect
   - Arrow
   - Door Parent
+  - HeroesHeart
   layers:
   - Default
   - TransparentFX
