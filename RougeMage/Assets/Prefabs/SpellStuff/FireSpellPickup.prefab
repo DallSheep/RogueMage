@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3113105047199442429}
-  - component: {fileID: 4266839853094692942}
+  - component: {fileID: -3111247389392215718}
   - component: {fileID: 7598475010240759709}
   - component: {fileID: 7048037857023479673}
   - component: {fileID: 5748318782408474288}
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4266839853094692942
+--- !u!114 &-3111247389392215718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7167437142312547158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45497e589c78e1542b0679b95805b701, type: 3}
+  m_Script: {fileID: 11500000, guid: 784129e12c797fa4ab8e4e5be87305fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell: {fileID: 11400000, guid: f20addeaea9dea24bb9428bf06c917c7, type: 2}
-  pController: {fileID: 0}
+  playerController: {fileID: 0}
+  bullet: {fileID: 0}
   button: {fileID: 0}
 --- !u!33 &7598475010240759709
 MeshFilter:

@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] List<SpellStats> SpellList = new List<SpellStats>();
     [SerializeField] SpellStats defaultSpell;
 
+    [SerializeField] GameObject SpecialBullet;
+    
+    [SerializeField] float specialManaCost;
+    [SerializeField] float specialCooldown;
     [SerializeField] GameObject bulletMain;
     [SerializeField] GameObject bulletFire;
     [SerializeField] GameObject bulletWater;
@@ -55,6 +59,26 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float cooldown;
     [SerializeField] public GameObject weapon;
 
+    [Header("===== FireFlare Stats =====")]
+    [SerializeField] GameObject FireFlareBullet;
+    [SerializeField] float FireFlareManaCost;
+    [SerializeField] float FireFlareCooldown;
+
+    [Header("===== ElectricCharge Stats =====")]
+    [SerializeField] GameObject ElectricChargeBullet;
+    [SerializeField] float ElectricChargeManaCost;
+    [SerializeField] float ElectricChargeCooldown;
+
+    [Header("===== JetStream Stats =====")]
+    [SerializeField] GameObject JetStreamBullet;
+    [SerializeField] float JetStreamManaCost;
+    [SerializeField] float JetStreamCooldown;
+
+    [Header("===== EarthCatapult Stats =====")]
+    [SerializeField] GameObject RockCatapultBullet;
+    [SerializeField] float RockCatapultManaCost;
+    [SerializeField] float RockCatapultCooldown;
+
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audSteps;
     [Range(0, 1)][SerializeField] float audStepsVol;
@@ -65,8 +89,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("----- Animation -----")]
     [SerializeField] public Animator playerAnim;
-    
-
+   
 
     public Vector3 move;
     private float horizontalMovement;
@@ -248,7 +271,7 @@ public class PlayerController : MonoBehaviour, IDamage
         isShooting = true;
         playerAnim.SetBool("isAttacking", true);
 
-        if (currMana >= manaCost)
+        if (currMana >= specialManaCost)
         {
             currMana -= manaCost;
             Ray ray = new Ray(transform.position, transform.forward);
@@ -258,13 +281,13 @@ public class PlayerController : MonoBehaviour, IDamage
 
             Vector3 shootDir = targetPoint - shootPos.position;
 
-            if (bulletMain != null)
+            if (SpecialBullet != null)
             {
-                GameObject currBullet = Instantiate(bulletMain, shootPos.position, Quaternion.identity);
+                GameObject currBullet = Instantiate(SpecialBullet, shootPos.position, Quaternion.identity);
                 currBullet.transform.forward = shootDir.normalized;
             }
 
-            yield return new WaitForSeconds(cooldown);
+            yield return new WaitForSeconds(specialCooldown);
         }
         isShooting = false;
         playerAnim.SetBool("isAttacking", false);
@@ -361,17 +384,64 @@ public class PlayerController : MonoBehaviour, IDamage
         isPlayingSteps = false;
     }
 
-    public void setSpellStats(SpellStats spell)
+    public void setFireFlareStats()
     {
-        SpellList.Add(spell);
+        SpecialBullet = FireFlareBullet;
+        specialCooldown = FireFlareCooldown;
+        specialManaCost = FireFlareManaCost;
+    }
 
-        bulletMain = spell.bullet;
-        bulletMain.GetComponent<Bullet>().damage = spell.damage;
-        bulletMain.GetComponent<Bullet>().SetDestroyTime(spell.distance);
-        bulletMain.GetComponent<Bullet>().setHitEffect(spell.hitEffect);
-        manaCost = spell.manaCost;
-        cooldown = spell.cooldown;
+    public void setElectricChargeStats()
+    {
+        SpecialBullet = ElectricChargeBullet;
+        specialCooldown = ElectricChargeCooldown;
+        specialManaCost = ElectricChargeManaCost;
+    }
 
+    public void SetJetStreamStats()
+    {
+        SpecialBullet = JetStreamBullet;
+        specialCooldown = JetStreamCooldown;
+        specialManaCost = JetStreamManaCost;
+    }
+
+    public void SetRockCatapultStats()
+    {
+        SpecialBullet = RockCatapultBullet;
+        specialCooldown = RockCatapultCooldown;
+        specialManaCost = RockCatapultManaCost;
+    }
+    public void setSpellStats(GameObject spellBullet)
+    {
+        switch (spellBullet.name)
+        {
+            case "FireFlareBullet":
+                {
+                    SpecialBullet = FireFlareBullet;
+                    //specialCooldown = FireFlareBull;
+                    Debug.Log("Fire");
+                    break;
+                }
+            case "ElectricChargeBullet":
+                {
+                    SpecialBullet = ElectricChargeBullet;
+                    Debug.Log("Lightning");
+                    break;
+                }
+            case "JetStreamBullet":
+                {
+                    SpecialBullet = JetStreamBullet;
+                    Debug.Log("Water");
+                    break;
+                }
+            case "RockCatapultBullet":
+                {
+                    SpecialBullet = RockCatapultBullet;
+                    Debug.Log("Earth");
+                    break;
+                }
+
+        }
     }
 
     public void takeDamage(int amount)

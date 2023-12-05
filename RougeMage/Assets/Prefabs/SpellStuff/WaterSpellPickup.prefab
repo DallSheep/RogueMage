@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: 50ba72070b357e04685f88ec80bb0e71, type: 2}
   pController: {fileID: 0}
+  bullet: {fileID: 5346050849726141275, guid: 4cf71874133969b4d808d265fbb31cc4, type: 3}
   button: {fileID: 0}
 --- !u!33 &5013129540761790968
 MeshFilter:
