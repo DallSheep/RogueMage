@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator YouWin()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(5);
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);

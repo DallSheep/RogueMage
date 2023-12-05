@@ -457,12 +457,11 @@ MonoBehaviour:
   shootCone: 45
   roamDist: 10
   roamPauseTime: 2
-  dead: 0
   audAttack:
   - {fileID: 8300000, guid: 33f3570caec6d8c4ab9e7fda9fa24109, type: 3}
   - {fileID: 8300000, guid: dbeba5d34ee61cf4d8840e15d713240d, type: 3}
   - {fileID: 8300000, guid: cf532b5165583cb4cbd16faccf33299e, type: 3}
-  audAttackVol: 0.2
+  audAttackVol: 0.1
   audFootSteps:
   - {fileID: 8300000, guid: 676b41335c96f394ebb244ecd614d719, type: 3}
   - {fileID: 8300000, guid: 1a29885f9d7a109479f92dc5c4a2e9d0, type: 3}
@@ -470,9 +469,12 @@ MonoBehaviour:
   audFootStepsVol: 0.25
   timeBetweenSteps: 0.1
   audHurt:
-  - {fileID: 8300000, guid: 7029064a47bdfd142ad53944b6ee4d3d, type: 3}
   - {fileID: 8300000, guid: 492cd5c12131bbf47ba49a57918ace9a, type: 3}
-  audHurtVol: 0.1
+  - {fileID: 8300000, guid: 91c8d33f6e2ee224eb408ba6d65cc341, type: 3}
+  - {fileID: 8300000, guid: 4872c57097ba61b41849254b6aa7286f, type: 3}
+  - {fileID: 8300000, guid: 12e51bfad083ed0498d86203631f8fe7, type: 3}
+  - {fileID: 8300000, guid: 0be09630c72b71d498287e36b604246f, type: 3}
+  audHurtVol: 0.4
   bullet: {fileID: 8195922970094323667, guid: fdd85861f690a3542b489803a12c8b53, type: 3}
   shootRate: 2
   groundItems:

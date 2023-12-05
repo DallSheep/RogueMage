@@ -238,6 +238,7 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            aud.PlayOneShot(audDragonRageEnter, audDragonRageEnterVol);
             damageCol.enabled = false;
             agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
@@ -251,19 +252,21 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
         }
         else
         {
-            if (HP <= halfHP && !inRageMode)
-            {
-                inRageMode = true;
-
-                anim.SetBool("isEnteringRage", true);
-
-                StartCoroutine(DragonRageTransition());
-
-                shootRate /= shootRateMod;
-            }
-            StartCoroutine(flashRed());
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
+
+        if (HP <= halfHP && !inRageMode)
+        {
+            inRageMode = true;
+
+            anim.SetBool("isEnteringRage", true);
+
+            StartCoroutine(DragonRageTransition());
+
+            shootRate /= shootRateMod;
+        }
+
+        StartCoroutine(flashRed());
         updateBossHealthUI();
     }
 
@@ -304,7 +307,7 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
 
     public IEnumerator DestroyDeadBody()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
 

@@ -45,6 +45,7 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
     bool playerInRange;
     bool destinationChosen;
     bool isAttacking;
+    bool dead;
     public bool isPlayingSteps;
     float angleToPlayer;
     float stoppingDistOrig;
@@ -61,7 +62,7 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (agent.isActiveAndEnabled)
+        if (!dead)
         {
             if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
             {
@@ -83,30 +84,27 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
-        if (agent.isActiveAndEnabled)
+        if (agent.remainingDistance < 0.05f && !destinationChosen)
         {
-            if (agent.remainingDistance < 0.05f && !destinationChosen)
-            {
-                destinationChosen = true;
-                agent.stoppingDistance = 0;
+            destinationChosen = true;
+            agent.stoppingDistance = 0;
 
-                yield return new WaitForSeconds(roamPauseTime);
+            yield return new WaitForSeconds(roamPauseTime);
 
-                Vector3 randomPos = Random.insideUnitSphere * roamDist;
-                randomPos += startingPos;
+            Vector3 randomPos = Random.insideUnitSphere * roamDist;
+            randomPos += startingPos;
 
-                NavMeshHit hit;
-                NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
-                agent.SetDestination(hit.position);
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
+            agent.SetDestination(hit.position);
 
-                destinationChosen = false;
-            }
+            destinationChosen = false;
         }
     }
 
     bool canSeePlayer()
     {
-        if (agent.isActiveAndEnabled)
+        if (!dead)
         {
             playerDir = GameManager.Instance.player.transform.position - headPos.position;
             angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
@@ -124,6 +122,8 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
                     if (angleToPlayer <= viewCone)
                     {
+                        agent.SetDestination(GameManager.Instance.player.transform.position);
+
                         if (angleToPlayer <= shootCone && !isAttacking)
                         {
                             StartCoroutine(attack());
@@ -184,18 +184,15 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     IEnumerator attack()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            isAttacking = true;
-            anim.SetTrigger("isAttacking");
+        isAttacking = true;
 
-            aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+        anim.SetTrigger("isAttacking");
 
-            yield return new WaitForSeconds(timeBetweenSwings);
+        //aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
 
-            isAttacking = false;
-        }
-        
+        yield return new WaitForSeconds(timeBetweenSwings);
+
+        isAttacking = false;
     }
 
     public void takeDamage(int amount)
@@ -205,6 +202,7 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            dead = true;
             damageCol.enabled = false;
             agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
@@ -214,8 +212,10 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
         }
         else
         {
-            StartCoroutine(flashRed());
+            agent.SetDestination(GameManager.Instance.player.transform.position);
         }
+
+        StartCoroutine(flashRed());        
     }
     public IEnumerator DestroyDeadBody()
     {

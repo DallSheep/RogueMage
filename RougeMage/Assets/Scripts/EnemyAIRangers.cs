@@ -121,6 +121,8 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
 
                     if (angleToPlayer <= viewCone)
                     {
+                        agent.SetDestination(GameManager.Instance.player.transform.position);
+
                         if (angleToPlayer <= shootCone && !isShooting)
                         {
                             StartCoroutine(shoot());
@@ -214,9 +216,10 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
         }
         else
         {
-            StartCoroutine(flashRed());
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
+
+        StartCoroutine(flashRed());
     }
 
     public void SpawnDrops()

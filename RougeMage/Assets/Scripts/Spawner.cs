@@ -32,7 +32,6 @@ public class Spawner : MonoBehaviour
 
     IEnumerator spawn()
     {
-
         isSpawning = true;
 
         int randomNum = Random.Range(0, spawnPos.Length);
