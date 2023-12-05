@@ -40,6 +40,8 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
     [Range(0,1)][SerializeField] float audHurtVol;
     [SerializeField] AudioClip audDragonRageEnter;
     [Range(0, 1)][SerializeField] float audDragonRageEnterVol;
+    [SerializeField] AudioClip[] audDeath;
+    [Range(0, 1)][SerializeField] float audDeathVol;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
@@ -234,11 +236,10 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
         if (HP <= 0)
         {
-            aud.PlayOneShot(audDragonRageEnter, audDragonRageEnterVol);
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
             damageCol.enabled = false;
             agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
@@ -252,6 +253,7 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
         }
         else
         {
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
 

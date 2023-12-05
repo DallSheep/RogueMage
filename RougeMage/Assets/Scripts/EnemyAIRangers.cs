@@ -32,6 +32,8 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
     [Range(0, 3)][SerializeField] float timeBetweenSteps;
     [SerializeField] AudioClip[] audHurt;
     [Range(0,1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audDeath;
+    [Range(0, 1)][SerializeField] float audDeathVol;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
@@ -203,7 +205,6 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
         if (HP <= 0)
         {
@@ -211,11 +212,13 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
             agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
             SpawnDrops();
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
             anim.SetBool("isDead", true);
             StartCoroutine(DestroyDeadBody());
         }
         else
         {
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
 

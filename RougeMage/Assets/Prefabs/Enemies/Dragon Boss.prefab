@@ -1279,6 +1279,9 @@ MonoBehaviour:
   audHurtVol: 0.5
   audDragonRageEnter: {fileID: 8300000, guid: 4128553ef0d595847920477ba8d3cbed, type: 3}
   audDragonRageEnterVol: 0.8
+  audDeath:
+  - {fileID: 8300000, guid: 6218d00e92c4d7848b7cc4d0084f8113, type: 3}
+  audDeathVol: 1
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
   shootRate: 1
   shootRateMod: 2

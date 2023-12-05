@@ -1309,6 +1309,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 041f0064ad653a04aa8215eae521ab3d, type: 3}
   - {fileID: 8300000, guid: 982ab43ab6e908540aec099f452eb95f, type: 3}
   audHurtVol: 0.4
+  audDeath:
+  - {fileID: 8300000, guid: b938bbb57d5322d4db74359d72c16638, type: 3}
+  audDeathVol: 0.6
   timeBetweenSwings: 0
   groundItems:
   - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
