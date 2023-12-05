@@ -23,7 +23,6 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
     [SerializeField] int shootCone;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
-    public bool dead;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audAttack;
@@ -54,7 +53,6 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
 
     void Start()
     {
-        dead = false;
         HPOrig = HP;
         GameManager.Instance.UpdateGameGoal(1);
         stoppingDistOrig = agent.stoppingDistance;
@@ -63,13 +61,13 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
-        {
-            StartCoroutine(playSteps());
-        }
-
         if (agent.isActiveAndEnabled)
         {
+            if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
+            {
+                StartCoroutine(playSteps());
+            }
+
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
             if (playerInRange && !canSeePlayer())
@@ -105,35 +103,38 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
-        playerDir = GameManager.Instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
-
-        Debug.DrawRay(headPos.position, playerDir);
-        //Debug.Log(angleToPlayer);
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        if (agent.isActiveAndEnabled)
         {
-            if (hit.collider.CompareTag("Player"))
+            playerDir = GameManager.Instance.player.transform.position - headPos.position;
+            angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+            Debug.DrawRay(headPos.position, playerDir);
+            //Debug.Log(angleToPlayer);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(headPos.position, playerDir, out hit))
             {
-                agent.stoppingDistance = stoppingDistOrig;
-
-                if (angleToPlayer <= viewCone)
+                if (hit.collider.CompareTag("Player"))
                 {
-                    if (angleToPlayer <= shootCone && !isShooting)
+                    agent.stoppingDistance = stoppingDistOrig;
+
+                    if (angleToPlayer <= viewCone)
                     {
-                        StartCoroutine(shoot());
+                        if (angleToPlayer <= shootCone && !isShooting)
+                        {
+                            StartCoroutine(shoot());
+                        }
+
+                        if (agent.remainingDistance < agent.stoppingDistance)
+                        {
+                            faceTarget();
+                        }
+
+                        agent.SetDestination(GameManager.Instance.player.transform.position);
+
+                        return true;
                     }
-
-                    if (agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        faceTarget();
-                    }
-
-                    agent.SetDestination(GameManager.Instance.player.transform.position);
-
-                    return true;
                 }
             }
         }
@@ -204,12 +205,12 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            //damageCol.enabled = false;
-            //agent.enabled = false;
+            damageCol.enabled = false;
+            agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
             SpawnDrops();
-            Destroy(gameObject);
-            //anim.SetBool("isDead", true);
+            anim.SetBool("isDead", true);
+            StartCoroutine(DestroyDeadBody());
         }
         else
         {
@@ -228,6 +229,12 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
             dropCounter++;
             Instantiate(groundItems[Random.Range(0, groundItems.Count)], new Vector3(Random.Range(transform.position.x + 1, transform.position.x + 3), transform.position.y, Random.Range(transform.position.z + 1, transform.position.z + 3)), transform.rotation);
         }
+    }
+
+    public IEnumerator DestroyDeadBody()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 
     IEnumerator flashRed()

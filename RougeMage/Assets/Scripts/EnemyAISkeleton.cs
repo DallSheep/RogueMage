@@ -24,7 +24,6 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
     [SerializeField] int shootCone;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
-    public bool dead;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audAttack;
@@ -54,7 +53,6 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     void Start()
     {
-        dead = false;
         HPOrig = HP;
         GameManager.Instance.UpdateGameGoal(1);
         stoppingDistOrig = agent.stoppingDistance;
@@ -63,13 +61,13 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
-        {
-            StartCoroutine(playSteps());
-        }
-
         if (agent.isActiveAndEnabled)
         {
+            if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
+            {
+                StartCoroutine(playSteps());
+            }
+
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
             if (playerInRange && !canSeePlayer())
@@ -85,55 +83,61 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
-        if (agent.remainingDistance < 0.05f && !destinationChosen)
+        if (agent.isActiveAndEnabled)
         {
-            destinationChosen = true;
-            agent.stoppingDistance = 0;
+            if (agent.remainingDistance < 0.05f && !destinationChosen)
+            {
+                destinationChosen = true;
+                agent.stoppingDistance = 0;
 
-            yield return new WaitForSeconds(roamPauseTime);
+                yield return new WaitForSeconds(roamPauseTime);
 
-            Vector3 randomPos = Random.insideUnitSphere * roamDist;
-            randomPos += startingPos;
+                Vector3 randomPos = Random.insideUnitSphere * roamDist;
+                randomPos += startingPos;
 
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
-            agent.SetDestination(hit.position);
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
+                agent.SetDestination(hit.position);
 
-            destinationChosen = false;
+                destinationChosen = false;
+            }
         }
     }
 
     bool canSeePlayer()
     {
-        playerDir = GameManager.Instance.player.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
-
-        Debug.DrawRay(headPos.position, playerDir);
-        //Debug.Log(angleToPlayer);
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        if (agent.isActiveAndEnabled)
         {
-            if (hit.collider.CompareTag("Player"))
+            playerDir = GameManager.Instance.player.transform.position - headPos.position;
+            angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+            Debug.DrawRay(headPos.position, playerDir);
+            //Debug.Log(angleToPlayer);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(headPos.position, playerDir, out hit))
             {
-                agent.stoppingDistance = stoppingDistOrig;
-
-                if (angleToPlayer <= viewCone)
+                if (hit.collider.CompareTag("Player"))
                 {
-                    if (angleToPlayer <= shootCone && !isAttacking)
+                    agent.stoppingDistance = stoppingDistOrig;
+
+                    if (angleToPlayer <= viewCone)
                     {
-                        StartCoroutine(attack());
+                        if (angleToPlayer <= shootCone && !isAttacking)
+                        {
+                            StartCoroutine(attack());
+                        }
+
+                        if (agent.remainingDistance < agent.stoppingDistance)
+                        {
+                            faceTarget();
+                        }
+
+                        agent.SetDestination(GameManager.Instance.player.transform.position);
+
+                        return true;
                     }
-
-                    if (agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        faceTarget();
-                    }
-
-                    agent.SetDestination(GameManager.Instance.player.transform.position);
-
-                    return true;
                 }
             }
         }
@@ -201,17 +205,22 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            //damageCol.enabled = false;
-            //agent.enabled = false;
+            damageCol.enabled = false;
+            agent.enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
             SpawnDrops();
-            Destroy(gameObject);
-            //anim.SetBool("isDead", true);
+            anim.SetBool("isDead", true);
+            StartCoroutine(DestroyDeadBody());
         }
         else
         {
             StartCoroutine(flashRed());
         }
+    }
+    public IEnumerator DestroyDeadBody()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 
     public void SpawnDrops()

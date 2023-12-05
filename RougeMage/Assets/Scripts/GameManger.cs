@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator YouWin()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(8);
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
@@ -170,12 +170,10 @@ public class GameManager : MonoBehaviour
     public void UpdateWinCondition(bool dead)
     {
         isBossDead = dead;
-        if (isBossDead)
+        if(dead == true)
         {
-            boss = GameObject.FindWithTag("Dragon Boss");
-            Destroy(boss);
+            youWin();
         }
-        youWin();
     }
 
     public void youLose()

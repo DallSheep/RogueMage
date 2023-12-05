@@ -80,17 +80,7 @@ public class EnemyBullet : MonoBehaviour
                 player.updatePlayerHealthUI();
             }
         }
-
+        Instantiate(hitEffect, transform.position, transform.rotation);
         Destroy(gameObject);
-    }
-
-    public void SetDestroyTime(int time)
-    {
-        destroyTime = time;
-    }
-
-    public void setHitEffect(ParticleSystem spellHitEffect)
-    {
-        hitEffect = spellHitEffect;
     }
 }

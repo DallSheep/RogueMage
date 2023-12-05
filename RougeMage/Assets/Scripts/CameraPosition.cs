@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraPosition : MonoBehaviour
 {
     [SerializeField] PlayerController player;
-    [SerializeField] Vector3 height;
+    [SerializeField] public Vector3 height;
 
     // Update is called once per frame
     void Update()

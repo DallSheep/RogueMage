@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public Vector3 move;
     private float horizontalMovement;
     private float verticalMovement;
-    private Vector3 playerVelocity;
+    public Vector3 playerVelocity;
     private bool groundedPlayer;
     //private int jumpedTimes;
     bool isShooting;

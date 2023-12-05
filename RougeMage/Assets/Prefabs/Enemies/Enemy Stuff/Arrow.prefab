@@ -54,11 +54,10 @@ MonoBehaviour:
   damage: 2
   speed: 50
   destroyTime: 2
-  hitEffect: {fileID: 0}
-  damageCount: 0
-  timeIntervalStatusEffect: 0
-  statusEffectDamage: 0
-  statusEffectFlameUI: {fileID: 0}
+  hitEffect: {fileID: 6601394477244952807, guid: 71f1c01e6a36a5749a741967821eca17, type: 3}
+  acidStatusEffect: {fileID: 0}
+  fireStatusEffect: {fileID: 0}
+  statusEffect: {fileID: 0}
 --- !u!33 &3203268566419774319
 MeshFilter:
   m_ObjectHideFlags: 0

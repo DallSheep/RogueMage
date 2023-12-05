@@ -10,9 +10,19 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] int timeBetweenSpawns;
     [SerializeField] Transform[] spawnPos;
 
+    [Header("----- Camera -----")]
+    public GameObject mainCamera;
+    public PlayerController playerController;
+
     int spawnCount;
     bool isSpawning;
     bool startSpawning;
+
+    void Start()
+    {
+        playerController = GameManager.Instance.player.GetComponent<PlayerController>();
+        mainCamera = GameObject.FindWithTag("MainCamera");
+    }
 
     // Update is called once per frame
     void Update()
@@ -32,6 +42,9 @@ public class BossSpawner : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            Vector3 targetPos = new Vector3(playerController.transform.position.x * playerController.playerVelocity.x, playerController.transform.position.y + 30, playerController.transform.position.z * playerController.playerVelocity.z);
+            mainCamera.GetComponent<CameraPosition>().height = targetPos;
+
             startSpawning = true;
             GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = true;
             GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = true;

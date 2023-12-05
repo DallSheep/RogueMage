@@ -84,22 +84,25 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
-        {
-            StartCoroutine(playSteps());
-        }
-
         if (agent.isActiveAndEnabled)
         {
-            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
-
-            if (playerInRange && !canSeePlayer())
+            if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
             {
-                StartCoroutine(roam());
+                StartCoroutine(playSteps());
             }
-            else if (!playerInRange)
+
+            if (agent.isActiveAndEnabled)
             {
-                StartCoroutine(roam());
+                anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
+                if (playerInRange && !canSeePlayer())
+                {
+                    StartCoroutine(roam());
+                }
+                else if (!playerInRange)
+                {
+                    StartCoroutine(roam());
+                }
             }
         }
     }
@@ -129,37 +132,40 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
-        if (!inRageTransition)
+        if (agent.isActiveAndEnabled)
         {
-            playerDir = GameManager.Instance.player.transform.position - headPos.position;
-            angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
-
-            Debug.DrawRay(headPos.position, playerDir);
-            //Debug.Log(angleToPlayer);
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(headPos.position, playerDir, out hit))
+            if (!inRageTransition)
             {
-                if (hit.collider.CompareTag("Player"))
+                playerDir = GameManager.Instance.player.transform.position - headPos.position;
+                angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+                Debug.DrawRay(headPos.position, playerDir);
+                //Debug.Log(angleToPlayer);
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(headPos.position, playerDir, out hit))
                 {
-                    agent.stoppingDistance = stoppingDistOrig;
-
-                    if (angleToPlayer <= viewCone)
+                    if (hit.collider.CompareTag("Player"))
                     {
-                        if (angleToPlayer <= shootCone && !isShooting)
+                        agent.stoppingDistance = stoppingDistOrig;
+
+                        if (angleToPlayer <= viewCone)
                         {
-                            StartCoroutine(shoot());
+                            if (angleToPlayer <= shootCone && !isShooting)
+                            {
+                                StartCoroutine(shoot());
+                            }
+
+                            if (agent.remainingDistance < agent.stoppingDistance)
+                            {
+                                faceTarget();
+                            }
+
+                            agent.SetDestination(GameManager.Instance.player.transform.position);
+
+                            return true;
                         }
-
-                        if (agent.remainingDistance < agent.stoppingDistance)
-                        {
-                            faceTarget();
-                        }
-
-                        agent.SetDestination(GameManager.Instance.player.transform.position);
-
-                        return true;
                     }
                 }
             }
@@ -232,10 +238,15 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            damageCol.enabled = false;
+            agent.enabled = false;
+            GameManager.Instance.UpdateGameGoal(-1);
             GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = false;
             GameManager.Instance.bossHPBar.GetComponent<Image>().enabled = false;
             dead = true;
+            anim.SetBool("isDead", true);
             GameManager.Instance.UpdateWinCondition(dead);
+            StartCoroutine(DestroyDeadBody());
             SpawnDrops();
         }
         else
@@ -289,6 +300,12 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
+    }
+
+    public IEnumerator DestroyDeadBody()
+    {
+        yield return new WaitForSeconds(7);
+        Destroy(gameObject);
     }
 
     void faceTarget()

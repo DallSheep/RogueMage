@@ -471,6 +471,7 @@ MonoBehaviour:
   timeBetweenSteps: 0.1
   audHurt:
   - {fileID: 8300000, guid: 7029064a47bdfd142ad53944b6ee4d3d, type: 3}
+  - {fileID: 8300000, guid: 492cd5c12131bbf47ba49a57918ace9a, type: 3}
   audHurtVol: 0.1
   bullet: {fileID: 8195922970094323667, guid: fdd85861f690a3542b489803a12c8b53, type: 3}
   shootRate: 2

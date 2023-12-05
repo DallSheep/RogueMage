@@ -247,10 +247,10 @@ MonoBehaviour:
   damage: 3
   speed: 30
   destroyTime: 2
-  hitEffect: {fileID: 0}
-  damageCount: 3
-  timeIntervalStatusEffect: 1
-  statusEffectDamage: 2
+  hitEffect: {fileID: 3345832452636423299, guid: 05aedb4d6397df74f96de132ab8f14e6, type: 3}
+  acidStatusEffect: {fileID: 0}
+  fireStatusEffect: {fileID: 0}
+  statusEffect: {fileID: 0}
 --- !u!54 &8581280028794566910
 Rigidbody:
   m_ObjectHideFlags: 0
