@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.000000007450581, z: 0.000000007450581, w: 0.7071068}
   m_LocalPosition: {x: -0.036003113, y: -0.344, z: 0.04376602}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1835057743433655238}
@@ -4858,7 +4858,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.000000007450581, z: 0.000000007450581, w: 0.7071068}
   m_LocalPosition: {x: -0.036, y: -0.344, z: 0.04376602}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1835057743433655238}
@@ -9688,7 +9688,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.000000007450581, z: 0.000000007450581, w: 0.7071068}
   m_LocalPosition: {x: -0.036003113, y: -0.344, z: 0.04376602}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1835057743433655238}
@@ -14518,7 +14518,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.000000007450581, z: 0.000000007450581, w: 0.7071068}
   m_LocalPosition: {x: -0.036003113, y: -0.344, z: 0.04376602}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1835057743433655238}
@@ -19331,9 +19331,9 @@ GameObject:
   - component: {fileID: 1835057743433655238}
   - component: {fileID: 8115992573689789543}
   - component: {fileID: 8130084007556427483}
-  - component: {fileID: 1027626479827588797}
   - component: {fileID: 6140601917047061091}
   - component: {fileID: 6670088663012131357}
+  - component: {fileID: 4284005590193067624}
   m_Layer: 9
   m_Name: FireFlareBullet
   m_TagString: Untagged
@@ -19349,9 +19349,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8286919476976497052}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -9.415333, y: 4.7670374, z: -4.1236076}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3911951471332885981}
@@ -19359,7 +19359,7 @@ Transform:
   - {fileID: 2129710771847056481}
   - {fileID: 582177721199112632}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &8115992573689789543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19388,27 +19388,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8286919476976497052}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &1027626479827588797
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8286919476976497052}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6140601917047061091
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19549,3 +19528,26 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!136 &4284005590193067624
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286919476976497052}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.20119472
+  m_Height: 2.2418756
+  m_Direction: 1
+  m_Center: {x: -0.06284714, y: 0.8195324, z: -2.5645955e-15}

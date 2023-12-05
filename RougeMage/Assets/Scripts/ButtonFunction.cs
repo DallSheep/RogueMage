@@ -41,7 +41,6 @@ public class ButtonFunction : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        GameManager.Instance.playerScript.spawnPlayer();
     }
 
     public void BuyMe()
