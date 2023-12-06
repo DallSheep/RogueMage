@@ -75,11 +75,11 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
             if (playerInRange && !canSeePlayer())
             {
-                StartCoroutine(roam());
+                //StartCoroutine(roam());
             }
             else if (!playerInRange)
             {
-                StartCoroutine(roam());
+                //StartCoroutine(roam());
             }
         }
     }
