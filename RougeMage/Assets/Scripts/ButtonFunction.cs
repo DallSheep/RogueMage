@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 
 public class ButtonFunction : MonoBehaviour
 {
+    [SerializeField] PlayerController playerController;
     public void Resume()
     {
         GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
@@ -24,6 +25,11 @@ public class ButtonFunction : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.Instance.stateUnpause();
+    }
+
+    public void dungeonRespawn()
+    {
+        SceneManager.LoadScene("Character Select");
     }
 
     public void Respwan()
@@ -60,7 +66,7 @@ public class ButtonFunction : MonoBehaviour
         if (GameManager.Instance.playerScript.gold >= 25)
         {
             GameManager.Instance.playerScript.gold -= 25;
-            GameManager.Instance.playerScript.currMana += (int)(GameManager.Instance.playerScript.currMana / 4);
+            GameManager.Instance.playerScript.maxMana += (int)(GameManager.Instance.playerScript.maxMana / 4);
         }
     }
 
@@ -70,6 +76,7 @@ public class ButtonFunction : MonoBehaviour
         {
             GameManager.Instance.playerScript.gold -= 25;
             GameManager.Instance.playerScript.stamina += 100;
+
         }
     }
 
@@ -88,6 +95,7 @@ public class ButtonFunction : MonoBehaviour
         if (GameManager.Instance.playerScript.gold >= 100)
         {
             GameManager.Instance.playerScript.gold -= 100;
+            playerController.setFireFlareStats();
         }
     }
 
@@ -96,6 +104,7 @@ public class ButtonFunction : MonoBehaviour
         if (GameManager.Instance.playerScript.gold >= 100)
         {
             GameManager.Instance.playerScript.gold -= 100;
+            playerController.setElectricChargeStats();
         }
     } 
     
@@ -104,6 +113,7 @@ public class ButtonFunction : MonoBehaviour
         if (GameManager.Instance.playerScript.gold >= 100)
         {
             GameManager.Instance.playerScript.gold -= 100;
+            playerController.SetRockCatapultStats();
         }
     }
     
@@ -112,6 +122,7 @@ public class ButtonFunction : MonoBehaviour
         if (GameManager.Instance.playerScript.gold >= 100)
         {
             GameManager.Instance.playerScript.gold -= 100;
+            playerController.SetJetStreamStats();
         }
     }
 }
