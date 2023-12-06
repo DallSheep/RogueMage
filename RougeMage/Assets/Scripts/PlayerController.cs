@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour, IDamage
             movement();
             cameraMovement();
 
-            if(Input.GetButtonDown("Fire2") && !isShooting)
+            if(Input.GetButton("Fire2") && !isShooting)
             {
                 
                 StartCoroutine(specialAttack());

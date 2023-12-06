@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -7191317641238466933}
-  damage: 1
-  speed: 5
-  destroyTime: 5
+  damage: 3
+  speed: 8
+  destroyTime: 3
   explosion: {fileID: 6408519966488199393, guid: 1a846ee1493f7ff4eabce5f60dfd2e12, type: 3}
   hitEffect: {fileID: 0}
   damageCount: 0

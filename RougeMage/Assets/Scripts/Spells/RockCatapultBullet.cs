@@ -41,10 +41,8 @@ public class RockCatapultBullet : MonoBehaviour
         if (damageable != null && !other.CompareTag("Player")) 
         {
             damageable.takeDamage(damage);
-            Instantiate(explosion, transform.position, explosion.transform.rotation);
-            Debug.Log("Explosion");
         }
-
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
         Destroy(gameObject);
     }
 
