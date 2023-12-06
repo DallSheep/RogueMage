@@ -42,6 +42,7 @@ public class RockCatapultBullet : MonoBehaviour
         {
             damageable.takeDamage(damage);
             Instantiate(explosion, transform.position, explosion.transform.rotation);
+            Debug.Log("Explosion");
         }
 
         Destroy(gameObject);
