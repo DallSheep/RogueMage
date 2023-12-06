@@ -22,41 +22,52 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public GameObject root;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 10)][SerializeField] int playerSpeed;
-    [Range(1, 4)][SerializeField] int sprintMod;
+    [Range(1, 10)][SerializeField] public int playerSpeed;
     [Range(3, 10)][SerializeField] int dashMod;
     [SerializeField] float dashCooldown;
-    [Range(8, 30)][SerializeField] float jumpHeight;
-    [Range(1, 4)][SerializeField] int jumpsMax;
     [Range(-10, -40)][SerializeField] float gravityValue;
     [SerializeField] public int Hp;
     [SerializeField] public float maxMana;
     [SerializeField] public float currMana; //Used just to see current mana, remove when done
-    [SerializeField] public int currStamina;
-    [SerializeField] public int maxStamina;
+    [SerializeField] public int stamina;
     [SerializeField] public int gold;
     [Range(0,5)] [SerializeField] float manaRegenSpeed;
-    [Range(0,5)] [SerializeField] float staminaRegenSpeed;
     public bool isCharSlected;
+    public bool isModelChanged;
+    public Vector3 playerVelocity;
+    private bool groundedPlayer;
+    public bool isShooting;
+    bool isPlayingSteps;
+    bool isDashing;
+    bool manaRegen;
+    private float shootRateOrig;
+    private Camera camOrig;
+    public int HPOrig;
+    public float manaOrig;
+    public int staminaOrig;
 
     [Header("----- Spell Stats -----")]
-    [SerializeField] List<SpellStats> SpellList = new List<SpellStats>();
     [SerializeField] SpellStats defaultSpell;
 
     [SerializeField] GameObject SpecialBullet;
     
     [SerializeField] float specialManaCost;
     [SerializeField] float specialCooldown;
-    [SerializeField] GameObject bulletMain;
-    [SerializeField] GameObject bulletFire;
-    [SerializeField] GameObject bulletWater;
-    [SerializeField] GameObject bulletLightning;
-    [SerializeField] GameObject bulletEarth;
-    [SerializeField] int shootDamage;
-    [SerializeField] float shootDist;
-    [SerializeField] float shootRate;
-    [SerializeField] float manaCost;
-    [SerializeField] float cooldown;
+
+
+    public BaseAttack baseAttacks;
+    [SerializeField] public GameObject bulletMain;
+    [SerializeField] public GameObject bulletFire;
+    [SerializeField] public GameObject bulletWater;
+    [SerializeField] public GameObject bulletLightning;
+    [SerializeField] public GameObject bulletEarth;
+
+    public float cooldown;
+    public float manaCost;
+    public int shootDamage;
+    public float shootDist;
+    public float shootRate;
+
     [SerializeField] public GameObject weapon;
 
     [Header("===== FireFlare Stats =====")]
@@ -92,26 +103,7 @@ public class PlayerController : MonoBehaviour, IDamage
    
 
     public Vector3 move;
-    private float horizontalMovement;
-    private float verticalMovement;
-    public Vector3 playerVelocity;
-    private bool groundedPlayer;
-    //private int jumpedTimes;
-    bool isShooting;
-    bool isPlayingSteps;
-    bool isSprinting;
-    bool isDashing;
-    bool manaRegen;
-    bool staminaRegen;
-    private float shootRateOrig;
-    private Camera camOrig;
-    public int HPOrig;
-    public float manaOrig;
-    public int staminaOrig;
-    int selectedGun;
-
     public int isStarted;
-
     Vector3 newPlayerY;
 
     private void Start()
@@ -126,12 +118,13 @@ public class PlayerController : MonoBehaviour, IDamage
         
 
         isCharSlected = false;
-        staminaOrig = currStamina;
+        isModelChanged = false;
+        staminaOrig = stamina;
         //goldOrig = gold;
         HPOrig = Hp;
-        currStamina = maxStamina;
+        staminaOrig = stamina;
         //setSpellStats(defaultSpell);
-        shootRateOrig = shootRate;
+        //shootRateOrig = shootRate;
         isStarted = 1;
 
         if (GameManager.Instance.playerSpawnPos != null)
@@ -144,19 +137,13 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.isPaused)
         {
-            if (SceneManager.GetActiveScene().name != "Main Menu" && isStarted == 1)
-            {
-                spawnPlayer();
-                isStarted = 0;
-            }
-
             GameManager.Instance.playerSpawnPos = GameObject.FindWithTag("Respawn");
             transform.position = GameManager.Instance.playerSpawnPos.transform.position;
 
             movement();
             cameraMovement();
 
-            if(Input.GetButton("Fire2") && !isShooting)
+            if(Input.GetButtonDown("Fire2") && !isShooting)
             {
                 
                 StartCoroutine(specialAttack());
@@ -164,27 +151,28 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if (Input.GetButton("Shoot") && !isShooting && isCharSlected)
             {
-                StartCoroutine(baseAttack());
+                StartCoroutine(baseAttacks.Attack());
             }
 
             updatePlayerManaUI();
             updatePlayerHealthUI();
-            updatePlayerStaminaUI();
             updatePlayerGoldUI(0);
-            
+            updatePlayerStaminaUI();
+
             //Regens mana when mana is not full
             if ((currMana < maxMana) && !manaRegen)
             {
                 StartCoroutine(regenMana());
             }
 
-            if ((currStamina < maxStamina) && !staminaRegen)
+            if (model.activeInHierarchy && isModelChanged)
             {
-                StartCoroutine(regenStamina());
+                baseAttacks.SetStats();
+                isModelChanged = false;
             }
+
         }
 
-        
         newPlayerY = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
@@ -192,7 +180,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 
-        if (currStamina >= 100 && !isDashing)
+        if (stamina >= 100 && !isDashing)
         {
             StartCoroutine(Dash());
         }
@@ -256,16 +244,6 @@ public class PlayerController : MonoBehaviour, IDamage
         manaRegen = false;
     }
 
-    IEnumerator regenStamina()
-    {
-        staminaRegen = true;
-        yield return new WaitForSeconds(staminaRegenSpeed);
-
-        currStamina++;
-
-        staminaRegen = false;
-    }
-
     IEnumerator specialAttack()
     {
         isShooting = true;
@@ -292,62 +270,18 @@ public class PlayerController : MonoBehaviour, IDamage
         isShooting = false;
         playerAnim.SetBool("isAttacking", false);
     }
-
-    IEnumerator baseAttack()
-    {
-        isShooting = true;
-        playerAnim.SetBool("isAttacking", true);
-
-        switch (finalMage.tag)
-        {
-            case "Fire Mage":
-                bulletMain = bulletFire;
-                break;
-            case "Water Mage":
-                bulletMain = bulletWater;
-                break;
-            case "Lightning Mage":
-                bulletMain = bulletLightning;
-                break;
-            case "Earth Mage":
-                bulletMain = bulletEarth;
-                break;
-        }
-
-        if (currMana >= manaCost)
-        {
-            currMana -= manaCost;
-            Ray ray = new Ray(transform.position, transform.forward);
-            Vector3 targetPoint;
-
-            targetPoint = ray.GetPoint(50);
-
-            Vector3 shootDir = targetPoint - shootPos.position;
-
-            if (bulletMain != null)
-            {
-                GameObject currBullet = Instantiate(bulletMain, shootPos.position, Quaternion.identity);
-                currBullet.transform.forward = shootDir.normalized;
-            }
-
-            yield return new WaitForSeconds(cooldown);
-        }
-        isShooting = false;
-        playerAnim.SetBool("isAttacking", false);
-    }
-
-
+    
     IEnumerator Dash()
     {
-        if (currStamina > 0)
+        if (stamina > 0)
         {
-            if (Input.GetButtonDown("Sprint"))
+            if (Input.GetButton("Sprint"))
             {
                 isDashing = true;
                 //tracking original speed
                 int ps = playerSpeed;
                 playerSpeed *= dashMod;
-                currStamina = currStamina - 100;
+                stamina = stamina - 100;
 
                 yield return new WaitForSeconds(0.2f);
                 playerSpeed = ps;
@@ -358,28 +292,14 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    //void sprint()
-    //{
-    //    if (Input.GetButtonDown("Sprint"))
-    //    {
-    //        isSprinting = true;
-    //        playerSpeed *= sprintMod;
-    //    }
-    //    else if (Input.GetButtonUp("Sprint"))
-    //    {
-    //        isSprinting = false;
-    //        playerSpeed /= sprintMod;
-    //    }
-    //}
-
     IEnumerator playSteps()
     {
 
         isPlayingSteps = true;
 
-        if (!isSprinting)
+        if (!isDashing)
             yield return new WaitForSeconds(0.5f);
-        else if (isSprinting)
+        else if (isDashing)
             yield return new WaitForSeconds(0.3f);
         isPlayingSteps = false;
     }
@@ -465,8 +385,8 @@ public class PlayerController : MonoBehaviour, IDamage
         playerAnim.SetBool("isDead", false);
         //controller.enabled = false;
         Hp = HPOrig;
-        currMana = maxMana;
-        currStamina = maxStamina;
+        currMana = manaOrig;
+        stamina = staminaOrig;
         
         updatePlayerHealthUI();
         updatePlayerManaUI();
@@ -481,7 +401,6 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.enabled = true;
         
         Time.timeScale = 1;
-        
     }
 
     public void updatePlayerHealthUI()
@@ -491,12 +410,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void updatePlayerManaUI()
     {
-        GameManager.Instance.playerManaBar.fillAmount = (float)currMana / maxMana;
+        GameManager.Instance.playerManaBar.fillAmount = (float)currMana / manaOrig;
     }
 
     public void updatePlayerStaminaUI()
     {
-        GameManager.Instance.playerStaminaBar.fillAmount = (float)currStamina / maxStamina;
+        GameManager.Instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
     }
 
 
@@ -505,19 +424,14 @@ public class PlayerController : MonoBehaviour, IDamage
         gold += amount;
         
         GameManager.Instance.goldCount.GetComponent<TMP_Text>().text = gold.ToString("0");
-        //Debug.Log(GameManager.Instance.goldCount.GetComponentInChildren<TMP_Text>().text);
     }
 
 
     public void ChangeModel()
     {
-        //GameObject thisModel = Instantiate(selectMage, newPlayerY, transform.rotation);
-        //thisModel.GetComponent<SphereCollider>().enabled = false;
-        //thisModel.transform.parent = transform;
-        //selectMage = thisModel;
 
         isCharSlected = true;
-
+        isModelChanged = true;
 
         soulOrb.SetActive(false);
         root.SetActive(true);

@@ -610,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd33c02859efb43861148d3d9b6492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpawned: 0
 --- !u!1 &1196670429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,6 +1750,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1431396609465914755, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465542510543934529, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820964576532426730, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_Height
+      value: 2.5291457
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820964576532426730, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_Radius
+      value: 0.13761581
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820964576532426730, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_Center.x
+      value: -0.08478316
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820964576532426730, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_Center.y
+      value: -0.08357352
+      objectReference: {fileID: 0}
+    - target: {fileID: 3820964576532426730, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_Center.z
+      value: 1.392545
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460387625546035086, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5202164836129720811, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -1761,17 +1794,13 @@ PrefabInstance:
       propertyPath: mousePos
       value: 
       objectReference: {fileID: 1573184647}
-    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
-      propertyPath: maxStamina
-      value: 100
+    - target: {fileID: 7298351976523598897, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
-      propertyPath: currStamina
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
-      propertyPath: staminaRegenSpeed
-      value: 0.1
+    - target: {fileID: 9039883547772258334, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

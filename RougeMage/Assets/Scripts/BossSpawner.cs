@@ -12,7 +12,6 @@ public class BossSpawner : MonoBehaviour
 
     [Header("----- Camera -----")]
     public GameObject mainCamera;
-    public PlayerController playerController;
 
     int spawnCount;
     bool isSpawning;
@@ -20,7 +19,6 @@ public class BossSpawner : MonoBehaviour
 
     void Start()
     {
-        playerController = GameManager.Instance.player.GetComponent<PlayerController>();
         mainCamera = GameObject.FindWithTag("MainCamera");
     }
 
@@ -42,7 +40,10 @@ public class BossSpawner : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Vector3 targetPos = new Vector3(playerController.transform.position.x * playerController.playerVelocity.x, playerController.transform.position.y + 30, playerController.transform.position.z * playerController.playerVelocity.z);
+            Vector3 targetPos = new Vector3(GameManager.Instance.playerScript.transform.position.x * 
+                GameManager.Instance.playerScript.playerVelocity.x, GameManager.Instance.playerScript.transform.position.y + 30, 
+                GameManager.Instance.playerScript.transform.position.z * GameManager.Instance.playerScript.playerVelocity.z);
+
             mainCamera.GetComponent<CameraPosition>().height = targetPos;
 
             startSpawning = true;

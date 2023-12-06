@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    bool isSpawned = false;
+    public bool isSpawned = false;
 
     // Update is called once per frame
     void Update()

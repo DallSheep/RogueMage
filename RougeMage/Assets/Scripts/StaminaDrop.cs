@@ -20,9 +20,8 @@ public class StaminaDrop : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
-            Mathf.Clamp(player.currStamina += staminaAmount, 0, player.staminaOrig);
-            player.updatePlayerStaminaUI();
+            Mathf.Clamp(GameManager.Instance.playerScript.stamina += staminaAmount, 0, GameManager.Instance.playerScript.staminaOrig);
+            GameManager.Instance.playerScript.updatePlayerStaminaUI();
             aud.PlayOneShot(audCollected, audCollectedVol);
             Destroy(gameObject);
         }
