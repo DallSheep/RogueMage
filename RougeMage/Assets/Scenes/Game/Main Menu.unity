@@ -2518,7 +2518,7 @@ GameObject:
   - component: {fileID: 1512136884821461241}
   - component: {fileID: 3866431341404392917}
   m_Layer: 5
-  m_Name: Rouge Mages Text
+  m_Name: Rogue Mages Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2582,7 +2582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rouge Mages
+  m_text: Rogue Mages
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
