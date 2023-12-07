@@ -141,6 +141,8 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             spawnPlayer();
         }
+
+        baseAttacks = new BaseAttack();
     }
 
     void Update()
@@ -490,5 +492,10 @@ public class PlayerController : MonoBehaviour, IDamage
             GameManager.Instance.blockedWall.SetActive(false);
             GameManager.Instance.oldMage.SetActive(false);
         }
+    }
+
+    public void MakeBullet(GameObject currBullet)
+    {
+        currBullet = Instantiate(GameManager.Instance.playerScript.bulletMain, GameManager.Instance.playerScript.shootPos.position, Quaternion.identity);
     }
 }
