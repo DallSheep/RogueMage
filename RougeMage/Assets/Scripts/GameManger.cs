@@ -63,10 +63,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject buttonNo;
     [SerializeField] public GameObject oldMage;
 
-    //Temporarily dont have shop music playing - Logan
-
-    [SerializeField] AudioClip audShopMusic;
-    [Range(0, 1)][SerializeField] float audShopMusicVol;
+    [Header("----- Audio -----")]
+    public GameObject audioM;
+    public AudioManager audioScript;
 
     //[Header("----- Items -----")]
     //[SerializeField] public GameObject heroesHeart;
@@ -74,6 +73,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        audioM = GameObject.FindWithTag("Audio Manager");
+        audioScript = audioM.GetComponent<AudioManager>();
+
         isBossDead = false;
         Instance = this;
         timescaleOrig = Time.timeScale;

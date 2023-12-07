@@ -188,9 +188,9 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
     {
         isAttacking = true;
 
-        anim.SetTrigger("isAttacking");
-
         //aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+
+        anim.SetTrigger("isAttacking");
 
         yield return new WaitForSeconds(timeBetweenSwings);
 

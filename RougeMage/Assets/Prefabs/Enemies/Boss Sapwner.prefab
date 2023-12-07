@@ -128,6 +128,9 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   spawnPos:
   - {fileID: 1961138078235229188}
+  mainCamera: {fileID: 0}
+  audBossMusic: {fileID: 8300000, guid: 57c5145fbbdc0984196877e3fb066123, type: 3}
+  audBossMusicVol: 0.2
 --- !u!33 &8305603964590665421
 MeshFilter:
   m_ObjectHideFlags: 0

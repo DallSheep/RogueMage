@@ -13,6 +13,10 @@ public class BossSpawner : MonoBehaviour
     [Header("----- Camera -----")]
     public GameObject mainCamera;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip audBossMusic;
+    [Range(0, 1)][SerializeField] float audBossMusicVol;
+
     int spawnCount;
     bool isSpawning;
     bool startSpawning;
@@ -40,6 +44,8 @@ public class BossSpawner : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            GameManager.Instance.audioScript.PlayAudio(audBossMusic, audBossMusicVol);
+
             Vector3 targetPos = new Vector3(GameManager.Instance.playerScript.transform.position.x * 
                 GameManager.Instance.playerScript.playerVelocity.x, GameManager.Instance.playerScript.transform.position.y + 30, 
                 GameManager.Instance.playerScript.transform.position.z * GameManager.Instance.playerScript.playerVelocity.z);

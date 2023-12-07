@@ -11408,13 +11408,12 @@ MonoBehaviour:
   audDamageVol: 0
   audJump: []
   audJumpVol: 0
-  audMainMenuMusic: {fileID: 0}
+  audMainMenuMusic: {fileID: 8300000, guid: bb7bbd145c064124d9af4ce04995ae77, type: 3}
   audMainMusicVol: 0.5
-  audCharacterSelectMusic: {fileID: 0}
+  audCharacterSelectMusic: {fileID: 8300000, guid: c0df155d5a21ab747980939f8f23cf63, type: 3}
   audCharacterSelectVol: 0.5
-  audDungeonMusic: {fileID: 0}
+  audDungeonMusic: {fileID: 8300000, guid: c0f5786f639278d479c9da914217fdad, type: 3}
   audDungeonMusicVol: 0.5
-  isPlayingMusic: 0
   playerAnim: {fileID: 5638283531208161730}
   move: {x: 0, y: 0, z: 0}
   isStarted: 0

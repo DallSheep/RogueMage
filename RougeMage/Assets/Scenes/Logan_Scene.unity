@@ -397,7 +397,7 @@ PrefabInstance:
     - target: {fileID: 1491159771863516094, guid: 6a8037ec3a6e18f4b89c2e2e4cbcc156, type: 3}
       propertyPath: bossHPBar
       value: 
-      objectReference: {fileID: 297844892368052892}
+      objectReference: {fileID: 0}
     - target: {fileID: 1491159771863516094, guid: 6a8037ec3a6e18f4b89c2e2e4cbcc156, type: 3}
       propertyPath: goldCount
       value: 
@@ -437,7 +437,7 @@ PrefabInstance:
     - target: {fileID: 1491159771863516094, guid: 6a8037ec3a6e18f4b89c2e2e4cbcc156, type: 3}
       propertyPath: bossHPBackground
       value: 
-      objectReference: {fileID: 207725521008102936}
+      objectReference: {fileID: 0}
     - target: {fileID: 1491159771863516094, guid: 6a8037ec3a6e18f4b89c2e2e4cbcc156, type: 3}
       propertyPath: audDungeonMusicVol
       value: 0.5
@@ -1371,6 +1371,10 @@ PrefabInstance:
       propertyPath: isCharSlected
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: audDungeonMusicVol
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7062163056781876428, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1399,28 +1403,6 @@ PrefabInstance:
       addedObject: {fileID: 1726225370}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
---- !u!114 &207725521008102936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3810008008013572278, guid: 6a8037ec3a6e18f4b89c2e2e4cbcc156, type: 3}
-  m_PrefabInstance: {fileID: 546776631}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &297844892368052892 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5806483235136370963, guid: 6a8037ec3a6e18f4b89c2e2e4cbcc156, type: 3}
-  m_PrefabInstance: {fileID: 546776631}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
