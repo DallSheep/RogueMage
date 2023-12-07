@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseAttack
+public class BaseAttack : MonoBehaviour
 {
-    GameObject currBullet;
+    
     public IEnumerator Attack()
     {
         GameManager.Instance.playerScript.isShooting = true;
@@ -15,7 +14,7 @@ public class BaseAttack
         if (GameManager.Instance.playerScript.currMana >= GameManager.Instance.playerScript.manaCost)
         {
             GameManager.Instance.playerScript.currMana -= GameManager.Instance.playerScript.manaCost;
-            Ray ray = new Ray(GameManager.Instance.playerScript.transform.position, GameManager.Instance.playerScript.transform.forward);
+            Ray ray = new Ray(transform.position, transform.forward);
             Vector3 targetPoint;
 
             targetPoint = ray.GetPoint(50);
@@ -24,7 +23,7 @@ public class BaseAttack
 
             if (GameManager.Instance.playerScript.bulletMain != null)
             {
-                GameManager.Instance.playerScript.MakeBullet(currBullet);
+                GameObject currBullet = Instantiate(GameManager.Instance.playerScript.bulletMain, GameManager.Instance.playerScript.shootPos.position, Quaternion.identity);
                 currBullet.transform.forward = shootDir.normalized;
             }
 
@@ -33,6 +32,7 @@ public class BaseAttack
         GameManager.Instance.playerScript.isShooting = false;
         GameManager.Instance.playerScript.playerAnim.SetBool("isAttacking", false);
     }
+
     public void SetStats()
     {
         Debug.Log("in setter");
