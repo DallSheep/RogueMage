@@ -42,6 +42,8 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audDragonRageEnterVol;
     [SerializeField] AudioClip[] audDeath;
     [Range(0, 1)][SerializeField] float audDeathVol;
+    [SerializeField] AudioClip audPlayerWins;
+    [Range(0, 1)][SerializeField] float audPlayerWinsVol;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
@@ -311,6 +313,7 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+        GameManager.Instance.audioScript.PlayAudio(audPlayerWins, audPlayerWinsVol);
     }
 
     void faceTarget()

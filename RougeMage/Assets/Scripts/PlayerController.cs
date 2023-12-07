@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour, IDamage
                         audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
                         break;
                     case "Logan_Scene":
-                        audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
+                        audioScript.PlayAudio(audCharacterSelectMusic, audCharacterSelectVol);
                         break;
                 }
             }

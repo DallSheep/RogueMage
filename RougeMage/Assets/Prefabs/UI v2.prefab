@@ -1481,6 +1481,7 @@ RectTransform:
   - {fileID: 4014233146521187694}
   - {fileID: 2802980194277274100}
   - {fileID: 8764425329630934968}
+  - {fileID: 3278069755247925580}
   m_Father: {fileID: 6626791746518722503}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1585,18 +1586,17 @@ MonoBehaviour:
   enemyCountText: {fileID: 0}
   timescaleOrig: 1
   interactPrompt: {fileID: 0}
-  audioScript: {fileID: 0}
   playerHPBar: {fileID: 8222731456898447208}
   playerManaBar: {fileID: 6571711852536336638}
   playerStaminaBar: {fileID: 3403576898442601533}
-  goldCount: {fileID: 5424117691055712582}
+  goldCount: {fileID: 5998488555510215757}
   playerSpawnPos: {fileID: 0}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   selectChar: {fileID: 0}
   mages: {fileID: 0}
-  bossHPBackground: {fileID: 0}
-  bossHPBar: {fileID: 0}
+  bossHPBackground: {fileID: 6485170438383258925}
+  bossHPBar: {fileID: 8120729107744350233}
   isBossDead: 0
   boss: {fileID: 0}
   isPaused: 0
@@ -1614,15 +1614,10 @@ MonoBehaviour:
   buttonYes: {fileID: 0}
   buttonNo: {fileID: 0}
   oldMage: {fileID: 0}
-  audMainMenuMusic: {fileID: 0}
-  audMainMusicVol: 0
-  audCharacterSelectMusic: {fileID: 0}
-  audCharacterSelectVol: 0
-  audDungeonMusic: {fileID: 0}
-  audDungeonMusicVol: 0
-  isPlayingMusic: 0
-  audShopMusic: {fileID: 0}
-  audShopMusicVol: 0
+  audioM: {fileID: 0}
+  audioScript: {fileID: 0}
+  audPlayerWins: {fileID: 8300000, guid: 1793bdeed7056cb48a00198573ebcd64, type: 3}
+  audPlayerWinsVol: 0.5
 --- !u!114 &6904641890296283681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6873,6 +6868,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &8524030411848813176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8509712639852212932}
+  - component: {fileID: 1364509126772444733}
+  - component: {fileID: 8120729107744350233}
+  m_Layer: 5
+  m_Name: Boss HP Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8509712639852212932
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524030411848813176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99, y: 0.8, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3278069755247925580}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1364509126772444733
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524030411848813176}
+  m_CullTransparentMesh: 1
+--- !u!114 &8120729107744350233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524030411848813176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4a10d932150721e46a33f36f50c2e9cc, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 0.5
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8575963553338659055
 GameObject:
   m_ObjectHideFlags: 0
@@ -7007,6 +7077,82 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &8709264330811457649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3278069755247925580}
+  - component: {fileID: 1902338468282122551}
+  - component: {fileID: 6485170438383258925}
+  m_Layer: 5
+  m_Name: Boss HP BackGround (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3278069755247925580
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709264330811457649}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 7, y: 0.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8509712639852212932}
+  m_Father: {fileID: 1314215959311824223}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0, y: 467.75003}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1902338468282122551
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709264330811457649}
+  m_CullTransparentMesh: 1
+--- !u!114 &6485170438383258925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709264330811457649}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8859716467562476778
 GameObject:
   m_ObjectHideFlags: 0

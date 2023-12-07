@@ -67,6 +67,7 @@ public class BossSpawner : MonoBehaviour
         int randomNum = Random.Range(0, spawnPos.Length);
 
         Instantiate(objectToSpawn[Random.Range(0, objectToSpawn.Length)], spawnPos[randomNum].position, spawnPos[randomNum].rotation);
+
         spawnCount++;
 
         yield return new WaitForSeconds(timeBetweenSpawns);

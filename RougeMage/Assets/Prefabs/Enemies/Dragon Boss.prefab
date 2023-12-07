@@ -1266,7 +1266,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: df0fbf565ebe72342854e23f7a2552b2, type: 3}
   audAttackVol: 0.3
   audDragonAwakens: {fileID: 8300000, guid: 7cd8695b26bae344592b5cc0b2b4f265, type: 3}
-  audDragonAwakensVol: 0.8
+  audDragonAwakensVol: 1
   audFootSteps:
   - {fileID: 8300000, guid: 21db553e521ba6944924317408a08b41, type: 3}
   audFootStepsVol: 0.3
@@ -1282,6 +1282,8 @@ MonoBehaviour:
   audDeath:
   - {fileID: 8300000, guid: 6218d00e92c4d7848b7cc4d0084f8113, type: 3}
   audDeathVol: 1
+  audPlayerWins: {fileID: 8300000, guid: 1793bdeed7056cb48a00198573ebcd64, type: 3}
+  audPlayerWinsVol: 0.5
   bullet: {fileID: 5259874742371074253, guid: 25cad37426dbbc540a1ec40f9165d631, type: 3}
   shootRate: 1
   shootRateMod: 2
