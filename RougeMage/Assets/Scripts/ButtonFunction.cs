@@ -30,6 +30,7 @@ public class ButtonFunction : MonoBehaviour
     public void dungeonRespawn()
     {
         SceneManager.LoadScene("Character Select");
+        GameManager.Instance.stateUnpause();
     }
 
     public void Respwan()
