@@ -9,7 +9,6 @@ public class EnemyBullet : MonoBehaviour
 {
     [Header("===== Components =====")]
     [SerializeField] Rigidbody rb;
-    public PlayerController player;
     public IDamage damageable;
 
     [Header("===== Stats =====")]
@@ -22,6 +21,8 @@ public class EnemyBullet : MonoBehaviour
     public AcidStatusEffect acidStatusEffect;
     public FireStatusEffect fireStatusEffect;
     public GameObject statusEffect;
+    AcidStatusEffect acidStatusScript;
+    FireStatusEffect fireStatusScript;
 
     void Start()
     {
@@ -32,8 +33,6 @@ public class EnemyBullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        player = other.GetComponent<PlayerController>();
-
         if (other.isTrigger)
         {
             return;
@@ -41,45 +40,39 @@ public class EnemyBullet : MonoBehaviour
        
         damageable = other.GetComponent<IDamage>();
       
-        if (damageable != null)
+        if (damageable != null && other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
+            if (gameObject.CompareTag("Acid Spitball"))
             {
-                /*                if (gameObject.CompareTag("Acid Spitball"))
-                                {
-                                    damageable.takeDamage(damage);
-                                    player.updatePlayerHealthUI();
-
-                                    acidStatusEffect = player.GetComponent<AcidStatusEffect>();
-
-                                    if (acidStatusEffect == null)
-                                    {
-                                        player.AddComponent<AcidStatusEffect>();
-                                        //statusEffect.GetComponent<StatusEffect>().StartDamage();
-                                    }
-                                }
-                                else if (gameObject.CompareTag("Flameball"))
-                                {
-                                    damageable.takeDamage(damage);
-                                    player.updatePlayerHealthUI();
-
-                                    fireStatusEffect = player.GetComponent<FireStatusEffect>();
-
-                                    if (fireStatusEffect == null)
-                                    {
-                                        player.AddComponent<FireStatusEffect>();
-                                        statusEffect.GetComponent<StatusEffect>().StartDamage();
-                                    }
-                                }
-                                else
-                                {
-                                    damageable.takeDamage(damage);
-                                    player.updatePlayerHealthUI();
-                                }*/
                 damageable.takeDamage(damage);
-                player.updatePlayerHealthUI();
+                GameManager.Instance.playerScript.updatePlayerHealthUI();
+
+                if (GameManager.Instance.player.GetComponent<AcidStatusEffect>() == null)
+                {
+                    acidStatusScript = GameManager.Instance.playerScript.AddComponent<AcidStatusEffect>();
+                    acidStatusScript.SetData();
+                    statusEffect.GetComponent<StatusEffect>().StartDamage();
+                }
+            }
+            else if (gameObject.CompareTag("Flameball"))
+            {
+                damageable.takeDamage(damage);
+                GameManager.Instance.playerScript.updatePlayerHealthUI();
+
+                if (GameManager.Instance.player.GetComponent<FireStatusEffect>() == null)
+                {
+                    fireStatusScript = GameManager.Instance.player.AddComponent<FireStatusEffect>();
+                    fireStatusScript.SetData();
+                    statusEffect.GetComponent<StatusEffect>().StartDamage();
+                }
+            }
+            else
+            {
+                damageable.takeDamage(damage);
+                GameManager.Instance.playerScript.updatePlayerHealthUI();
             }
         }
+
         Instantiate(hitEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }

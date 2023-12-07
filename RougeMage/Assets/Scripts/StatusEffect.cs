@@ -4,40 +4,53 @@ using UnityEngine;
 
 public class StatusEffect : MonoBehaviour
 {
-    [Header("===== Status Effect =====")]
+    [Header("----- Status Effect -----")]
     public int statusEffectDamage;
     public float damageCount;
     public float timeIntervalStatusEffect;
+
+    [Header("----- Particles -----")]
+    public ParticleSystem statusEffectParticles;
+
     FireStatusEffect fireStatusEffect;
     AcidStatusEffect acidStatusEffect;
 
-    public int statusEffectCount;
+    int statusEffectCount;
+    IDamage damageable;
 
-    private void Update()
+    private void Start()
     {
+        damageable = GameManager.Instance.player.GetComponent<IDamage>();
         fireStatusEffect = GameManager.Instance.player.GetComponent<FireStatusEffect>();
         acidStatusEffect = GameManager.Instance.player.GetComponent<AcidStatusEffect>();
     }
 
     public void StartDamage()
     {
+        //Instantiate(statusEffectParticles, transform.position, transform.rotation);
         StartCoroutine(Damage());
+        //Destroy(statusEffectParticles);
     }
 
     public IEnumerator Damage()
     {
+        statusEffectCount = 0;
         while (true)
         {
-            if (statusEffectCount == damageCount || GameManager.Instance.player.GetComponent<PlayerController>().Hp == 1)
+            if (statusEffectCount == damageCount)
             {
-                Destroy(GameManager.Instance.player.GetComponent<StatusEffect>());
+                statusEffectDamage = 0;
+                damageCount = 0;
+                timeIntervalStatusEffect = 0;
+                Destroy(GameManager.Instance.player.GetComponent<FireStatusEffect>());
+                Destroy(GameManager.Instance.player.GetComponent<AcidStatusEffect>());
                 break;
             }
 
             statusEffectCount++;
 
-            Mathf.Clamp(GameManager.Instance.player.GetComponent<PlayerController>().Hp - statusEffectDamage, 1, GameManager.Instance.player.GetComponent<PlayerController>().HPOrig);
-            GameManager.Instance.player.GetComponent<PlayerController>().updatePlayerHealthUI();
+            damageable.takeDamage(statusEffectDamage);
+            GameManager.Instance.playerScript.updatePlayerHealthUI();
             yield return new WaitForSeconds(timeIntervalStatusEffect);
         }
     }

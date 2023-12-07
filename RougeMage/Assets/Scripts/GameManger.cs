@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     public float timescaleOrig;
     public GameObject interactPrompt;
+    //[SerializeField] public ParticleSystem fireStatusEffectParticles;
+    //[SerializeField] public ParticleSystem acidStatusEffectParticles;
 
     [Header("----- Player Components -----")]
     public Image playerHPBar;

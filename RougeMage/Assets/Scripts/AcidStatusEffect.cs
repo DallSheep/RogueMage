@@ -12,11 +12,16 @@ public class AcidStatusEffect : MonoBehaviour
     [Header("----- Status Effect -----")]
     GameObject statusEffect;
 
-    void Start()
+    [Header("----- Particles -----")]
+    ParticleSystem acidStatusEffectParticles;
+
+    public void SetData()
     {
+        //acidStatusEffectParticles = GameManager.Instance.acidStatusEffectParticles;
         statusEffect = GameObject.FindWithTag("Status Effect");
-        //statusEffect.GetComponent<StatusEffect>().statusEffectDamage = acidStatusEffectDamage;
+        statusEffect.GetComponent<StatusEffect>().statusEffectDamage = acidStatusEffectDamage;
         statusEffect.GetComponent<StatusEffect>().damageCount = acidDamageCount;
         statusEffect.GetComponent<StatusEffect>().timeIntervalStatusEffect = acidTimeIntervalStatusEffect;
+        statusEffect.GetComponent<StatusEffect>().statusEffectParticles = acidStatusEffectParticles;
     }
 }

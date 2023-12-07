@@ -16,4 +16,9 @@ public class AudioManager : MonoBehaviour
         aud.GetComponent<AudioSource>().volume = vol;
         aud.Play();
     }
+
+    public void ChangeMasterVolume(float value)
+    {
+        AudioListener.volume = value;
+    }
 }

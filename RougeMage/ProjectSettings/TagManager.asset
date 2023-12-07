@@ -43,6 +43,7 @@ TagManager:
   - Door Parent
   - HeroesHeart
   - Audio Manager
+  - Settings
   layers:
   - Default
   - TransparentFX

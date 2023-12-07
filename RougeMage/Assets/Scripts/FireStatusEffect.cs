@@ -12,11 +12,16 @@ public class FireStatusEffect : MonoBehaviour
     [Header("----- Status Effect -----")]
     GameObject statusEffect;
 
-    void Start()
+    [Header("----- Particles -----")]
+    ParticleSystem fireStatusEffectParticles;
+
+    public void SetData()
     {
+        //fireStatusEffectParticles = GameManager.Instance.fireStatusEffectParticles;
         statusEffect = GameObject.FindWithTag("Status Effect");
         statusEffect.GetComponent<StatusEffect>().statusEffectDamage = fireStatusEffectDamage;
         statusEffect.GetComponent<StatusEffect>().damageCount = fireDamageCount;
         statusEffect.GetComponent<StatusEffect>().timeIntervalStatusEffect = fireTimeIntervalStatusEffect;
+        statusEffect.GetComponent<StatusEffect>().statusEffectParticles = fireStatusEffectParticles;
     }
 }
