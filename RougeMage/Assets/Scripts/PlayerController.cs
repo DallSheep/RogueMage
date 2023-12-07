@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public GameObject finalMage;
     [SerializeField] public GameObject model;
     [SerializeField] public GameObject root;
+    public static GameObject audioM;
+    public AudioManager audioScript;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] public int playerSpeed;
@@ -98,6 +100,14 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
 
+    [Header("----- Clips -----")]
+    [SerializeField] AudioClip audMainMenuMusic;
+    [Range(0, 1)][SerializeField] float audMainMusicVol;
+    [SerializeField] AudioClip audCharacterSelectMusic;
+    [Range(0, 1)][SerializeField] float audCharacterSelectVol;
+    [SerializeField] AudioClip audDungeonMusic;
+    [Range(0, 1)][SerializeField] float audDungeonMusicVol;
+
     [Header("----- Animation -----")]
     [SerializeField] public Animator playerAnim;
    
@@ -135,8 +145,28 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Update()
     {
+
         if (!GameManager.Instance.isPaused)
         {
+            audioM = GameObject.FindWithTag("Audio Manager");
+            audioScript = audioM.GetComponent<AudioManager>();
+
+            if (!audioM.GetComponent<AudioSource>().isPlaying)
+            {
+                switch (SceneManager.GetActiveScene().name)
+                {
+                    case "Main Menu":
+                        audioScript.PlayAudio(audMainMenuMusic, audMainMusicVol);
+                        break;
+                    case "Character Select":
+                        audioScript.PlayAudio(audCharacterSelectMusic, audCharacterSelectVol);
+                        break;
+                    case "Dungeon_Scene":
+                        audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
+                        break;
+                }
+            }
+
             GameManager.Instance.playerSpawnPos = GameObject.FindWithTag("Respawn");
             transform.position = GameManager.Instance.playerSpawnPos.transform.position;
 

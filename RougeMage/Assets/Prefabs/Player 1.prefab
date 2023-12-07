@@ -11356,12 +11356,10 @@ MonoBehaviour:
   finalMage: {fileID: 1431396609465914755}
   model: {fileID: 4460387625546035086}
   root: {fileID: 1465542510543934529}
+  audioScript: {fileID: 0}
   playerSpeed: 8
-  sprintMod: 2
   dashMod: 5
   dashCooldown: 1.5
-  jumpHeight: 0
-  jumpsMax: 0
   gravityValue: -10
   Hp: 100
   maxMana: 100
@@ -11370,31 +11368,55 @@ MonoBehaviour:
   gold: 100
   manaRegenSpeed: 1
   isCharSlected: 0
-  SpellList: []
+  isModelChanged: 0
+  playerVelocity: {x: 0, y: 0, z: 0}
+  isShooting: 0
+  HPOrig: 0
+  manaOrig: 0
+  staminaOrig: 0
   defaultSpell: {fileID: 11400000, guid: f20addeaea9dea24bb9428bf06c917c7, type: 2}
+  SpecialBullet: {fileID: 0}
+  specialManaCost: 0
+  specialCooldown: 0
+  baseAttacks: {fileID: 0}
   bulletMain: {fileID: 0}
   bulletFire: {fileID: 3303086219372321571, guid: cdec0c98a33022149a3360c9d2a5b4ac, type: 3}
   bulletWater: {fileID: 3540146517258177943, guid: fcf69d7f6a6282f4da825506d4ecf3a0, type: 3}
   bulletLightning: {fileID: 3540146517258177943, guid: 8b0313ad79156194090dbcb53c71dd37, type: 3}
   bulletEarth: {fileID: 3540146517258177943, guid: fa9bfbd039722b6479a4fea3e0a45fde, type: 3}
+  cooldown: 0.5
+  manaCost: 1
   shootDamage: 1
   shootDist: 50
   shootRate: 1
-  manaCost: 1
-  cooldown: 0.5
   weapon: {fileID: 0}
+  FireFlareBullet: {fileID: 0}
+  FireFlareManaCost: 0
+  FireFlareCooldown: 0
+  ElectricChargeBullet: {fileID: 0}
+  ElectricChargeManaCost: 0
+  ElectricChargeCooldown: 0
+  JetStreamBullet: {fileID: 0}
+  JetStreamManaCost: 0
+  JetStreamCooldown: 0
+  RockCatapultBullet: {fileID: 0}
+  RockCatapultManaCost: 0
+  RockCatapultCooldown: 0
   audSteps: []
   audStepsVol: 0
   audDamage: []
   audDamageVol: 0
   audJump: []
   audJumpVol: 0
+  audMainMenuMusic: {fileID: 0}
+  audMainMusicVol: 0.5
+  audCharacterSelectMusic: {fileID: 0}
+  audCharacterSelectVol: 0.5
+  audDungeonMusic: {fileID: 0}
+  audDungeonMusicVol: 0.5
+  isPlayingMusic: 0
   playerAnim: {fileID: 5638283531208161730}
   move: {x: 0, y: 0, z: 0}
-  playerVelocity: {x: 0, y: 0, z: 0}
-  HPOrig: 0
-  manaOrig: 0
-  staminaOrig: 0
   isStarted: 0
 --- !u!143 &5521843639130267959
 CharacterController:

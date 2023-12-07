@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -62,6 +63,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject buttonNo;
     [SerializeField] public GameObject oldMage;
 
+    //Temporarily dont have shop music playing - Logan
+
+    [SerializeField] AudioClip audShopMusic;
+    [Range(0, 1)][SerializeField] float audShopMusicVol;
+
     //[Header("----- Items -----")]
     //[SerializeField] public GameObject heroesHeart;
     //[SerializeField] public TMP_Text heart;
@@ -69,7 +75,6 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         isBossDead = false;
-
         Instance = this;
         timescaleOrig = Time.timeScale;
 

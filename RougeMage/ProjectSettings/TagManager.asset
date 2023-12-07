@@ -42,6 +42,7 @@ TagManager:
   - Arrow
   - Door Parent
   - HeroesHeart
+  - Audio Manager
   layers:
   - Default
   - TransparentFX

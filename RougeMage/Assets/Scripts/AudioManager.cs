@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip audMainMusic;
-    [Range(0, 1)][SerializeField] float audMainMusicVol;
 
-    void Start()
+    public void PlayAudio(AudioClip clip, float vol)
     {
-        aud.PlayOneShot(audMainMusic, audMainMusicVol);
+        //aud.Stop();
+        aud.GetComponent<AudioSource>().clip = clip;
+        aud.GetComponent<AudioSource>().volume = vol;
+        aud.Play();
     }
 }
