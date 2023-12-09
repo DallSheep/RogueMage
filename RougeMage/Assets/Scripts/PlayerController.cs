@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public GameObject finalMage;
     [SerializeField] public GameObject model;
     [SerializeField] public GameObject root;
-    public static GameObject audioM;
-    public AudioManager audioScript;
 
     [Header("----- Player Stats -----")]
     [Range(1, 10)][SerializeField] public int playerSpeed;
@@ -148,24 +146,18 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (!GameManager.Instance.isPaused)
         {
-            audioM = GameObject.FindWithTag("Audio Manager");
-            audioScript = audioM.GetComponent<AudioManager>();
-
-            if (!audioM.GetComponent<AudioSource>().isPlaying)
+            if (!GameManager.Instance.audioM.GetComponent<AudioSource>().isPlaying)
             {
                 switch (SceneManager.GetActiveScene().name)
                 {
                     case "Main Menu":
-                        audioScript.PlayAudio(audMainMenuMusic, audMainMusicVol);
+                        GameManager.Instance.audioScript.PlayAudio(audMainMenuMusic, audMainMusicVol);
                         break;
                     case "Character Select":
-                        audioScript.PlayAudio(audCharacterSelectMusic, audCharacterSelectVol);
+                        GameManager.Instance.audioScript.PlayAudio(audCharacterSelectMusic, audCharacterSelectVol);
                         break;
                     case "Dungeon_Scene":
-                        audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
-                        break;
-                    case "Logan_Scene":
-                        audioScript.PlayAudio(audCharacterSelectMusic, audCharacterSelectVol);
+                        GameManager.Instance.audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
                         break;
                 }
             }

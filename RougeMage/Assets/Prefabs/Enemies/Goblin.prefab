@@ -602,7 +602,7 @@ MonoBehaviour:
   anim: {fileID: 4715103383205689662}
   damageCol: {fileID: 1651399165738112864}
   aud: {fileID: -2357600015837562969}
-  HP: 5
+  HP: 8
   playerFaceSpeed: 7
   viewCone: 90
   shootCone: 45

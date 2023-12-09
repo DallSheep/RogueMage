@@ -127,4 +127,14 @@ public class ButtonFunction : MonoBehaviour
             playerController.SetJetStreamStats();
         }
     }
+
+    public void SettingsUI()
+    {
+        GameManager.Instance.settingsUI.SetActive(true);
+    }
+
+    public void Done()
+    {
+        GameManager.Instance.settingsUI.SetActive(false);
+    }
 }

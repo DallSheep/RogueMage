@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MasterVolumeSlider : MonoBehaviour
+public class MusicVolumeSlider : MonoBehaviour
 {
     [SerializeField] private Slider slider;
 

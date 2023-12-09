@@ -20,9 +20,8 @@ public class StatusEffect : MonoBehaviour
 
     private void Start()
     {
-        damageable = GameManager.Instance.player.GetComponent<IDamage>();
-        fireStatusEffect = GameManager.Instance.player.GetComponent<FireStatusEffect>();
-        acidStatusEffect = GameManager.Instance.player.GetComponent<AcidStatusEffect>();
+        //fireStatusEffect = GameManager.Instance.player.GetComponent<FireStatusEffect>();
+        //acidStatusEffect = GameManager.Instance.player.GetComponent<AcidStatusEffect>();
     }
 
     public void StartDamage()
@@ -42,13 +41,16 @@ public class StatusEffect : MonoBehaviour
                 statusEffectDamage = 0;
                 damageCount = 0;
                 timeIntervalStatusEffect = 0;
-                Destroy(GameManager.Instance.player.GetComponent<FireStatusEffect>());
-                Destroy(GameManager.Instance.player.GetComponent<AcidStatusEffect>());
+                if (GameManager.Instance.player.GetComponent<FireStatusEffect>() != null || GameManager.Instance.player.GetComponent<AcidStatusEffect>() != null)
+                {
+                  Destroy(GameManager.Instance.player.GetComponent<FireStatusEffect>());
+                  Destroy(GameManager.Instance.player.GetComponent<AcidStatusEffect>());
+                }
                 break;
             }
 
             statusEffectCount++;
-
+            damageable = GameManager.Instance.player.GetComponent<IDamage>();
             damageable.takeDamage(statusEffectDamage);
             GameManager.Instance.playerScript.updatePlayerHealthUI();
             yield return new WaitForSeconds(timeIntervalStatusEffect);

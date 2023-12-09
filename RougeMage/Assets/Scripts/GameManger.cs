@@ -21,10 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] public GameObject settingsUI;
     public float timescaleOrig;
     public GameObject interactPrompt;
-    //[SerializeField] public ParticleSystem fireStatusEffectParticles;
-    //[SerializeField] public ParticleSystem acidStatusEffectParticles;
 
     [Header("----- Player Components -----")]
     public Image playerHPBar;
@@ -75,9 +74,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        audioM = GameObject.FindWithTag("Audio Manager");
-        audioScript = audioM.GetComponent<AudioManager>();
-
         isBossDead = false;
         Instance = this;
         timescaleOrig = Time.timeScale;
@@ -97,6 +93,8 @@ public class GameManager : MonoBehaviour
         prompt = promptObj.GetComponent<ColliderPrompts>();
         interactPrompt = GameObject.FindWithTag("Interact Prompt");
         goldCount = GameObject.FindWithTag("Gold");
+        audioM = GameObject.FindWithTag("Audio Manager");
+        audioScript = audioM.GetComponent<AudioManager>();
         //heroesHeart = GameObject.FindWithTag("HeroesHeart");
         //heart = heroesHeart.GetComponentInChildren<TMP_Text>();
     }
