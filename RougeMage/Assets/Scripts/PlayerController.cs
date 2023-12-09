@@ -162,10 +162,6 @@ public class PlayerController : MonoBehaviour, IDamage
                     case "Dungeon_Scene":
                         GameManager.Instance.audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
                         break;
-                    case "Logan_Scene":
-                        Debug.Log("YES");
-                        GameManager.Instance.audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
-                        break;
                 }
             }
 

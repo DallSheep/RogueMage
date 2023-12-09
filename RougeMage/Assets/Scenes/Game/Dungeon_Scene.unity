@@ -41692,6 +41692,9 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   spawnPos:
   - {fileID: 3844080689749454209}
+  mainCamera: {fileID: 0}
+  audBossMusic: {fileID: 0}
+  audBossMusicVol: 0
 --- !u!1 &8741244906888461177
 GameObject:
   m_ObjectHideFlags: 0
