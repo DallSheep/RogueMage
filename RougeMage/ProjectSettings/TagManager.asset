@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Door Collider
-  - End Text
   - Spider Enemy
   - Goblin Enemy
   - Skeleton Enemy
@@ -44,6 +43,8 @@ TagManager:
   - HeroesHeart
   - Audio Manager
   - Settings
+  - Player Cam
+  - Base Attack
   layers:
   - Default
   - TransparentFX

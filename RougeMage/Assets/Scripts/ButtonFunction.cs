@@ -5,21 +5,13 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-using UnityEditor.ProBuilder;
 
 public class ButtonFunction : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
     public void Resume()
     {
-        GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
-        GameManager.Instance.dungeonPrompt.GetComponent<Image>().enabled = false;
-        GameManager.Instance.buttonYes.GetComponent<Image>().enabled = false;
-        GameManager.Instance.buttonYes.GetComponentInChildren<TMP_Text>().enabled = false;
-        GameManager.Instance.buttonNo.GetComponent<Image>().enabled = false;
-        GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = false;
         GameManager.Instance.stateUnpause();
-        
     }
 
     public void Restart()
@@ -136,5 +128,16 @@ public class ButtonFunction : MonoBehaviour
     public void Done()
     {
         GameManager.Instance.settingsUI.SetActive(false);
+    }
+
+    public void CloseDungeon()
+    {
+        GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
+        GameManager.Instance.dungeonPrompt.GetComponent<Image>().enabled = false;
+        GameManager.Instance.buttonYes.GetComponent<Image>().enabled = false;
+        GameManager.Instance.buttonYes.GetComponentInChildren<TMP_Text>().enabled = false;
+        GameManager.Instance.buttonNo.GetComponent<Image>().enabled = false;
+        GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = false;
+        GameManager.Instance.stateUnpause();
     }
 }
