@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 3340361405615425853}
   m_Layer: 5
   m_Name: Settings
-  m_TagString: Settings
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8726,7 +8726,7 @@ MonoBehaviour:
   menuLose: {fileID: 2443543735584249887}
   playerDamageScreen: {fileID: 0}
   enemyCountText: {fileID: 0}
-  settingsUI: {fileID: 0}
+  settingsUI: {fileID: 913595945954987739}
   timescaleOrig: 1
   interactPrompt: {fileID: 0}
   playerHPBar: {fileID: 6066135637298566067}
@@ -8738,8 +8738,8 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   selectChar: {fileID: 0}
   mages: {fileID: 0}
-  bossHPBackground: {fileID: 0}
-  bossHPBar: {fileID: 0}
+  bossHPBackground: {fileID: 4375685489389907781}
+  bossHPBar: {fileID: 2995625220053476281}
   isBossDead: 0
   boss: {fileID: 0}
   isPaused: 0

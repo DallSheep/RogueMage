@@ -149,21 +149,25 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (!GameManager.Instance.isPaused)
         {
-            //if (!GameManager.Instance.audioM.GetComponent<AudioSource>().isPlaying)
-            //{
-            //    switch (SceneManager.GetActiveScene().name)
-            //    {
-            //        case "Main Menu":
-            //            GameManager.Instance.audioScript.PlayAudio(audMainMenuMusic, audMainMusicVol);
-            //            break;
-            //        case "Character Select":
-            //            GameManager.Instance.audioScript.PlayAudio(audCharacterSelectMusic, audCharacterSelectVol);
-            //            break;
-            //        case "Dungeon_Scene":
-            //            GameManager.Instance.audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
-            //            break;
-            //    }
-            //}
+            if (!GameManager.Instance.audioM.GetComponent<AudioSource>().isPlaying)
+            {
+                switch (SceneManager.GetActiveScene().name)
+                {
+                    case "Main Menu":
+                        GameManager.Instance.audioScript.PlayAudio(audMainMenuMusic, audMainMusicVol);
+                        break;
+                    case "Character Select":
+                        GameManager.Instance.audioScript.PlayAudio(audCharacterSelectMusic, audCharacterSelectVol);
+                        break;
+                    case "Dungeon_Scene":
+                        GameManager.Instance.audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
+                        break;
+                    case "Logan_Scene":
+                        Debug.Log("YES");
+                        GameManager.Instance.audioScript.PlayAudio(audDungeonMusic, audDungeonMusicVol);
+                        break;
+                }
+            }
 
             GameManager.Instance.playerSpawnPos = GameObject.FindWithTag("Respawn");
             transform.position = GameManager.Instance.playerSpawnPos.transform.position;

@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         interactPrompt = GameObject.FindWithTag("Interact Prompt");
         goldCount = GameObject.FindWithTag("Gold");
         audioM = GameObject.FindWithTag("Audio Manager");
-        //audioScript = audioM.GetComponent<AudioManager>();
+        audioScript = audioM.GetComponent<AudioManager>();
         //heroesHeart = GameObject.FindWithTag("HeroesHeart");
         //heart = heroesHeart.GetComponentInChildren<TMP_Text>();
     }
