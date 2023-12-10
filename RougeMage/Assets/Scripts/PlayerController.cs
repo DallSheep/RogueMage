@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (GameManager.Instance.playerSpawnPos != null)
         {
-            //spawnPlayer();
+            spawnPlayer();
         }
 
     }
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour, IDamage
             movement();
             cameraMovement();
 
-            if(Input.GetButton("Fire2") && !isShooting)
+            if(Input.GetButton("Fire2") && !isShooting && isCharSlected)
             {
                 
                 StartCoroutine(specialAttack());
@@ -210,7 +210,6 @@ public class PlayerController : MonoBehaviour, IDamage
     private void OnApplicationQuit()
     {
         SavePlayer();
-        Debug.Log("Saved");
     }
 
 
@@ -411,38 +410,6 @@ public class PlayerController : MonoBehaviour, IDamage
         SpecialBullet = RockCatapultBullet;
         specialCooldown = RockCatapultCooldown;
         specialManaCost = RockCatapultManaCost;
-    }
-    public void setSpellStats(GameObject spellBullet)
-    {
-        switch (spellBullet.name)
-        {
-            case "FireFlareBullet":
-                {
-                    SpecialBullet = FireFlareBullet;
-                    //specialCooldown = FireFlareBull;
-                    Debug.Log("Fire");
-                    break;
-                }
-            case "ElectricChargeBullet":
-                {
-                    SpecialBullet = ElectricChargeBullet;
-                    Debug.Log("Lightning");
-                    break;
-                }
-            case "JetStreamBullet":
-                {
-                    SpecialBullet = JetStreamBullet;
-                    Debug.Log("Water");
-                    break;
-                }
-            case "RockCatapultBullet":
-                {
-                    SpecialBullet = RockCatapultBullet;
-                    Debug.Log("Earth");
-                    break;
-                }
-
-        }
     }
 
     public void takeDamage(int amount)
