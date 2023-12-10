@@ -120,7 +120,7 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    agent.stoppingDistance = stoppingDistOrig;
+                    //agent.stoppingDistance = stoppingDistOrig;
 
                     if (angleToPlayer <= viewCone)
                     {
@@ -179,7 +179,7 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
         if (other.CompareTag("Player"))
         {
-            agent.stoppingDistance = 0;
+            //agent.stoppingDistance = 0;
             playerInRange = false;
         }
     }
@@ -215,6 +215,7 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
         else
         {
             aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+            faceTarget();
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
 

@@ -219,6 +219,7 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
         else
         {
             aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+            faceTarget();
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
 
