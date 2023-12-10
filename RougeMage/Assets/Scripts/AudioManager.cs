@@ -9,6 +9,10 @@ public class AudioManager : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] AudioSource aud;
 
+    void Start()
+    {
+        gameObject.GetComponent<AudioSource>().loop = true;
+    }
     public void PlayAudio(AudioClip clip, float vol)
     {
         //aud.Stop();
