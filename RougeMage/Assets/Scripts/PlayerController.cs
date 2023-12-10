@@ -113,9 +113,11 @@ public class PlayerController : MonoBehaviour, IDamage
     public Vector3 move;
     public int isStarted;
     Vector3 newPlayerY;
+    Vector3 spawnPos;
 
     private void Start()
     {
+        LoadPlayer();
         DontDestroyOnLoad(mousePos);
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(cam);
@@ -126,7 +128,6 @@ public class PlayerController : MonoBehaviour, IDamage
         //sets mana to full from start
         currMana = maxMana;
         manaOrig = currMana;
-        
 
         isCharSlected = false;
         isModelChanged = false;
@@ -140,8 +141,9 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (GameManager.Instance.playerSpawnPos != null)
         {
-            spawnPlayer();
+            //spawnPlayer();
         }
+
     }
 
     void Update()
@@ -196,12 +198,43 @@ public class PlayerController : MonoBehaviour, IDamage
             if (model.activeInHierarchy && isModelChanged)
             {
                 baseAttacks.SetStats();
+                SetSpecialAttackStats();
                 isModelChanged = false;
             }
 
         }
 
         newPlayerY = new Vector3(transform.position.x, 0, transform.position.z);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SavePlayer();
+        Debug.Log("Saved");
+    }
+
+
+    public void SavePlayer()
+    {
+        PlayerPrefs.SetFloat("PlayerPosition.x", transform.position.x);
+        PlayerPrefs.SetFloat("PlayerPosition.y", transform.position.y);
+        PlayerPrefs.SetFloat("PlayerPosition.z", transform.position.z);
+
+        PlayerPrefs.SetInt("PlayerHP", Hp);
+        PlayerPrefs.SetInt("PlayerGold", gold);
+        PlayerPrefs.SetFloat("PlayerMana", maxMana);
+    }
+
+    public void LoadPlayer()
+    {
+        spawnPos.x = PlayerPrefs.GetFloat("PlayerPosition.x");
+        spawnPos.y = PlayerPrefs.GetFloat("PlayerPosition.y");
+        spawnPos.z = PlayerPrefs.GetFloat("PlayerPosition.z");
+        transform.position = spawnPos;
+
+        Hp = PlayerPrefs.GetInt("PlayerHP");
+        maxMana = PlayerPrefs.GetFloat("PlayerMana");
+        gold = PlayerPrefs.GetInt("PlayerGold");
     }
 
     void movement()
@@ -299,6 +332,26 @@ public class PlayerController : MonoBehaviour, IDamage
         playerAnim.SetBool("isAttacking", false);
     }
     
+    public void SetSpecialAttackStats()
+    {
+        switch (GameManager.Instance.playerScript.finalMage.tag)
+        {
+            case "Fire Mage":
+                setFireFlareStats();
+                break;
+            case "Water Mage":
+                SetJetStreamStats();
+                break;
+            case "Lightning Mage":
+                setElectricChargeStats();
+                break;
+            case "Earth Mage":
+                SetRockCatapultStats();
+                break;
+        }
+    }
+
+
     IEnumerator Dash()
     {
         if (stamina > 0)

@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
         audioScript = audioM.GetComponent<AudioManager>();
         //heroesHeart = GameObject.FindWithTag("HeroesHeart");
         //heart = heroesHeart.GetComponentInChildren<TMP_Text>();
+
+
     }
 
 

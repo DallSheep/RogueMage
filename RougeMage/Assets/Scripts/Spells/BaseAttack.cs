@@ -35,7 +35,6 @@ public class BaseAttack : MonoBehaviour
 
     public void SetStats()
     {
-        Debug.Log("in setter");
         switch (GameManager.Instance.playerScript.finalMage.tag)
         {
             case "Fire Mage":
