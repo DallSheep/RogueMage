@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
     public GameObject audioM;
     public AudioManager audioScript;
 
+    public object MenuActive { get; internal set; }
+
     //[Header("----- Items -----")]
     //[SerializeField] public GameObject heroesHeart;
     //[SerializeField] public TMP_Text heart;

@@ -32,7 +32,6 @@ public class ButtonFunction : MonoBehaviour
     {
         GameManager.Instance.playerScript.spawnPlayer();
         GameManager.Instance.stateUnpause();
-        GameManager.Instance.doorScript.doorAnimation.SetInteger("doorStop", 1);
     }
 
     public void Quit()
@@ -130,6 +129,7 @@ public class ButtonFunction : MonoBehaviour
     public void Done()
     {
         GameManager.Instance.settingsUI.SetActive(false);
+        GameManager.Instance.stateUnpause();
     }
 
     public void CloseDungeon()
