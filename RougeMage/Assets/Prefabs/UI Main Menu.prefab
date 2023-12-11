@@ -5678,7 +5678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5055028540849483353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5976,7 +5976,7 @@ MonoBehaviour:
   playerDamageScreen: {fileID: 0}
   enemyCountText: {fileID: 0}
   settingsUI: {fileID: 6099205708265210449}
-  timescaleOrig: 0
+  timescaleOrig: 1
   interactPrompt: {fileID: 0}
   playerHPBar: {fileID: 355534441208791695}
   playerManaBar: {fileID: 2384044063387301286}
@@ -14970,7 +14970,7 @@ GameObject:
   - component: {fileID: 878071072176452812}
   - component: {fileID: 617108225972791728}
   m_Layer: 5
-  m_Name: wepons
+  m_Name: weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15023,7 +15023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wepons
+  m_text: Weapons
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

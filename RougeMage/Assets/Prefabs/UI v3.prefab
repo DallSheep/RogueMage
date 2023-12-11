@@ -7947,7 +7947,7 @@ GameObject:
   - component: {fileID: 2754710294876351344}
   - component: {fileID: 976397207592091102}
   m_Layer: 5
-  m_Name: Exit Game (1)
+  m_Name: 'Exit Game '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
