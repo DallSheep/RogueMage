@@ -3834,7 +3834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2748737221133461094
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9130,6 +9130,9 @@ MonoBehaviour:
   creditsOne: {fileID: 0}
   creditsTwo: {fileID: 0}
   creditsThree: {fileID: 0}
+  creditsFour: {fileID: 0}
+  creditsFive: {fileID: 0}
+  creditsSix: {fileID: 0}
   playerDamageScreen: {fileID: 0}
   enemyCountText: {fileID: 0}
   settingsUI: {fileID: 913595945954987739}

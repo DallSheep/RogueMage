@@ -384,6 +384,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseDungeon
       objectReference: {fileID: 0}
+    - target: {fileID: 9215622898444953718, guid: b7184a0e21ca80e4eb639ec5de8ec23d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9215622898444953718, guid: b7184a0e21ca80e4eb639ec5de8ec23d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9215622898444953718, guid: b7184a0e21ca80e4eb639ec5de8ec23d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4718,6 +4730,10 @@ PrefabInstance:
     - target: {fileID: 679212315820173441, guid: 91438ae504b21714b83a86bdc5e48d31, type: 3}
       propertyPath: m_Name
       value: UI v3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825132990588291941, guid: 91438ae504b21714b83a86bdc5e48d31, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6239312674867060649, guid: 91438ae504b21714b83a86bdc5e48d31, type: 3}
       propertyPath: m_Pivot.x
