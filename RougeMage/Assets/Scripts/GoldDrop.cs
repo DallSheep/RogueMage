@@ -19,7 +19,6 @@ public class GoldDrop : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Drop");
             PlayerController player = other.GetComponent<PlayerController>();
             goldAmount = 10;
             player.updatePlayerGoldUI(goldAmount);

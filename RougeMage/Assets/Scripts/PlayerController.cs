@@ -30,8 +30,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public float maxMana;
     [SerializeField] public float currMana; //Used just to see current mana, remove when done
     [SerializeField] public int stamina;
+    [SerializeField] public int maxStamina;
     [SerializeField] public int gold;
     [Range(0,5)] [SerializeField] float manaRegenSpeed;
+    [Range(0, 5)][SerializeField] float staminaRegenSpeed;
     public bool isCharSlected;
     public bool isModelChanged;
     public Vector3 playerVelocity;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isPlayingSteps;
     bool isDashing;
     bool manaRegen;
+    bool staminaRegen;
     private float shootRateOrig;
     private Camera camOrig;
     public int HPOrig;
@@ -125,6 +128,8 @@ public class PlayerController : MonoBehaviour, IDamage
         baseAttackPlaceholder = GameObject.FindWithTag("Base Attack");
         baseAttacks = baseAttackPlaceholder.GetComponent<BaseAttack>();
 
+        stamina = maxStamina;
+
         //sets mana to full from start
         currMana = maxMana;
         manaOrig = currMana;
@@ -195,6 +200,11 @@ public class PlayerController : MonoBehaviour, IDamage
                 StartCoroutine(regenMana());
             }
 
+            if ((stamina < maxStamina) && !staminaRegen)
+            {
+                StartCoroutine(regenStamina());
+            }
+
             if (model.activeInHierarchy && isModelChanged)
             {
                 baseAttacks.SetStats();
@@ -232,7 +242,7 @@ public class PlayerController : MonoBehaviour, IDamage
         transform.position = spawnPos;
 
         Hp = PlayerPrefs.GetInt("PlayerHP");
-        maxMana = PlayerPrefs.GetFloat("PlayerMana");
+        currMana = PlayerPrefs.GetFloat("PlayerMana");
         gold = PlayerPrefs.GetInt("PlayerGold");
     }
 
@@ -302,6 +312,16 @@ public class PlayerController : MonoBehaviour, IDamage
         currMana++;
 
         manaRegen = false;
+    }
+
+    IEnumerator regenStamina()
+    {
+        staminaRegen = true;
+        yield return new WaitForSeconds(staminaRegenSpeed);
+
+        stamina++;
+
+        staminaRegen = false;
     }
 
     IEnumerator specialAttack()
@@ -497,7 +517,6 @@ public class PlayerController : MonoBehaviour, IDamage
             selectMage.GetComponentInChildren<SkinnedMeshRenderer>().material;
         
         transform.position = newPlayerY;
-        Debug.Log(isCharSlected);
         if(isCharSlected)
         {
             GameManager.Instance.blockedTrigger.SetActive(false);

@@ -35,7 +35,6 @@ public class Doors : MonoBehaviour
 
             if (GameManager.Instance.enemiesRemaining <= 0)
             {
-                Debug.Log("The box has been hit!");
                 //This will only access the door in the very very beginning 
                 GameManager.Instance.interactPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
                 isLocked = false;
@@ -50,7 +49,6 @@ public class Doors : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(isLocked);
         if (other.CompareTag("Player") && !isLocked)
         {
             if (isInput && GameManager.Instance.enemiesRemaining == 0)

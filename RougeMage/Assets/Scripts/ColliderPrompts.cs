@@ -27,22 +27,19 @@ public class ColliderPrompts : MonoBehaviour
         {
             GameManager.Instance.player.GetComponent<CapsuleCollider>().enabled = false;
 
-            Debug.Log("Got Here");
 
             switch (gameObject.tag)
             {
                 case "Block Collider":
-                    Debug.Log(gameObject.tag);
-                    Debug.Log("Blocked Wall");
+                    
                     GameManager.Instance.blockedPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
                     break;
                 case "Character Trigger":
-                    Debug.Log(gameObject.tag);
-                    Debug.Log("Characters");
+                   
                     GameManager.Instance.charSelect.GetComponentInChildren<TMP_Text>().enabled = true;
                     break;
                 case "Door Collider":
-                    Debug.Log(gameObject.tag);
+                    
                     GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = true;
                     GameManager.Instance.dungeonPrompt.GetComponent<Image>().enabled = true;
                     GameManager.Instance.buttonYes.GetComponent<Image>().enabled = true;
@@ -68,7 +65,7 @@ public class ColliderPrompts : MonoBehaviour
 
                 if (isEPressed)
                 {
-                    Debug.Log("Fuck");
+                   
                     GameManager.Instance.ShopScreen();
                 }
             }
@@ -82,18 +79,15 @@ public class ColliderPrompts : MonoBehaviour
             switch (gameObject.tag)
             {
                 case "Block Collider":
-                    Debug.Log(gameObject.tag);
-                    Debug.Log("Blocked Wall");
+                   
                     GameManager.Instance.blockedPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
                     break;
                 case "Character Trigger":
-                    Debug.Log(gameObject.tag);
-                    Debug.Log("Characters");
+                   
                     GameManager.Instance.charSelect.GetComponentInChildren<TMP_Text>().enabled = false;
                     break;
                 case "Door Collider":
-                    Debug.Log(gameObject.tag);
-                    Debug.Log("Dungeon");
+                   
                     GameManager.Instance.dungeonPrompt.GetComponentInChildren<TMP_Text>().enabled = false;
                     GameManager.Instance.dungeonPrompt.GetComponent<Image>().enabled = false;
                     GameManager.Instance.buttonYes.GetComponent<Image>().enabled = false;

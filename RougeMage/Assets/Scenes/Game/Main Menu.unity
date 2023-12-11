@@ -1761,6 +1761,62 @@ PrefabInstance:
       propertyPath: mousePos
       value: 
       objectReference: {fileID: 1573184647}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: maxStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: FireFlareBullet
+      value: 
+      objectReference: {fileID: 8286919476976497052, guid: 09f0d567459a761499d549f7ac59e622, type: 3}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: JetStreamBullet
+      value: 
+      objectReference: {fileID: 5346050849726141275, guid: 4cf71874133969b4d808d265fbb31cc4, type: 3}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: FireFlareCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: FireFlareManaCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: JetStreamCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: JetStreamManaCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: staminaRegenSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: RockCatapultBullet
+      value: 
+      objectReference: {fileID: 7383574307154808648, guid: 7aa673d5802a40e4188060eacbb5b63a, type: 3}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: ElectricChargeBullet
+      value: 
+      objectReference: {fileID: 8464068100987265069, guid: 41059c1923659b94d9038077a343f352, type: 3}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: RockCatapultCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: RockCatapultManaCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: ElectricChargeCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983531276054482138, guid: 671442d18d075c4479e3fa26e61f0138, type: 3}
+      propertyPath: ElectricChargeManaCost
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
