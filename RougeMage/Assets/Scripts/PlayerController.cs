@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Start()
     {
-        LoadPlayer();
+       
         DontDestroyOnLoad(mousePos);
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(cam);
@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             spawnPlayer();
         }
+        LoadPlayer();
 
     }
 
