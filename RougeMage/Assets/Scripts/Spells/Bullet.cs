@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
-        Debug.Log("BeforeIDamage");
+        //Debug.Log("BeforeIDamage");
         IDamage damageable = other.GetComponent<IDamage>();
         
         if(damageable != null && !other.CompareTag("Player"))

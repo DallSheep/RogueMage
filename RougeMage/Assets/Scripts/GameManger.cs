@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject creditsFour;
     [SerializeField] GameObject creditsFive;
     [SerializeField] GameObject creditsSix;
-    [SerializeField] GameObject playerDamageScreen;
+    //[SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] public GameObject settingsUI;
     public float timescaleOrig;
@@ -198,12 +198,12 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-    public IEnumerator playerFlashDamage()
-    {
-        playerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        playerDamageScreen.SetActive(false);
-    }
+    //public IEnumerator playerFlashDamage()
+    //{
+    //    playerDamageScreen.SetActive(true);
+    //    yield return new WaitForSeconds(0.1f);
+    //    playerDamageScreen.SetActive(false);
+    //}
 
     public void ShopScreen()
     {
