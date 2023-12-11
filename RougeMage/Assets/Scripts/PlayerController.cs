@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Start()
     {
-      
+        LoadPlayer();
         DontDestroyOnLoad(mousePos);
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(cam);
@@ -148,8 +148,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             spawnPlayer();
         }
-
-        LoadPlayer();
 
     }
 
@@ -232,7 +230,6 @@ public class PlayerController : MonoBehaviour, IDamage
         PlayerPrefs.SetFloat("PlayerPosition.z", transform.position.z);
 
         PlayerPrefs.SetInt("PlayerHP", Hp);
-        PlayerPrefs.SetInt("PlayerMaxHP", HPOrig);
         PlayerPrefs.SetInt("PlayerGold", gold);
         PlayerPrefs.SetFloat("PlayerMana", maxMana);
     }
@@ -245,7 +242,6 @@ public class PlayerController : MonoBehaviour, IDamage
         transform.position = spawnPos;
 
         Hp = PlayerPrefs.GetInt("PlayerHP");
-        HPOrig = PlayerPrefs.GetInt("PlayerMaxHP");
         currMana = PlayerPrefs.GetFloat("PlayerMana");
         gold = PlayerPrefs.GetInt("PlayerGold");
     }
