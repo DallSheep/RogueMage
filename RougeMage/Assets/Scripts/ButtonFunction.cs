@@ -9,6 +9,8 @@ using Unity.VisualScripting;
 public class ButtonFunction : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
+    GoldDrop golddrop;
+
     public void Resume()
     {
         GameManager.Instance.stateUnpause();
@@ -79,7 +81,7 @@ public class ButtonFunction : MonoBehaviour
         if (GameManager.Instance.playerScript.gold >= 25)
         {
             GameManager.Instance.playerScript.gold -= 25;
-
+            golddrop.goldAmount *= 2;
         }
     }
 
@@ -140,4 +142,25 @@ public class ButtonFunction : MonoBehaviour
         GameManager.Instance.buttonNo.GetComponentInChildren<TMP_Text>().enabled = false;
         GameManager.Instance.stateUnpause();
     }
+    
+    public void CreditOpen()
+    {
+        GameManager.Instance.statePause();
+        GameManager.Instance.CreditOpen();
+    }
+
+    public void CreditNext()
+    {
+        GameManager.Instance.creditNext();
+    }
+
+    public void CreditPrevious()
+    {
+        GameManager.Instance.creditPrev();
+    }
+
+    public void CreditClose()
+    {
+        GameManager.Instance.stateUnpause();
+    }    
 }

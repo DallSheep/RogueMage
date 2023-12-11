@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuShop;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject creditsOne;
+    [SerializeField] GameObject creditsTwo;
+    [SerializeField] GameObject creditsThree;
+    [SerializeField] GameObject creditsFour;
+    [SerializeField] GameObject creditsFive;
+    [SerializeField] GameObject creditsSix;
     [SerializeField] GameObject playerDamageScreen;
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] public GameObject settingsUI;
@@ -201,8 +207,92 @@ public class GameManager : MonoBehaviour
 
     public void ShopScreen()
     {
-      statePause();
+        statePause();
         menuActive = menuShop;
         menuActive.SetActive(true);
+    }
+
+    public void CreditOpen()
+    {
+        menuActive = creditsOne;
+        menuActive.SetActive(true);
+    }
+
+    public void creditNext()
+    {
+        if(menuActive == creditsOne)
+        {
+            //menuActive = null;
+            menuActive.SetActive(false);
+            menuActive = creditsTwo;
+            menuActive.SetActive(true);
+        }
+        else if(menuActive == creditsTwo)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsThree;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == creditsThree)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsFour;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == creditsFour)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsFive;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == creditsFive)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsSix;
+            menuActive.SetActive(true);
+        }
+        
+    }
+
+    public void creditPrev()
+    {
+        if (menuActive == creditsSix)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsFive;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == creditsFive)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsFour;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == creditsFour)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsThree;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == creditsThree)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsTwo;
+            menuActive.SetActive(true);
+        }
+        else if (menuActive == creditsTwo)
+        {
+            menuActive.SetActive(false);
+            menuActive = creditsOne;
+            menuActive.SetActive(true);
+        }
+    }
+
+    public void creditClose()
+    {
+        
+        menuActive.SetActive(false);
+        menuActive = null;
+        
     }
 }

@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Game menus-01_0
+      name: Backgound
       rect:
         serializedVersion: 2
         x: 60
@@ -131,7 +131,7 @@ TextureImporter:
         width: 1612
         height: 1756
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Game menus-01_1
+      name: Button HighLight
       rect:
         serializedVersion: 2
         x: 27
@@ -152,7 +152,7 @@ TextureImporter:
         width: 1267
         height: 305
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,7 +165,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Game menus-01_2
+      name: Button Background
       rect:
         serializedVersion: 2
         x: 52
@@ -173,7 +173,7 @@ TextureImporter:
         width: 1210
         height: 248
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,7 +186,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Game menus-01_3
+      name: Title Background
       rect:
         serializedVersion: 2
         x: 103
@@ -194,7 +194,7 @@ TextureImporter:
         width: 1176
         height: 479
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -439,10 +439,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Game menus-01_0: -914445758
-      Game menus-01_1: 26481822
-      Game menus-01_2: -1599411833
-      Game menus-01_3: -307005276
+      Backgound: -914445758
+      Button Background: -1599411833
+      Button HighLight: 26481822
+      Title Background: -307005276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

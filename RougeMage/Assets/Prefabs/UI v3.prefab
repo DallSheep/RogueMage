@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -37}
+  m_AnchoredPosition: {x: 0, y: -24.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2594158679219085608
@@ -169,7 +169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2504336007041693231
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 7835904272689660198}
   - component: {fileID: 6071388089644078311}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Pause Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3834,7 +3834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2748737221133461094
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3850,8 +3850,8 @@ RectTransform:
   - {fileID: 3504363089566114194}
   - {fileID: 36702095583158446}
   - {fileID: 5392135527960079649}
-  - {fileID: 7565540309217146239}
   - {fileID: 4275929663947419562}
+  - {fileID: 7565540309217146239}
   m_Father: {fileID: 6239312674867060649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7018,7 +7018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -73.79999}
+  m_AnchoredPosition: {x: 0, y: -90.4}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4063787430874414641
@@ -9127,6 +9127,9 @@ MonoBehaviour:
   menuShop: {fileID: 1983407758544755454}
   menuWin: {fileID: 2274417882301386987}
   menuLose: {fileID: 2443543735584249887}
+  creditsOne: {fileID: 0}
+  creditsTwo: {fileID: 0}
+  creditsThree: {fileID: 0}
   playerDamageScreen: {fileID: 0}
   enemyCountText: {fileID: 0}
   settingsUI: {fileID: 913595945954987739}
@@ -9652,7 +9655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80.3}
+  m_AnchoredPosition: {x: 0, y: -57.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5923979564460313253
