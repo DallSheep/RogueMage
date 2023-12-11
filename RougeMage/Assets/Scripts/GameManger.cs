@@ -84,7 +84,8 @@ public class GameManager : MonoBehaviour
     {
         isBossDead = false;
         Instance = this;
-        timescaleOrig = Time.timeScale;
+        timescaleOrig = 1;
+        Time.timeScale = timescaleOrig;
 
         playerSpawnPos = GameObject.FindWithTag("Respawn");
         blockedTrigger = GameObject.FindWithTag("Block Collider");

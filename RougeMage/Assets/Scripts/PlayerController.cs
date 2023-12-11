@@ -467,7 +467,7 @@ public class PlayerController : MonoBehaviour, IDamage
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
        
         controller.enabled = true;
-        
+
         Time.timeScale = 1;
     }
 
