@@ -1653,26 +1653,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3079686759501592431, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
+    - target: {fileID: 3045143538208671137, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7969673263620140812, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
       propertyPath: m_Name
       value: UI Main Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 8246425433703688570, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8431432388862135638, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1893363428}
-    - target: {fileID: 8431432388862135638, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
-      propertyPath: isPaused
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8431432388862135638, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
       propertyPath: charTrigger
       value: 
