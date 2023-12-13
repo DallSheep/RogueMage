@@ -1226,7 +1226,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.318763, y: 0, z: -9.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2754073376974176982}
@@ -1252,7 +1252,7 @@ MonoBehaviour:
   anim: {fileID: 151140150255746207}
   damageCol: {fileID: 2424907770490367594}
   aud: {fileID: 6785448892285349504}
-  HP: 5
+  HP: 100
   playerFaceSpeed: 8
   viewCone: 180
   shootCone: 90
