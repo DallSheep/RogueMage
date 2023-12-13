@@ -24,8 +24,8 @@ public class JetStreamBullet : MonoBehaviour
 
     void Start()
     {
-        rb.velocity = transform.forward * speed;
-        Destroy(gameObject, destroyTime);
+        //rb.velocity = transform.forward * speed;
+        //Destroy(gameObject, destroyTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,7 +42,7 @@ public class JetStreamBullet : MonoBehaviour
             damageable.takeDamage(damage);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     public void setHitEffect(ParticleSystem spellHitEffect)

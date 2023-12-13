@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] GameObject JetStreamBullet;
     [SerializeField] float JetStreamManaCost;
     [SerializeField] float JetStreamCooldown;
+    [SerializeField] GameObject JSB;
 
     [Header("===== EarthCatapult Stats =====")]
     [SerializeField] GameObject RockCatapultBullet;
@@ -329,7 +330,7 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator specialAttack()
     {
         isShooting = true;
-        playerAnim.SetBool("isAttacking", true);
+        playerAnim.SetBool("isLongAttack", true);
 
         if (currMana >= specialManaCost)
         {
@@ -343,13 +344,27 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if (SpecialBullet != null)
             {
-                GameObject currBullet = Instantiate(SpecialBullet, shootPos.position + move, Quaternion.identity);
-                currBullet.transform.forward = shootDir.normalized;
+                if (GameManager.Instance.playerScript.finalMage.tag == "Water Mage")
+                {
+                    JSB.SetActive(true);
+                }
+                else
+                {
+                    GameObject currBullet = Instantiate(SpecialBullet, shootPos.position + move, Quaternion.identity);
+                    currBullet.transform.forward = shootDir.normalized;
+                }
             }
            yield return new WaitForSeconds(.1f);
-
-            playerAnim.SetBool("isAttacking", false);
+           
+            playerAnim.SetBool("isLongAttack", false);
+            if (JSB == true)
+            {
+                JSB.SetActive(false);
+            }
             yield return new WaitForSeconds(specialCooldown);
+
+            
+          
         }
         isShooting = false;
         playerAnim.SetBool("isAttacking", false);
