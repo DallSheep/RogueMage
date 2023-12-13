@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour, IDamage
         currMana = maxMana;
         manaOrig = currMana;
 
-        isCharSlected = false;
+        //isCharSlected = false;
         isModelChanged = false;
         staminaOrig = stamina;
         //goldOrig = gold;

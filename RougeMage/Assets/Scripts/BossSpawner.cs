@@ -46,11 +46,7 @@ public class BossSpawner : MonoBehaviour
         {
             GameManager.Instance.audioM.GetComponent<AudioSource>().loop = false;
             GameManager.Instance.audioScript.PlayAudio(audBossMusic, audBossMusicVol);
-            Vector3 targetPos = new Vector3(GameManager.Instance.playerScript.transform.position.x * 
-                GameManager.Instance.playerScript.playerVelocity.x, GameManager.Instance.playerScript.transform.position.y + 30, 
-                GameManager.Instance.playerScript.transform.position.z * GameManager.Instance.playerScript.playerVelocity.z);
-
-            mainCamera.GetComponent<CameraPosition>().height = targetPos;
+            mainCamera.GetComponent<CameraPosition>().height.y += 20;
 
             startSpawning = true;
             GameManager.Instance.bossHPBackground.GetComponent<Image>().enabled = true;

@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public PlayerController playerScript;
     public CharacterSelection selectChar;
     public GameObject mages;
+    public GameObject mainCamera;
+    public Vector3 cameraPos;
 
     [Header("----- Boss Components -----")]
     [SerializeField] public Image bossHPBackground;
@@ -55,7 +57,7 @@ public class GameManager : MonoBehaviour
     public int enemiesRemaining;
     public GameObject doors;
     public Doors doorScript;
-    
+
 
     [Header("----- Prompt Components -----")]
     public ColliderPrompts prompt;
@@ -104,6 +106,8 @@ public class GameManager : MonoBehaviour
         goldCount = GameObject.FindWithTag("Gold");
         audioM = GameObject.FindWithTag("Audio Manager");
         audioScript = audioM.GetComponent<AudioManager>();
+        mainCamera = GameObject.FindWithTag("MainCamera");
+
         //heroesHeart = GameObject.FindWithTag("HeroesHeart");
         //heart = heroesHeart.GetComponentInChildren<TMP_Text>();
 
@@ -154,7 +158,7 @@ public class GameManager : MonoBehaviour
             menuActive.SetActive(false);
             menuActive = null;
         }
-        
+
     }
 
     public void UpdateGameGoal(int amount)
@@ -166,7 +170,7 @@ public class GameManager : MonoBehaviour
         {
             //We can make a short and simple UI pop up to notify the player to move to the next room
         }
-        else if(enemiesRemaining <= 0 && isBossDead)
+        else if (enemiesRemaining <= 0 && isBossDead)
         {
 
         }
@@ -188,7 +192,7 @@ public class GameManager : MonoBehaviour
     public void UpdateWinCondition(bool dead)
     {
         isBossDead = dead;
-        if(dead == true)
+        if (dead == true)
         {
             youWin();
         }
@@ -223,14 +227,14 @@ public class GameManager : MonoBehaviour
 
     public void creditNext()
     {
-        if(menuActive == creditsOne)
+        if (menuActive == creditsOne)
         {
             //menuActive = null;
             menuActive.SetActive(false);
             menuActive = creditsTwo;
             menuActive.SetActive(true);
         }
-        else if(menuActive == creditsTwo)
+        else if (menuActive == creditsTwo)
         {
             menuActive.SetActive(false);
             menuActive = creditsThree;
@@ -254,7 +258,7 @@ public class GameManager : MonoBehaviour
             menuActive = creditsSix;
             menuActive.SetActive(true);
         }
-        
+
     }
 
     public void creditPrev()
@@ -293,9 +297,17 @@ public class GameManager : MonoBehaviour
 
     public void creditClose()
     {
-        
+
         menuActive.SetActive(false);
         menuActive = null;
-        
+
+    }
+
+    public void resetCameraHeight()
+    {
+        if (mainCamera.GetComponent<CameraPosition>().height.y > 15)
+        {
+            mainCamera.GetComponent<CameraPosition>().height.y -= 20;
+        }
     }
 }

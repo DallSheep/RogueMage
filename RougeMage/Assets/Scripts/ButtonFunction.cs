@@ -24,6 +24,7 @@ public class ButtonFunction : MonoBehaviour
 
     public void dungeonRespawn()
     {
+        GameManager.Instance.resetCameraHeight();
         SceneManager.LoadScene("Character Select");
         GameManager.Instance.stateUnpause();
     }

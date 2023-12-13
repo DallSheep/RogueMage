@@ -70,6 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magnetizationSpeed: 0.3
   player: {fileID: 0}
+  skeletonEnemy: {fileID: 0}
+  goblinEnemy: {fileID: 0}
+  spiderEnemy: {fileID: 0}
 --- !u!82 &1920515802280296379
 AudioSource:
   m_ObjectHideFlags: 0
@@ -263,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0794fdaf25d7124d85877075582dfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldAmount: 1
+  goldAmount: 10
   aud: {fileID: 1920515802280296379}
   audCollected: {fileID: 8300000, guid: 88bdafb25763e0e4980895fc6dec5d4b, type: 3}
   audCollectedVol: 0.2

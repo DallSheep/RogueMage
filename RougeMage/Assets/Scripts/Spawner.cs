@@ -9,7 +9,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] int timeBetweenSpawns;
     [SerializeField] Transform[] spawnPos;
 
+    int prevSpawnPos;
     int spawnCount;
+    int randomNum;
     bool isSpawning;
     bool startSpawning;
 
@@ -30,16 +32,20 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    IEnumerator spawn()
+    IEnumerator spawn() 
     {
         isSpawning = true;
 
         int randomNum = Random.Range(0, spawnPos.Length);
 
-        Instantiate(objectToSpawn[Random.Range(0, objectToSpawn.Length)], spawnPos[randomNum].position, spawnPos[randomNum].rotation);
-        spawnCount++;
+        for (int i = 0; i < spawnPos.Length; i++)
+        {
+            Instantiate(objectToSpawn[Random.Range(0, objectToSpawn.Length)], spawnPos[i].position, spawnPos[i].rotation);
 
-        yield return new WaitForSeconds(timeBetweenSpawns);
+            spawnCount++;
+
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
 
         isSpawning = false;
     }

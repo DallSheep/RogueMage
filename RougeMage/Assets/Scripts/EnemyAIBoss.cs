@@ -140,7 +140,7 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
         {
             if (!inRageTransition)
             {
-                playerDir = GameManager.Instance.player.transform.position - headPos.position;
+                playerDir = (GameManager.Instance.player.transform.position - headPos.position).normalized;
                 angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
                 Debug.DrawRay(headPos.position, playerDir);
@@ -255,7 +255,6 @@ public class EnemyAIBoss : MonoBehaviour, IDamage
         else
         {
             aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
-            faceTarget();
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
 
