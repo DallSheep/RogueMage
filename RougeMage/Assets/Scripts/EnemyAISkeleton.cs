@@ -38,6 +38,8 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     [Header("----- Sword Stuff -----")]
     [Range(1, 5)][SerializeField] float timeBetweenSwings;
+    [SerializeField] public GameObject Sword1;
+    [SerializeField] public GameObject Sword2;
 
     [Header("----- Drop on Death -----")]
     [SerializeField] List<GameObject> groundItems;
@@ -206,6 +208,8 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
             dead = true;
             damageCol.enabled = false;
             agent.enabled = false;
+            Sword1.GetComponent<CapsuleCollider>().enabled = false;
+            Sword2.GetComponent<CapsuleCollider>().enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
             SpawnDrops();
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
