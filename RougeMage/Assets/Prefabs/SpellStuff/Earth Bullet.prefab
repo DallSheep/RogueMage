@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8664158921821298280}
   damage: 1
-  speed: 5
-  destroyTime: 3
+  speed: 12
+  destroyTime: 2
   hitEffect: {fileID: 0}
   damageCount: 0
   timeIntervalStatusEffect: 0
