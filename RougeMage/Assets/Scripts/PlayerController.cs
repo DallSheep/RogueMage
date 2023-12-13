@@ -194,6 +194,8 @@ public class PlayerController : MonoBehaviour, IDamage
             updatePlayerGoldUI(0);
             updatePlayerStaminaUI();
 
+           
+
             //Regens mana when mana is not full
             if ((currMana < maxMana) && !manaRegen)
             {
@@ -319,7 +321,7 @@ public class PlayerController : MonoBehaviour, IDamage
         staminaRegen = true;
         yield return new WaitForSeconds(staminaRegenSpeed);
 
-        stamina++;
+        stamina += 2;
 
         staminaRegen = false;
     }
@@ -341,10 +343,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if (SpecialBullet != null)
             {
-                GameObject currBullet = Instantiate(SpecialBullet, shootPos.position, Quaternion.identity);
+                GameObject currBullet = Instantiate(SpecialBullet, shootPos.position + move, Quaternion.identity);
                 currBullet.transform.forward = shootDir.normalized;
             }
+           yield return new WaitForSeconds(.1f);
 
+            playerAnim.SetBool("isAttacking", false);
             yield return new WaitForSeconds(specialCooldown);
         }
         isShooting = false;

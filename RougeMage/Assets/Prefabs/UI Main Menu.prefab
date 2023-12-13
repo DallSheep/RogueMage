@@ -5678,7 +5678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5055028540849483353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5973,7 +5973,6 @@ MonoBehaviour:
   creditsFour: {fileID: 4037287495227430439}
   creditsFive: {fileID: 8544758542091343765}
   creditsSix: {fileID: 5853104377973860738}
-  playerDamageScreen: {fileID: 0}
   enemyCountText: {fileID: 0}
   settingsUI: {fileID: 6099205708265210449}
   timescaleOrig: 1
