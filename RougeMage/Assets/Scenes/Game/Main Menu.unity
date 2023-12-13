@@ -1653,10 +1653,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3045143538208671137, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7969673263620140812, guid: a108db5540e5f0049aaa8b3fa84e1be9, type: 3}
       propertyPath: m_Name
       value: UI Main Menu
