@@ -53,7 +53,7 @@ MonoBehaviour:
   rb: {fileID: 2342207448083863076}
   damage: 2
   speed: 0
-  destroyTime: 0.5
+  destroyTime: 0.1
   hitEffect: {fileID: 0}
   damageCount: 0
   timeInvervalStatusEffect: 0
