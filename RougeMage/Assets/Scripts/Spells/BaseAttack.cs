@@ -23,11 +23,13 @@ public class BaseAttack : MonoBehaviour
 
             if (GameManager.Instance.playerScript.bulletMain != null)
             {
-                GameObject currBullet = Instantiate(GameManager.Instance.playerScript.bulletMain, GameManager.Instance.playerScript.shootPos.position, Quaternion.identity);
+                GameObject currBullet = Instantiate(GameManager.Instance.playerScript.bulletMain, GameManager.Instance.playerScript.shootPos.position 
+                    + GameManager.Instance.playerScript.playerVelocity, Quaternion.identity);
                 currBullet.transform.forward = shootDir.normalized;
             }
-
-            yield return new WaitForSeconds(GameManager.Instance.playerScript.cooldown);
+            yield return new WaitForSeconds(.1f);
+            GameManager.Instance.playerScript.playerAnim.SetBool("isAttacking", false);
+            yield return new WaitForSeconds(GameManager.Instance.playerScript.shootRate);
         }
         GameManager.Instance.playerScript.isShooting = false;
         GameManager.Instance.playerScript.playerAnim.SetBool("isAttacking", false);
@@ -43,7 +45,7 @@ public class BaseAttack : MonoBehaviour
                 GameManager.Instance.playerScript.shootDamage = 8;
                 GameManager.Instance.playerScript.shootDist = 5;
                 GameManager.Instance.playerScript.playerSpeed = 8;
-                //GameManager.Instance.playerScript.manaCost = 
+                GameManager.Instance.playerScript.manaCost = 1;
                 break;
             case "Water Mage":
                 GameManager.Instance.playerScript.bulletMain = GameManager.Instance.playerScript.bulletWater;
@@ -51,6 +53,7 @@ public class BaseAttack : MonoBehaviour
                 GameManager.Instance.playerScript.shootDamage = 12;
                 GameManager.Instance.playerScript.shootDist = 15;
                 GameManager.Instance.playerScript.playerSpeed = 8;
+                GameManager.Instance.playerScript.manaCost = 1;
                 break;
             case "Lightning Mage":
                 GameManager.Instance.playerScript.bulletMain = GameManager.Instance.playerScript.bulletLightning;
@@ -58,6 +61,7 @@ public class BaseAttack : MonoBehaviour
                 GameManager.Instance.playerScript.shootDamage = 4;
                 GameManager.Instance.playerScript.shootDist = 10;
                 GameManager.Instance.playerScript.playerSpeed = 10;
+                GameManager.Instance.playerScript.manaCost = 5;
                 break;
             case "Earth Mage":
                 GameManager.Instance.playerScript.bulletMain = GameManager.Instance.playerScript.bulletEarth;
@@ -65,6 +69,7 @@ public class BaseAttack : MonoBehaviour
                 GameManager.Instance.playerScript.shootDamage = 12;
                 GameManager.Instance.playerScript.shootDist = 10;
                 GameManager.Instance.playerScript.playerSpeed = 6;
+                GameManager.Instance.playerScript.manaCost = 10;
                 break;
         }
     }
