@@ -24,12 +24,10 @@ public class BaseAttack : MonoBehaviour
             if (GameManager.Instance.playerScript.bulletMain != null)
             {
                 GameObject currBullet = Instantiate(GameManager.Instance.playerScript.bulletMain, GameManager.Instance.playerScript.shootPos.position 
-                    + GameManager.Instance.playerScript.playerVelocity, Quaternion.identity);
+                    + GameManager.Instance.playerScript.move, Quaternion.identity);
                 currBullet.transform.forward = shootDir.normalized;
             }
-            yield return new WaitForSeconds(.1f);
-            GameManager.Instance.playerScript.playerAnim.SetBool("isAttacking", false);
-            yield return new WaitForSeconds(GameManager.Instance.playerScript.shootRate);
+            yield return new WaitForSeconds(GameManager.Instance.playerScript.cooldown);
         }
         GameManager.Instance.playerScript.isShooting = false;
         GameManager.Instance.playerScript.playerAnim.SetBool("isAttacking", false);
