@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.UIElements.Experimental;
 
 public class EnemyAIRangers : MonoBehaviour, IDamage
 {
@@ -74,11 +75,11 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
 
             if (playerInRange && !canSeePlayer())
             {
-                //StartCoroutine(roam());
+                StartCoroutine(roam());
             }
             else if (!playerInRange)
             {
-                //StartCoroutine(roam());
+                StartCoroutine(roam());
             }
         }
     }
@@ -107,7 +108,7 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
     {
         if (agent.isActiveAndEnabled)
         {
-            playerDir = (GameManager.Instance.player.transform.position - headPos.position).normalized;
+            playerDir = (GameManager.Instance.player.transform.position - headPos.position);
             angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
             Debug.DrawRay(headPos.position, playerDir);
@@ -178,7 +179,7 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
 
         if (other.CompareTag("Player"))
         {
-            agent.stoppingDistance = 0;
+            //agent.stoppingDistance = 0;
             playerInRange = false;
         }
     }
@@ -220,6 +221,7 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
         {
             aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
             agent.SetDestination(GameManager.Instance.player.transform.position);
+            faceTarget();
         }
 
         StartCoroutine(flashRed());
@@ -253,6 +255,7 @@ public class EnemyAIRangers : MonoBehaviour, IDamage
     void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, GameManager.Instance.player.transform.rotation, Time.deltaTime * playerFaceSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 }

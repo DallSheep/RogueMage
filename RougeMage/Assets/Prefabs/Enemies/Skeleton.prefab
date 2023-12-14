@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aa983927c4f964993eccb5b538d0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
 --- !u!136 &5800620584490962472
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3533,7 +3533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aa983927c4f964993eccb5b538d0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
 --- !u!136 &6962967009543614239
 CapsuleCollider:
   m_ObjectHideFlags: 0
