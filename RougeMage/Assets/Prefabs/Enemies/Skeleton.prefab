@@ -1236,7 +1236,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.25, y: 0.00000047683716, z: 3}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 14229923913668066}
@@ -1313,6 +1313,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b938bbb57d5322d4db74359d72c16638, type: 3}
   audDeathVol: 0.6
   timeBetweenSwings: 0
+  Sword1: {fileID: 1064451289455355578}
+  Sword2: {fileID: 8640524786159533215}
   groundItems:
   - {fileID: 3866573276882906577, guid: 2b095dc5781ae8345821ec479ca1379b, type: 3}
   - {fileID: 5824782020029261339, guid: a71048811e808744ebcaad8f7887b334, type: 3}

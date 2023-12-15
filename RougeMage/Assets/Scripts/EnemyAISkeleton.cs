@@ -38,6 +38,8 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
 
     [Header("----- Sword Stuff -----")]
     [Range(1, 5)][SerializeField] float timeBetweenSwings;
+    [SerializeField] public GameObject Sword1;
+    [SerializeField] public GameObject Sword2;
 
     [Header("----- Drop on Death -----")]
     [SerializeField] List<GameObject> groundItems;
@@ -108,7 +110,7 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
     {
         if (!dead)
         {
-            playerDir = (GameManager.Instance.player.transform.position - headPos.position).normalized;
+            playerDir = (GameManager.Instance.player.transform.position - headPos.position);
             angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
             Debug.DrawRay(headPos.position, playerDir);
@@ -126,14 +128,9 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
                     {
                         agent.SetDestination(GameManager.Instance.player.transform.position);
 
-                        if (angleToPlayer <= shootCone && !isAttacking)
+                        if (angleToPlayer <= shootCone && !isAttacking && agent.remainingDistance <= agent.stoppingDistance)
                         {
                             StartCoroutine(attack());
-                        }
-
-                        if (agent.remainingDistance < agent.stoppingDistance)
-                        {
-                            faceTarget();
                         }
 
                         agent.SetDestination(GameManager.Instance.player.transform.position);
@@ -206,6 +203,8 @@ public class EnemyAISkeleton : MonoBehaviour, IDamage
             dead = true;
             damageCol.enabled = false;
             agent.enabled = false;
+            Sword1.GetComponent<CapsuleCollider>().enabled = false;
+            Sword2.GetComponent<CapsuleCollider>().enabled = false;
             GameManager.Instance.UpdateGameGoal(-1);
             SpawnDrops();
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);

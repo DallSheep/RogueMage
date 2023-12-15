@@ -190,9 +190,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6603774, g: 0.17132434, b: 0.56528366, a: 1}
-      key1: {r: 0.35148123, g: 0.14012992, b: 0.4433962, a: 0.5529412}
-      key2: {r: 0.2202021, g: 0.08414915, b: 0.2924528, a: 0}
+      key0: {r: 0.40580833, g: 1, b: 0, a: 1}
+      key1: {r: 0.9160466, g: 1, b: 0, a: 0.5529412}
+      key2: {r: 0.28811592, g: 0.4245283, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -243,7 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8581280028794566910}
-  player: {fileID: 0}
   damage: 3
   speed: 30
   destroyTime: 2
