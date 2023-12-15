@@ -292,8 +292,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void cameraMovement()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
 
 
         //finds vector between the player and the mouse position
@@ -330,7 +330,7 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator specialAttack()
     {
         isShooting = true;
-        playerAnim.SetBool("isLongAttack", true);
+        
 
         if (currMana >= specialManaCost)
         {
@@ -346,28 +346,32 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 if (GameManager.Instance.playerScript.finalMage.tag == "Water Mage")
                 {
+                    playerAnim.SetBool("isLongAttack", true);
                     JSB.SetActive(true);
                 }
                 else
                 {
+                    playerAnim.SetBool("isAttacking", true);
                     GameObject currBullet = Instantiate(SpecialBullet, shootPos.position + move, Quaternion.identity);
                     currBullet.transform.forward = shootDir.normalized;
                 }
             }
            yield return new WaitForSeconds(.1f);
            
-            playerAnim.SetBool("isLongAttack", false);
+          
             if (JSB == true)
             {
                 JSB.SetActive(false);
+                playerAnim.SetBool("isLongAttack", false);
             }
+            playerAnim.SetBool("isAttacking", false);
             yield return new WaitForSeconds(specialCooldown);
 
             
           
         }
         isShooting = false;
-        playerAnim.SetBool("isAttacking", false);
+       
     }
     
     public void SetSpecialAttackStats()

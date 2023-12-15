@@ -163,5 +163,10 @@ public class ButtonFunction : MonoBehaviour
     public void CreditClose()
     {
         GameManager.Instance.stateUnpause();
+        if (Cursor.visible != true)
+        {
+            Cursor.visible = true;
+        }
+        Debug.Log(Cursor.visible);
     }    
 }

@@ -5800,6 +5800,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3022638207523285979, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022638207523285979, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022638207523285979, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3145374321791076315, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553694946665565981, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: isEPressed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5581174395061660788, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.23
@@ -5816,8 +5836,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prompt Collider
       objectReference: {fileID: 0}
+    - target: {fileID: 6792277650029549977, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792277650029549977, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_Size.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792277650029549977, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792277650029549977, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5399243572070046756, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+    - {fileID: 3145374321791076315, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+    - {fileID: 6142220758469873125, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
+    - {fileID: 3123486639565322366, guid: 03c61ec95f59b5945abd57225ff4c13f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

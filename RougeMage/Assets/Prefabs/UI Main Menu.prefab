@@ -5977,6 +5977,7 @@ MonoBehaviour:
   settingsUI: {fileID: 6099205708265210449}
   timescaleOrig: 1
   interactPrompt: {fileID: 0}
+  inGameMouseTexture: {fileID: 2800000, guid: 3b57c9f6f9b1f5148847c0f50c22a6ad, type: 3}
   playerHPBar: {fileID: 355534441208791695}
   playerManaBar: {fileID: 2384044063387301286}
   playerStaminaBar: {fileID: 2929822968035380241}
@@ -5986,6 +5987,8 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   selectChar: {fileID: 0}
   mages: {fileID: 0}
+  mainCamera: {fileID: 0}
+  cameraPos: {x: 0, y: 0, z: 0}
   bossHPBackground: {fileID: 0}
   bossHPBar: {fileID: 0}
   isBossDead: 0
