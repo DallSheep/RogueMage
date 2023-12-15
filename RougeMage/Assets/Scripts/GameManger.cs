@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject settingsUI;
     public float timescaleOrig;
     public GameObject interactPrompt;
+    [SerializeField] public Texture2D inGameMouseTexture;
 
     [Header("----- Player Components -----")]
     public Image playerHPBar;
@@ -143,7 +144,7 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = 0;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void stateUnpause()
@@ -151,8 +152,11 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
         playerScript.enabled = true;
         Time.timeScale = timescaleOrig;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Locked;
+        //if (Cursor.visible != true)
+        //{
+        //    Cursor.visible = true;
+        //}
+        Cursor.SetCursor(inGameMouseTexture, Vector2.zero, CursorMode.Auto);
         if (menuActive != null)
         {
             menuActive.SetActive(false);

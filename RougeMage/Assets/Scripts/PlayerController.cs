@@ -292,8 +292,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void cameraMovement()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
 
 
         //finds vector between the player and the mouse position
