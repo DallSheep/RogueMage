@@ -26,6 +26,7 @@ public class ButtonFunction : MonoBehaviour
     {
         GameManager.Instance.resetCameraHeight();
         SceneManager.LoadScene("Character Select");
+        GameManager.Instance.playerScript.spawnPlayer();
         GameManager.Instance.stateUnpause();
     }
 
