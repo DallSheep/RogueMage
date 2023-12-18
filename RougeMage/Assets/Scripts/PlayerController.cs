@@ -344,17 +344,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if (SpecialBullet != null)
             {
-                if (GameManager.Instance.playerScript.finalMage.tag == "Water Mage")
-                {
-                    playerAnim.SetBool("isLongAttack", true);
-                    JSB.SetActive(true);
-                }
-                else
-                {
+            
+                
                     playerAnim.SetBool("isAttacking", true);
                     GameObject currBullet = Instantiate(SpecialBullet, shootPos.position + move, Quaternion.identity);
                     currBullet.transform.forward = shootDir.normalized;
-                }
+                
             }
            yield return new WaitForSeconds(.1f);
            

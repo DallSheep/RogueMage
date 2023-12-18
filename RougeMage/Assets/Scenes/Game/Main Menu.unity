@@ -448,6 +448,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 655848835513635125, guid: 2bf6589da28f1794b9e4beedd7db8208, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 1183103048705154472, guid: 2bf6589da28f1794b9e4beedd7db8208, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.720602
@@ -31944,6 +31948,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &4447834132931423052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.415333
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.1236076
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538631603509245822, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812073468567908580, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+      propertyPath: m_Name
+      value: NewJetBullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
 --- !u!4 &4500887186339565410
 Transform:
   m_ObjectHideFlags: 0
@@ -43724,18 +43785,18 @@ MonoBehaviour:
   shootRate: 1
   weapon: {fileID: 0}
   FireFlareBullet: {fileID: 8286919476976497052, guid: 09f0d567459a761499d549f7ac59e622, type: 3}
-  FireFlareManaCost: 5
+  FireFlareManaCost: 10
   FireFlareCooldown: 0.1
   ElectricChargeBullet: {fileID: 8464068100987265069, guid: 41059c1923659b94d9038077a343f352, type: 3}
-  ElectricChargeManaCost: 20
+  ElectricChargeManaCost: 30
   ElectricChargeCooldown: 1
-  JetStreamBullet: {fileID: 5346050849726141275, guid: 4cf71874133969b4d808d265fbb31cc4, type: 3}
-  JetStreamManaCost: 5
-  JetStreamCooldown: 0
+  JetStreamBullet: {fileID: 7812073468567908580, guid: 0a8fad19207d5e54181812045c2c4421, type: 3}
+  JetStreamManaCost: 12
+  JetStreamCooldown: 0.02
   JSB: {fileID: 8598961435259168744}
   RockCatapultBullet: {fileID: 7383574307154808648, guid: 7aa673d5802a40e4188060eacbb5b63a, type: 3}
-  RockCatapultManaCost: 30
-  RockCatapultCooldown: 5
+  RockCatapultManaCost: 50
+  RockCatapultCooldown: 3
   audSteps: []
   audStepsVol: 0
   audDamage: []
@@ -44265,3 +44326,4 @@ SceneRoots:
   - {fileID: 2039503395}
   - {fileID: 5447687945006474958}
   - {fileID: 2041554943280676972}
+  - {fileID: 4447834132931423052}
